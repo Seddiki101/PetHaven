@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/pethaven_workstation_logo_01.png</file>
+    </qresource>
+</RCC>
