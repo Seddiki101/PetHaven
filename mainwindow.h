@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 #include "animal.h"
 #include <QMainWindow>
+#include <QCheckBox>
+#include <QMessageBox>
+#include <QIntValidator>
+#include <QtDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,21 +20,19 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pb_ajouter_clicked();
+    void on_btn_Refresh_clicked();
 
-    void on_pb_ajouter_2_clicked();
+    void on_btn_Search_clicked();
 
-    void on_pushButton_clicked();
+    void on_btn_Add_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_btn_Update_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_btn_Delete_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_btn_Sort_clicked();
 
-    void on_pushButton_5_clicked();
-
-    void on_pb_ajouter_4_clicked();
+    void on_btn_PDF_clicked();
 
 private:
     Ui::MainWindow *ui;

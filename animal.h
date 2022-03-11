@@ -7,21 +7,23 @@
 
 class Animal
 {
-    int age;
+    int age, status;
     QString nom, espece, race;
     QDate date_arr;
 
 public:
     Animal();
-    Animal(int, QString, QString, QString, QDate);
+    Animal(int, int, QString, QString, QString, QDate);
 
     int getAge();
+    int getStatus();
     QString getNom();
     QString getEspece();
     QString getRace();
     QDate getDate_arr();
 
     void setAge (int);
+    void setStatus (int);
     void setNom (QString);
     void setEspece (QString);
     void setRace (QString);
@@ -29,6 +31,7 @@ public:
 
     QSqlQueryModel* afficher();
     bool ajouter();
+    bool modifier(int id);
     bool supprimer(int id);
 };
 

@@ -13,6 +13,15 @@ int main(int argc, char *argv[])
 
     MainWindow w;
 
+    //open qss file
+    QFile file(":/res/Cypher.qss");
+    file.open(QFile::ReadOnly);
+
+    QString styleSheet { QString(file.readAll()) };
+
+    //setup stylesheet
+    a.setStyleSheet(styleSheet);
+
     if(test)
     {
         w.show();
