@@ -1,0 +1,34 @@
+#ifndef EMPLOYE_H
+#define EMPLOYE_H
+#include<QString>
+#include<QSqlQueryModel>
+
+class Livraison
+{
+public:
+    Livraison();
+    Livraison(int,QString,QDate,int);
+    int getid(){return id;};
+    QString getadresse(){return adresse;};
+    QDate getdate(){return date;};
+    int getnum(){return num;};
+    void setid(int);
+    void setnom(QString);
+    void setprenom(QString);
+    void setmdp(QString);
+    void setlogin(QString);
+    bool ajouter();
+    QSqlQueryModel* afficher();
+    bool supprimer(int id);
+
+private:
+    int id, num;
+    QString adresse;
+    QDate date;
+};
+
+#endif // EMPLOYE_H
+
+
+
+
