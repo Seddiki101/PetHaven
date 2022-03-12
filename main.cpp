@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
 
     //open qss file
-          QFile file("C:/Users/Hassène/Desktop/gestion_Adoptions/Cypher.qss");
+          QFile file("C:/Users/Hassène/Desktop/Gestion_Beneficiaire/Cypher.qss");
           file.open(QFile::ReadOnly);
 
           QString styleSheet { QString(file.readAll()) };

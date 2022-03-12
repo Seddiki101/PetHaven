@@ -15,25 +15,33 @@ class Beneficiaire
 
 
 
-int CIN; QString name;QString lastname; int age; QString adress; QString type;
+int CIN; QString name;QString lastname; int age; QString adress; QString type; int num;
 
 
 public:
-    Beneficiaire(){
-        CIN=0; name=""; lastname="";  age=0;  adress="";  type="";
-    };
-    Beneficiaire(int CIN, QString name,QString lastname, int age, QString adress, QString type)
-    {
-        this->CIN=CIN;
-        this->name=name;
-        this->lastname=lastname;
-        this->age=age;
-        this->adress=adress;
-        this->type=type;
-    }
+    Beneficiaire();
+    Beneficiaire(int CIN, QString name,QString lastname, int age, QString adress, QString type, int num);
     QSqlQueryModel * afficher();
     bool ajouter();
     bool supprimer(int CIN);
+    bool modifier(int CIN, QString name,QString lastname, int age, QString adress, QString type, int num);
+
+    void setCIN(int CIN);
+    void setName(QString name);
+    void setLastName(QString lastname);
+    void setAge(int age);
+    void setAdress(QString adress);
+    void setType(QString type);
+    void setNum(int NUM);
+
+    int getCIN();
+    QString getName();
+    QString getLastName();
+    int getAge();
+    QString getAdress();
+    QString getType();
+    int getNum();
+
 
 
 };

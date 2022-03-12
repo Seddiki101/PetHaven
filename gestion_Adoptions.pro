@@ -18,7 +18,8 @@ SOURCES += \
 HEADERS += \
     beneficiaire.h \
     connection.h \
-    mainwindow.h
+    mainwindow.h \
+    misc.h
 
 FORMS += \
     mainwindow.ui
