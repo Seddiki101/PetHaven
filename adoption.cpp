@@ -30,7 +30,7 @@ QSqlQueryModel * patient::afficher()
 {
 	QSqlQueryModel * model=new QSqlQueryModel();
 	
-model->setQuery("select * from patients")	;
+model->setQuery("select * from BENEFICIAIRES")	;
 //model->setHeaderData(0,Qt::Horizontal,QObject::tr("nom"));
 //model->setHeaderData(1,Qt::Horizontal,QObject::tr("prenom"));
 
@@ -44,7 +44,7 @@ QSqlQueryModel * Adoption::afficher()
 {
 	QSqlQueryModel * model=new QSqlQueryModel();
 	
-model->setQuery("select animals.nom,adoption.dates,patients.Prenom from adoption,patients,animals where ( adoption.IDA = animals.IDA AND adoption.IDP = patients.IDP ) ;")	;
+model->setQuery("select adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom,beneficiaires.nom from adoption,beneficiaires,animals where ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) ;")	;
 
 return model;
 }
@@ -55,7 +55,7 @@ QSqlQueryModel * Adoption::triAlpha()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
 
-model->setQuery("select animals.nom,adoption.dates,patients.Prenom from adoption,patients,animals where ( adoption.IDA = animals.IDA AND adoption.IDP = patients.IDP ) order by animals.nom;")	;
+model->setQuery("select adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom from adoption,beneficiaires,animals where ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) order by animals.nom;")	;
 
 return model;
 }
@@ -66,7 +66,7 @@ QSqlQueryModel * Adoption::triDates()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
 
-model->setQuery("select animals.nom,adoption.dates,patients.Prenom from adoption,patients,animals where ( adoption.IDA = animals.IDA AND adoption.IDP = patients.IDP ) order by adoption.dates desc;")	;
+model->setQuery("select adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom from adoption,beneficiaires,animals where ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) order by adoption.dates desc;")	;
 
 return model;
 }
@@ -81,11 +81,23 @@ bool Adoption::ajouter()
         QString idp_string=QString::number(idp);
          QString idAdoption_string=QString::number(idAdoption);
 
+//testing if it already exists
+/*
+  verif.prepare("SELECT IDA FROM BENEFICIAIRES WHERE EXISTS (SELECT * FROM CLIENT c WHERE ? = c.cin)");
+                  verif.addBindValue(cin);
+                  verif.exec();
+                  verif.next();
+                  if (verif.value(0).toBool())
+                  { QMessageBox::information(nullptr,"Information","Client existe :) !"); }
+			  else
+*/
+
+
 
 
         //prepare() prend la requete en paramètre pour la préparer à l'éxécution
 
-        query.prepare("insert into ADOPTION (IDO,IDA,IDP,DATES)"
+        query.prepare("insert into ADOPTION (IDO,IDA,CIN,DATES)"
                 "values(:IDO, :IDA, :IDP, :DATES)");
 
 
@@ -111,25 +123,147 @@ bool Adoption::supprimer(int ido)
 }
 
 
-QSqlQueryModel * Adoption::chercher(QString nom) //doesn
+
+bool Adoption::modifier(int ido,int idp,int ida)
 {
-    QSqlQueryModel * model=new QSqlQueryModel();
+    QSqlQuery query;
 
-model->setQuery("select animals.nom,adoption.dates,patients.Prenom from adoption,patients,animals where ( adoption.IDA = animals.IDA AND adoption.IDP = patients.IDP AND patients.prenom=:nom ) ;")	;
+    /*
+      verif.prepare("SELECT IDO   FROM Adoption WHERE EXISTS (SELECT * FROM Adoption a WHERE ? = a.IDO)");
+                      verif.addBindValue(IDo);
+                      verif.exec();
+                      verif.next();
+                      if (verif.value(0).toBool())
+                      { QMessageBox::information(nullptr,"Information","Client existe :) !"); }
+                  else
+    */
 
-return model;
+          query.prepare("UPDATE adoption set cin=:idp,ida=:ida where ido=:ido");
+          query.bindValue(":ido",ido);
+          query.bindValue(":idp",idp);
+          query.bindValue(":ida",ida);
+          //query.bindValue(":dates",dates);
+
+          return query.exec();
+}
+
+
+QSqlQueryModel* Adoption::rechercher(QString recherche)
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
+    QSqlQuery query;
+
+    if (recherche.length()!=0)
+    {
+    query.prepare("SELECT IDO FROM Adoption where IDO=?");
+    query.addBindValue(recherche);
+    query.exec();
+    model->setQuery(query);
+    }
+    else
+    {
+        model->setQuery("SELECT * FROM Adoption");
+    }
+
+
+
+    return model;
+
+}
+
+
+
+void Adoption::genereExcel(QTableView *table)
+{
+
+         QString filters("CSV files (.csv);;All files (.*)");
+         QString defaultFilter("CSV files (*.csv)");
+         QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
+                                  filters, &defaultFilter);
+               QFile file(fileName);
+
+               QAbstractItemModel *model =  table->model();
+               if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+                   QTextStream data(&file);
+                   QStringList strList;
+                   for (int i = 0; i < model->columnCount(); i++) {
+                       if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                           strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                       else
+                           strList.append("");
+                   }
+                   data << strList.join(";") << "\n";
+                   for (int i = 0; i < model->rowCount(); i++) {
+                       strList.clear();
+                       for (int j = 0; j < model->columnCount(); j++) {
+
+                           if (model->data(model->index(i, j)).toString().length() > 0)
+                               strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                           else
+                               strList.append("");
+                       }
+                       data << strList.join(";") + "\n";
+                   }
+                   file.close();
+                   QMessageBox::information(nullptr, QObject::tr("GENERATION EXCEL"),
+                                             QObject::tr("GENERATION REALISEE AVEC SUCCES\n"
+                                                         "Click OK to exit."), QMessageBox::Ok);
+               }
+
 }
 
 
 
 
-bool Adoption::modifier()
-{
-    QSqlQuery query;
-          query.prepare("UPDATE adoption set idp=:idp,ida=:ida,dates=:dates where ido=:ido");
-          query.bindValue(":idp",idp);
-          query.bindValue(":ida",ida);
-          query.bindValue(":dates",dates);
 
-          return query.exec();
+
+void Adoption::generatePdf(QTableView * tableView)
+{
+    QString strStream;
+    QTextStream out(&strStream);
+
+    const int rowCount = tableView->model()->rowCount();
+    const int columnCount = tableView->model()->columnCount();
+
+    out <<  "<html>\n"
+        "<head>\n"
+        "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+        <<  QString("<title>%1</title>\n").arg("test")
+        <<  "</head>\n"
+        "<body bgcolor=#ffffff link=#5000A0>\n"
+        "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+    // headers
+    out << "<thead><tr bgcolor=#f0f0f0>";
+    for (int column = 0; column < columnCount; column++)
+        if (!tableView->isColumnHidden(column))
+            out << QString("<th>%1</th>").arg(tableView->model()->headerData(column, Qt::Horizontal).toString());
+    out << "</tr></thead>\n";
+
+    // data table
+    for (int row = 0; row < rowCount; row++) {
+        out << "<tr>";
+        for (int column = 0; column < columnCount; column++) {
+            if (!tableView->isColumnHidden(column)) {
+                QString data = tableView->model()->data(tableView->model()->index(row, column)).toString().simplified();
+                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+            }
+        }
+        out << "</tr>\n";
+    }
+    out <<  "</table>\n"
+        "</body>\n"
+        "</html>\n";
+
+    QTextDocument *document = new QTextDocument();
+    document->setHtml(strStream);
+
+    QPrinter printer;
+
+    QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+    if (dialog->exec() == QDialog::Accepted) {
+        document->print(&printer);
+    }
+
+    delete document;
 }

@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,12 +12,14 @@ SOURCES += \
     adoption.cpp \
     connection.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    popup.cpp
 
 HEADERS += \
     adoption.h \
     connection.h \
-    mainwindow.h
+    mainwindow.h \
+    popup.h
 
 FORMS += \
     mainwindow.ui

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include "adoption.h"
+#include "popup.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,10 +31,20 @@ private slots:
 
     void on_refresh_clicked();
 
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_adopdf_clicked();
+
+    void on_adocsv_clicked();
+
+
 private:
     Ui::MainWindow *ui;
 Adoption dope;
 animal annie;
 patient pato;
+PopUp *popUp;
 };
 #endif // MAINWINDOW_H

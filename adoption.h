@@ -6,7 +6,22 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QTableView>
 #include <QDate>
+#include <QFile>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QMessageBox>
+#include <QTextStream>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QCoreApplication>
+#include <QFileDialog>
+#include <QTextDocument>
+#include <QPrinter>
+#include <QPrintDialog>
+
+
 
 class Adoption
 {
@@ -20,10 +35,13 @@ public:
     QSqlQueryModel * triAlpha();
     QSqlQueryModel * triDates();
     QSqlQueryModel * chercher(QString nom);
-    bool modifier();
+    bool modifier(int,int,int);
+    QSqlQueryModel* rechercher(QString);
+    void generatePdf(QTableView *tableView);
+    void genereExcel(QTableView *table);
 
 private:
-
+int ido;
 int ida;
 int idp;
 int idAdoption;
