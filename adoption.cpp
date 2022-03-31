@@ -30,7 +30,7 @@ QSqlQueryModel * patient::afficher()
 {
 	QSqlQueryModel * model=new QSqlQueryModel();
 	
-model->setQuery("select * from BENEFICIAIRES")	;
+model->setQuery("select * from BENEFICIAIRES where BENEFICIAIRES.status = 1")	;
 //model->setHeaderData(0,Qt::Horizontal,QObject::tr("nom"));
 //model->setHeaderData(1,Qt::Horizontal,QObject::tr("prenom"));
 
@@ -76,7 +76,7 @@ return model;
 
 bool Adoption::ajouter()
 {
-        QSqlQuery query;
+        QSqlQuery query,qury,qery;
         QString ida_string=QString::number(ida);
         QString idp_string=QString::number(idp);
          QString idAdoption_string=QString::number(idAdoption);
@@ -107,6 +107,17 @@ bool Adoption::ajouter()
         query.bindValue(":DATES",dates);
 
 
+//
+qury.prepare("UPDATE animals set status=0 where IDA=:IDA");
+qury.bindValue(":IDA",ida_string);
+
+qery.prepare("UPDATE BENEFICIAIRES set status=0 where CIN=:IDP");
+qery.bindValue(":IDP",idp_string);
+
+qury.exec();
+qery.exec();
+//
+
       return query.exec(); //exec() envoie la requete pour l'exécuter.
 }
 
@@ -118,7 +129,7 @@ bool Adoption::supprimer(int ido)
               query.prepare("DELETE FROM ADOPTION WHERE ido=:ido");
               query.bindValue(":ido", id_string);
 
-
+//update status for animals
               return query.exec();
 }
 
@@ -148,14 +159,15 @@ bool Adoption::modifier(int ido,int idp,int ida)
 }
 
 
-QSqlQueryModel* Adoption::rechercher(QString recherche)
+QSqlQueryModel* Adoption::chercher(QString recherche)
 {
     QSqlQueryModel* model=new QSqlQueryModel();
     QSqlQuery query;
 
     if (recherche.length()!=0)
     {
-    query.prepare("SELECT IDO FROM Adoption where IDO=?");
+    //query.prepare("SELECT * FROM Adoption where IDO=?");
+    query.prepare("SELECT * FROM adoption o INNER JOIN Beneficiaires b ON o.CIN = b.CIN INNER JOIN Animals a ON o.IDA = a.IDA where IDO=?");
     query.addBindValue(recherche);
     query.exec();
     model->setQuery(query);
@@ -171,6 +183,32 @@ QSqlQueryModel* Adoption::rechercher(QString recherche)
 
 }
 
+
+
+QSqlQueryModel* Adoption::search(QString recherche)
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
+    QSqlQuery query;
+
+    if (recherche.length()!=0)
+    {
+    //query.prepare("SELECT * FROM Adoption where nom=?");
+    //query.prepare("SELECT * FROM adoption o INNER JOIN Beneficiaires b ON o.CIN = b.CIN INNER JOIN Animals a ON o.IDA = a.IDA where b.nom=?");
+    query.prepare("SELECT * FROM Beneficiaires b INNER JOIN  adoption o ON b.CIN = o.CIN INNER JOIN Animals a ON o.IDA = a.IDA WHERE prenom LIKE '"+recherche+"%' OR b.nom LIKE '"+recherche+"%' ");
+    query.addBindValue(recherche);
+    query.exec();
+    model->setQuery(query);
+    }
+    else
+    {
+        model->setQuery("SELECT * FROM Adoption");
+    }
+
+
+
+    return model;
+
+}
 
 
 void Adoption::genereExcel(QTableView *table)

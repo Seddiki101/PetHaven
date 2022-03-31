@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include <QFile>
+#include "adoption.h"
 
 int main(int argc, char *argv[])
 {

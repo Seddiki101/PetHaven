@@ -13,13 +13,14 @@ SOURCES += \
     connection.cpp \
     main.cpp \
     mainwindow.cpp \
-    popup.cpp
+    qr.cpp \
+    qrcodegen.cpp
 
 HEADERS += \
     adoption.h \
     connection.h \
     mainwindow.h \
-    popup.h
+    qrcodegen.hpp
 
 FORMS += \
     mainwindow.ui

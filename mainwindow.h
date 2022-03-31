@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include "adoption.h"
-#include "popup.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,32 +18,38 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_pushButton_5_clicked();
+    void on_addopage_clicked();
 
-    void on_pushButton_6_clicked();
+    void on_supado_clicked();
 
-    void on_pushButton_7_clicked();
+    void on_sortado_clicked();
 
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_2_clicked();
+    void on_searchado_clicked();
 
     void on_refresh_clicked();
 
-    void on_pushButton_9_clicked();
-
-    void on_pushButton_8_clicked();
+    void on_updatePage_clicked();
 
     void on_adopdf_clicked();
 
     void on_adocsv_clicked();
 
+    void on_Back_clicked();
+
+    void on_back2_clicked();
+
+    void on_upado_clicked();
+
+    void on_addado_clicked();
+
+    void on_LEsearch_textChanged(const QString &arg1);
+
+    void on_qr_clicked();
 
 private:
     Ui::MainWindow *ui;
 Adoption dope;
 animal annie;
 patient pato;
-PopUp *popUp;
 };
 #endif // MAINWINDOW_H

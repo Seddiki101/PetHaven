@@ -20,8 +20,11 @@
 #include <QTextDocument>
 #include <QPrinter>
 #include <QPrintDialog>
+#include "qrcodegen.hpp"
 
-
+using std::uint8_t;
+using qrcodegen::QrCode;
+using qrcodegen::QrSegment;
 
 class Adoption
 {
@@ -34,9 +37,9 @@ public:
     bool supprimer(int ido);
     QSqlQueryModel * triAlpha();
     QSqlQueryModel * triDates();
-    QSqlQueryModel * chercher(QString nom);
+    QSqlQueryModel * chercher(QString);  //recherche par ID
+    QSqlQueryModel * search(QString);    // recherche par nom
     bool modifier(int,int,int);
-    QSqlQueryModel* rechercher(QString);
     void generatePdf(QTableView *tableView);
     void genereExcel(QTableView *table);
 
@@ -65,5 +68,22 @@ public:
 
 int age;
 };
+
+
+
+
+
+
+
+
+
+
+
+//advance
+static void dosicDemo(char * text);
+static std::string toSvgString(const QrCode &qr, int border);
+static void printQr(const QrCode &qr);
+
+
 
 #endif // ADOPTION_H
