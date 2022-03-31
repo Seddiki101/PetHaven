@@ -133,6 +133,19 @@ QCheckBox::indicator:disabled
 }
 
 
+/*-----QRadioButton-----*/
+QRadioButton
+{
+        background-color: transparent;
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+
+}
+
+
 /*-----QLineEdit-----*/
 QLineEdit
 {

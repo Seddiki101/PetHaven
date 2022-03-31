@@ -4,8 +4,7 @@
 #include <QMainWindow>
 #include <QCheckBox>
 #include <QMessageBox>
-#include <QIntValidator>
-#include <QtDebug>
+#include <QValidator>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,6 +32,12 @@ private slots:
     void on_btn_Sort_clicked();
 
     void on_btn_PDF_clicked();
+
+    void on_le_Search_textChanged();
+
+    void on_Black_clicked();
+
+    void on_White_clicked();
 
 private:
     Ui::MainWindow *ui;

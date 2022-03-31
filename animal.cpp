@@ -1,7 +1,4 @@
 #include "animal.h"
-#include <QSqlQuery>
-#include <QtDebug>
-#include <QObject>
 
 
 Animal::Animal()
@@ -49,6 +46,14 @@ void Animal::setNom(QString nom)            {this->nom=nom;}
 void Animal::setEspece(QString espece)      {this->espece=espece;}
 void Animal::setRace(QString race)          {this->race=race;}
 void Animal::setDate_arr(QDate date_arr)    {this->date_arr=date_arr;}
+
+
+
+bool Animal::Empty(QString text)
+{
+    return text.size() == 0;
+}
+
 
 bool Animal::ajouter()
 {
@@ -101,7 +106,7 @@ QSqlQueryModel* Animal::afficher()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
 
-    model->setQuery ("SELECT * FROM animals");
+    model->setQuery ("SELECT * FROM animals ");
     model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
     model->setHeaderData (1, Qt::Horizontal, QObject::tr("Nom"));
     model->setHeaderData (2, Qt::Horizontal, QObject::tr("Race"));
@@ -113,3 +118,143 @@ QSqlQueryModel* Animal::afficher()
     return model;
 }
 
+
+QSqlQueryModel* Animal::sortName()
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
+
+    model->setQuery("SELECT * FROM animals "
+                    "ORDER BY LOWER(nom) ASC");
+
+    model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData (1, Qt::Horizontal, QObject::tr("Nom"));
+    model->setHeaderData (2, Qt::Horizontal, QObject::tr("Race"));
+    model->setHeaderData (3, Qt::Horizontal, QObject::tr("Espece"));
+    model->setHeaderData (4, Qt::Horizontal, QObject::tr("Age"));
+    model->setHeaderData (5, Qt::Horizontal, QObject::tr("Status"));
+    model->setHeaderData (6, Qt::Horizontal, QObject::tr("Date"));
+
+    return model;
+}
+
+QSqlQueryModel* Animal::sortDates()
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
+
+    model->setQuery("SELECT * FROM animals "
+                    "ORDER BY date_arr DESC");
+
+    model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData (1, Qt::Horizontal, QObject::tr("Nom"));
+    model->setHeaderData (2, Qt::Horizontal, QObject::tr("Race"));
+    model->setHeaderData (3, Qt::Horizontal, QObject::tr("Espece"));
+    model->setHeaderData (4, Qt::Horizontal, QObject::tr("Age"));
+    model->setHeaderData (5, Qt::Horizontal, QObject::tr("Status"));
+    model->setHeaderData (6, Qt::Horizontal, QObject::tr("Date"));
+
+    return model;
+}
+
+
+
+
+QSqlQueryModel* Animal::searchID(QString research)
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
+    QSqlQuery query;
+
+    if (research.length() != 0)
+    {
+    query.prepare("SELECT * FROM animals "
+                  "WHERE IDA=?");
+    query.addBindValue(research);
+    query.exec();
+    model->setQuery(query);
+    }
+    else
+    {
+        return afficher();
+    }
+
+    return model;
+}
+
+
+
+QSqlQueryModel* Animal::searchName(QString research)
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
+    QSqlQuery query;
+
+    if (research.length() != 0)
+    {
+
+    query.prepare("SELECT * FROM animals "
+                  "WHERE nom LIKE '"+research+"%' OR race LIKE '"+research+"%' OR espece LIKE '"+research+"%'");
+
+    query.addBindValue(research);
+    query.exec();
+    model->setQuery(query);
+
+    }
+    else
+    {
+        return afficher();
+    }
+
+    return model;
+}
+
+
+
+
+void Animal::generatePdf(QTableView* tableView)
+{
+    QString strStream;
+    QTextStream out(&strStream);
+
+    const int rowCount = tableView->model()->rowCount();
+    const int columnCount = tableView->model()->columnCount();
+
+    out <<  "<html>\n"
+        "<head>\n"
+        "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+        <<  QString("<title>%1</title>\n").arg("test")
+        <<  "</head>\n"
+        "<body bgcolor=#ffffff link=#5000A0>\n"
+        "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+    // headers
+    out << "<thead><tr bgcolor=#f0f0f0>";
+    for (int column = 0; column < columnCount; column++)
+        if (!tableView->isColumnHidden(column))
+            out << QString("<th>%1</th>").arg(tableView->model()->headerData(column, Qt::Horizontal).toString());
+    out << "</tr></thead>\n";
+
+    // data table
+    for (int row = 0; row < rowCount; row++) {
+        out << "<tr>";
+        for (int column = 0; column < columnCount; column++) {
+            if (!tableView->isColumnHidden(column)) {
+                QString data = tableView->model()->data(tableView->model()->index(row, column)).toString().simplified();
+                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+            }
+        }
+        out << "</tr>\n";
+    }
+    out <<  "</table>\n"
+        "</body>\n"
+        "</html>\n";
+
+    QTextDocument *document = new QTextDocument();
+    document->setHtml(strStream);
+
+    QPrinter printer;
+
+    QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+    if (dialog->exec() == QDialog::Accepted) {
+        document->print(&printer);
+    }
+
+    delete document;
+}

@@ -1,8 +1,21 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
+
+#include <QSqlQueryModel>
+#include <QSqlQuery>
+
+#include <QObject>
 #include <QString>
 #include <QDate>
-#include <QSqlQueryModel>
+#include <QTableView>
+
+#include <QFile>
+#include <QTextDocument>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPdfWriter>
+
+#include <QDebug>
 
 
 class Animal
@@ -33,6 +46,14 @@ public:
     bool ajouter();
     bool modifier(int id);
     bool supprimer(int id);
+    bool Empty(QString);
+
+    QSqlQueryModel* sortName();
+    QSqlQueryModel* sortDates();
+    QSqlQueryModel* searchID(QString);
+    QSqlQueryModel* searchName(QString);
+
+    void generatePdf(QTableView*);
 };
 
 
