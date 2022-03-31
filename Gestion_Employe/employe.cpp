@@ -58,6 +58,7 @@ Employe::Employe()
     void Employe::setemail(QString email){this->email=email;}
     void Employe::setmdp(QString mdp){this->mdp=mdp;}
     void Employe::setlogin(QString login){this->login=login;}
+
     bool Employe::ajouter()
     {
 
@@ -126,4 +127,111 @@ bool Employe::Verif_Email()
        return true;
     else return false;
 }
+
+QSqlQueryModel* Employe::triAlpha()
+{
+
+QSqlQueryModel* model =new QSqlQueryModel();
+model->setQuery("SELECT * FROM employe order by employe.nom");
+return model;
+
+}
+
+QSqlQueryModel* Employe::triLogin()
+{
+
+QSqlQueryModel* model =new QSqlQueryModel();
+model->setQuery("SELECT * FROM employe order by employe.login");
+return model;
+
+}
+
+QSqlQueryModel* Employe::chercherID(QString recherche)
+{
+
+QSqlQueryModel* model =new QSqlQueryModel();
+QSqlQuery query;
+if(recherche.length()!=0)
+{
+query.prepare("SELECT * FROM employe where ide=?");
+query.addBindValue(recherche);
+query.exec();
+model->setQuery(query);
+}
+else{
+    model->setQuery("SELECT * FROM employe");
+}
+return model;
+}
+
+QSqlQueryModel* Employe::chercherNom(QString recherche)
+{
+
+QSqlQueryModel* model =new QSqlQueryModel();
+QSqlQuery query;
+if(recherche.length()!=0)
+{
+query.prepare("SELECT * FROM employe where nom LIKE'"+recherche+"%'");
+query.addBindValue(recherche);
+query.exec();
+model->setQuery(query);
+}
+else{
+    model->setQuery("SELECT * FROM employe");
+}
+return model;
+}
+
+void Employe::pdf(QTableView *tableView)
+{
+    QString strStream;
+    QTextStream out(&strStream);
+
+    const int rowCount = tableView->model()->rowCount();
+    const int columnCount = tableView->model()->columnCount();
+
+    out <<  "<html>\n"
+        "<head>\n"
+        "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+        <<  QString("<title>%1</title>\n").arg("test")
+        <<  "</head>\n"
+        "<body bgcolor=#ffffff link=#5000A0>\n"
+        "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+    // headers
+    out << "<thead><tr bgcolor=#f0f0f0>";
+    for (int column = 0; column < columnCount; column++)
+        if (!tableView->isColumnHidden(column))
+            out << QString("<th>%1</th>").arg(tableView->model()->headerData(column, Qt::Horizontal).toString());
+    out << "</tr></thead>\n";
+
+    // data table
+    for (int row = 0; row < rowCount; row++) {
+        out << "<tr>";
+        for (int column = 0; column < columnCount; column++) {
+            if (!tableView->isColumnHidden(column)) {
+                QString data = tableView->model()->data(tableView->model()->index(row, column)).toString().simplified();
+                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+            }
+        }
+        out << "</tr>\n";
+    }
+    out <<  "</table>\n"
+        "</body>\n"
+        "</html>\n";
+
+    QTextDocument *document = new QTextDocument();
+    document->setHtml(strStream);
+
+    QPrinter printer;
+
+    QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+    if (dialog->exec() == QDialog::Accepted) {
+        document->print(&printer);
+    }
+
+    delete document;
+}
+
+
 

@@ -56,9 +56,6 @@ void MainWindow::on_pushButton_5_clicked()
 }
 
 
-
-
-
 void MainWindow::on_pushButton_7_clicked()
 {
     Employe E1;
@@ -96,4 +93,107 @@ void MainWindow::on_pushButton_8_clicked()
             msgBox.setText ("Modification avec succes.");
             ui->tableView->setModel (E.afficher());
         }
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    if(ui->radioButton)
+    {
+        ui->tableView->setModel(E.triAlpha());
+    }
+    if(ui->radioButton_2)
+    {
+        ui->tableView->setModel(E.triLogin());
+    }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    Employe E1;
+    QString recherche = ui->le_recherche->text();
+    ui->tableView->setModel(E1.chercherID(recherche));
+}
+
+void MainWindow::on_le_recherche_textChanged(const QString &arg1)
+{
+    Employe E1;
+    QString recherche = ui->le_recherche->text();
+    ui->tableView->setModel(E1.chercherNom(recherche));
+}
+
+void MainWindow::on_refresh_clicked()
+{
+
+    ui->stackedWidget->setStyleSheet("background-color: white ;");
+    ui->centralwidget->setStyleSheet("background-color: white ;");
+    ui->pushButton_5->setStyleSheet("background-color: black ;");
+    ui->pushButton_2->setStyleSheet("background-color: black ;");
+    ui->pushButton_7->setStyleSheet("background-color: black ;");
+    ui->pushButton_8->setStyleSheet("background-color: black ;");
+    ui->pushButton_3->setStyleSheet("background-color: black ;");
+    ui->pushButton_2->setStyleSheet("background-color: black ;");
+    ui->pushButton_4->setStyleSheet("background-color: black ;");
+    ui->refresh->setStyleSheet("background-color: black ;");
+    ui->refresh_2->setStyleSheet("background-color: black ;");
+    ui->le_ID->setStyleSheet("background-color: black ;");
+    ui->le_Mdp->setStyleSheet("background-color: black ;");
+    ui->le_Nom->setStyleSheet("background-color: black ;");
+    ui->le_Email->setStyleSheet("background-color: black ;");
+    ui->le_Login->setStyleSheet("background-color: black ;");
+    ui->le_Prenom->setStyleSheet("background-color: black ;");
+    ui->le_recherche->setStyleSheet("background-color: black ;");
+    ui->label_3->setStyleSheet("color: black ;");
+    ui->label_4->setStyleSheet("color: black ;");
+    ui->label_5->setStyleSheet("color: black ;");
+    ui->label_6->setStyleSheet("color: black ;");
+    ui->label_7->setStyleSheet("color: black ;");
+    ui->label_8->setStyleSheet("color: black ;");
+    ui->label_9->setStyleSheet("color: black ;");
+    ui->label_14->setStyleSheet("color: black ;");
+    ui->radioButton->setStyleSheet("color: black;");
+    ui->radioButton_2->setStyleSheet("color: black;");
+    ui->stackedWidget->show();
+
+
+
+
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    Employe E1;
+    E.pdf(ui->tableView);
+}
+
+void MainWindow::on_refresh_2_clicked()
+{
+    ui->stackedWidget->setStyleSheet("");
+    ui->centralwidget->setStyleSheet("");
+    ui->pushButton_5->setStyleSheet("");
+    ui->pushButton_2->setStyleSheet("");
+    ui->pushButton_7->setStyleSheet("");
+    ui->pushButton_8->setStyleSheet("");
+    ui->pushButton_3->setStyleSheet("");
+    ui->pushButton_2->setStyleSheet("");
+    ui->pushButton_4->setStyleSheet("");
+    ui->refresh->setStyleSheet("");
+    ui->refresh_2->setStyleSheet("");
+    ui->le_ID->setStyleSheet("");
+    ui->le_Mdp->setStyleSheet("");
+    ui->le_Nom->setStyleSheet("");
+    ui->le_Email->setStyleSheet("");
+    ui->le_Login->setStyleSheet("");
+    ui->le_Prenom->setStyleSheet("");
+    ui->le_recherche->setStyleSheet("");
+    ui->label_3->setStyleSheet("");
+    ui->label_4->setStyleSheet("");
+    ui->label_5->setStyleSheet("");
+    ui->label_6->setStyleSheet("");
+    ui->label_7->setStyleSheet("");
+    ui->label_8->setStyleSheet("");
+    ui->label_9->setStyleSheet("");
+    ui->label_14->setStyleSheet("");
+    ui->radioButton->setStyleSheet("");
+    ui->radioButton_2->setStyleSheet("");
+    ui->stackedWidget->show();
 }

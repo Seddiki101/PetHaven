@@ -38,6 +38,12 @@ private slots:
 
     void on_pushButton_8_clicked();
 
+    void on_le_recherche_textChanged(const QString &arg1);
+
+    void on_refresh_clicked();
+
+    void on_refresh_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     Employe E;
