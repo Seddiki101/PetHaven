@@ -30,6 +30,10 @@ private slots:
 
     void on_btn_PDF_clicked();
 
+    void on_le_Search_textChanged(const QString &arg1);
+
+    void on_tableView_activated(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Livraison L;
