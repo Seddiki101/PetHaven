@@ -3,6 +3,7 @@
 #include <QDate>
 #include <cstdlib>
 #include "adoption.h"
+#include "stat.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -301,4 +302,37 @@ void MainWindow::on_qr_clicked()
 {
     char *texto = "Hello, world!";
     dosicDemo(texto);
+
+//
+    // Create the QR Code object
+    /*
+    QString text="yes";
+    QrCode qr = QrCode::encodeText( text.toUtf8().data(), QrCode::Ecc::MEDIUM );
+              qint32 sz = qr.getSize();
+              QImage im(sz,sz, QImage::Format_RGB32);
+                QRgb black = qRgb(  0,  0,  0);
+                QRgb white = qRgb(255,255,255);
+              for (int y = 0; y < sz; y++)
+                for (int x = 0; x < sz; x++)
+                  im.setPixel(x,y,qr.getModule(x, y) ? black : white );
+              ui->qrCode->setPixmap( QPixmap::fromImage(im.scaled(256,256,Qt::KeepAspectRatio,Qt::FastTransformation),Qt::MonoOnly) );
+  */
+
+//
+
+}
+
+
+
+void MainWindow::on_Total_clicked()
+{
+    Adoption A;
+    ui->tableView->setModel(dope.Totado());
+A.generatePdf(ui->tableView);
+}
+
+void MainWindow::on_stat_clicked()
+{
+    statistique s;
+        s.exec();
 }

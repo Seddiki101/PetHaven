@@ -46,6 +46,10 @@ private slots:
 
     void on_qr_clicked();
 
+    void on_Total_clicked();
+
+    void on_stat_clicked();
+
 private:
     Ui::MainWindow *ui;
 Adoption dope;

@@ -1,8 +1,8 @@
 #ifndef STATISTIQUE_H
 #define STATISTIQUE_H
-#include <QtCharts/QCategoryAxis>
-#include <QtCharts/QPieSeries>
-#include <QtCharts/QPieSlice>
+//#include <QtCharts/QCategoryAxis>
+//#include <QtCharts/QPieSeries>
+//#include <QtCharts/QPieSlice>
 #include <QPainter>
 #include <QSqlQuery>
 #include <QDialog>
@@ -22,7 +22,6 @@ public:
         int Statistique_partie3() ;
          int Statistique_partie4() ;
          int Statistique_partie5() ;
-         int Statistique_partie6() ;
         void paintEvent(QPaintEvent *) ;
 
     ~statistique();

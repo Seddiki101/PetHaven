@@ -305,3 +305,17 @@ void Adoption::generatePdf(QTableView * tableView)
 
     delete document;
 }
+
+
+
+
+
+QSqlQueryModel * Adoption::Totado()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+
+model->setQuery("SELECT TO_CHAR(TO_DATE((Extract(MONTH from Dates)), 'MM'), 'MONTH') as mois,count (dates) from adoption group by Extract(MONTH from Dates) ;")	;
+//model->setQuery("SELECT count dates from adoption ;")	;
+
+return model;
+}

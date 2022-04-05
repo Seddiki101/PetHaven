@@ -37,6 +37,7 @@ public:
     bool supprimer(int ido);
     QSqlQueryModel * triAlpha();
     QSqlQueryModel * triDates();
+    QSqlQueryModel * Totado();
     QSqlQueryModel * chercher(QString);  //recherche par ID
     QSqlQueryModel * search(QString);    // recherche par nom
     bool modifier(int,int,int);

@@ -14,16 +14,19 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     qr.cpp \
-    qrcodegen.cpp
+    qrcodegen.cpp \
+    stat.cpp
 
 HEADERS += \
     adoption.h \
     connection.h \
     mainwindow.h \
-    qrcodegen.hpp
+    qrcodegen.hpp \
+    stat.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    statistique.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

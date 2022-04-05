@@ -20,7 +20,7 @@ int statistique::Statistique_partie2()
 {
     QSqlQuery query;
     int count=0 ;
-    QSqlQuery requete("select * from client where adresse_client = 'Bizerte'") ;
+    QSqlQuery requete("select * from  adoption where to_char(dates, 'Q') = '1' ;") ;
     while(requete.next())
     {
             count++ ;
@@ -33,7 +33,7 @@ int statistique::Statistique_partie3()
 {
     QSqlQuery query;
     int count=0 ;
-    QSqlQuery requete("select * from client where adresse_client = 'Tunis'") ;
+    QSqlQuery requete("select * from  adoption where to_char(dates, 'Q') = '2' ;") ;
     while(requete.next())
     {
             count++ ;
@@ -45,7 +45,7 @@ int statistique::Statistique_partie4()
 {
     QSqlQuery query;
     int count=0 ;
-    QSqlQuery requete("select * from client where adresse_client = 'Nabeul'") ;
+    QSqlQuery requete("select * from  adoption where to_char(dates, 'Q') = '3' ;") ;
     while(requete.next())
     {
             count++ ;
@@ -57,7 +57,7 @@ int statistique::Statistique_partie5()
 {
     QSqlQuery query;
     int count=0 ;
-    QSqlQuery requete("select * from client where adresse_client = 'Sfax'") ;
+    QSqlQuery requete("select * from  adoption where to_char(dates, 'Q') = '4' ;") ;
     while(requete.next())
     {
             count++ ;
@@ -65,18 +65,7 @@ int statistique::Statistique_partie5()
 
 return count ;
 }
-int statistique::Statistique_partie6()
-{
-    QSqlQuery query;
-    int count=0 ;
-    QSqlQuery requete("select * from client where adresse_client = Sousse") ;
-    while(requete.next())
-    {
-            count++ ;
-    }
 
-return count ;
-}
 
 void statistique::paintEvent(QPaintEvent *)
 {
@@ -89,16 +78,14 @@ void statistique::paintEvent(QPaintEvent *)
     cout<<c<<endl ;
     int e=Statistique_partie5();
     cout<<c<<endl ;
-    int f=Statistique_partie6();
-    cout<<c<<endl ;
 
 
         float s2= b*100 ;
         float s3=c*100;
         float s4=d*100;
         float s5=e*100;
-        float s6=f*100;
-        float nb = b+c+d+e+f ;
+       // float s6=f*100;
+        float nb = b+c+d+e ;
         float q2 ;
         q2 = s2/nb ;
         float q3;
@@ -108,7 +95,7 @@ void statistique::paintEvent(QPaintEvent *)
         float q5;
         q5=s5/nb;
         float q6;
-        q6=s6/nb;
+        //q6=s6/nb;
         float y  ;
         y = (q2*360)/100 ;
         float m;
@@ -124,14 +111,17 @@ void statistique::paintEvent(QPaintEvent *)
 
     painter.setBrush(Qt::blue);
     painter.drawPie(size,0,16*y);
-    ui->label_2->setText(" Bizerte") ;
+    //ui->label_2->setText(" Bizerte") ;
     painter.setBrush(Qt::green);
     painter.drawPie(size,16*y,16*m);
-    painter.setBrush(Qt::black);
+
+    painter.setBrush(Qt::red);
     painter.drawPie(size,16*(m+y),16*p);
+
     painter.setBrush(Qt::yellow);
     painter.drawPie(size,16*(m+y+p),16*v);
-    painter.setBrush(Qt::red);
+
+    painter.setBrush(Qt::black);
     painter.drawPie(size,16*(m+y+p+v),16*w);
 
 
