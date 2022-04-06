@@ -7,9 +7,11 @@
 #include <QObject>
 #include <QString>
 #include <QDate>
+#include <QDateTime>
 #include <QTableView>
 
 #include <QFile>
+#include <QTextStream>
 #include <QTextDocument>
 #include <QPrinter>
 #include <QPrintDialog>
@@ -52,6 +54,9 @@ public:
     QSqlQueryModel* sortDates();
     QSqlQueryModel* searchID(QString);
     QSqlQueryModel* searchName(QString);
+
+    QString historic(QString);
+    void modifyRessource(QString);
 
     void generatePdf(QTableView*);
 };

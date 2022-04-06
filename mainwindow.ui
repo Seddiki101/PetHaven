@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1167</width>
-    <height>633</height>
+    <width>1105</width>
+    <height>578</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>30</y>
-      <width>1061</width>
-      <height>541</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1101</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -135,19 +135,6 @@
       </property>
       <property name="text">
        <string>Name</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_Search">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>111</y>
-        <width>81</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Search</string>
       </property>
      </widget>
      <widget class="QTableView" name="tableView">
@@ -364,6 +351,67 @@
       </property>
       <property name="text">
        <string>Black</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_historic">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>350</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Historique</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="list_historic">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>380</y>
+        <width>301</width>
+        <height>171</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Upload">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>410</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>91</width>
+        <height>31</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>261</width>
+        <height>101</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>upload</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_Image">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>520</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
       </property>
      </widget>
     </widget>

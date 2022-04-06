@@ -21,8 +21,6 @@ public:
 private slots:
     void on_btn_Refresh_clicked();
 
-    void on_btn_Search_clicked();
-
     void on_btn_Add_clicked();
 
     void on_btn_Update_clicked();
@@ -38,6 +36,8 @@ private slots:
     void on_Black_clicked();
 
     void on_White_clicked();
+
+    void on_btn_Upload_clicked();
 
 private:
     Ui::MainWindow *ui;

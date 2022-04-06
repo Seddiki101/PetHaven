@@ -1,6 +1,7 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
-  <qresource>
-    <file>res/Cypher.qss</file>
-  </qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>res/Cypher.qss</file>
+        <file>res/dededepression.jpg</file>
+        <file>res/Dededepression.png</file>
+    </qresource>
 </RCC>

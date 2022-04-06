@@ -206,6 +206,42 @@ QSqlQueryModel* Animal::searchName(QString research)
 }
 
 
+QString Animal::historic(QString data)
+{
+    QString currentdate = QDateTime::currentDateTime().toString("hh:mm:ss - ");
+    data = currentdate + data;
+    return data;
+}
+
+
+void Animal::modifyRessource(QString link)
+{
+    QFile ressourceFile("../Gestion Animal/ressource.qrc");
+    if (!ressourceFile.open(QIODevice::ReadWrite)) {
+        return ;
+    }
+
+    // ressourceFile.write();
+    ressourceFile.flush();
+
+    QTextStream stream(&ressourceFile);
+
+    while (!stream.atEnd())
+    {
+        QString line = stream.readLine();
+        if (line.contains("<!--bruh-->"))
+        {
+            qInfo() << "read to write lmao";
+            stream << "    <file>" + link + "</file>\n" + "    <!--bruh-->\n";
+        }
+        qInfo() << line;
+    }
+
+//    ressourceFile.seek(0);
+//    qInfo () << ressourceFile.readAll();
+
+    ressourceFile.close();
+}
 
 
 void Animal::generatePdf(QTableView* tableView)
