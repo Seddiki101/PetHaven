@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "misc.h"
+#include "statistique.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,8 +10,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(2);
-    ui->tableView->setModel(B.afficher());
+    ui->tableView->setModel(B.afficher("",0));
+
     ui->lineEdit_CIN_2->setEnabled(0);
+    timer = new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(notifs()));
+    timer->start(10);
+
 }
 
 MainWindow::~MainWindow()
@@ -59,13 +66,14 @@ void MainWindow::on_pushButton_3_clicked()
     adresse=ui->lineEdit_Adress->text();
    type=ui->lineEdit_Type->text();
    num=ui->lineEdit_Num->text().toInt();
+   QDateTime date = QDateTime::currentDateTime();
 
 ui->label_19->setText(errormsg);
 if(ok)
 {
-    Beneficiaire B(CIN,nom, prenom, age, adresse, type, num);
+    Beneficiaire B(CIN,nom, prenom, age, adresse, type, num, date);
     B.ajouter();
-    ui->tableView->setModel(B.afficher());
+    ui->tableView->setModel(B.afficher("",0));
 }
 
 
@@ -80,7 +88,7 @@ int v1;
     v1=value.toInt();
     Beneficiaire B;
    B.supprimer(v1);
-    ui->tableView->setModel(B.afficher());
+    ui->tableView->setModel(B.afficher("",0));
 
 
 }
@@ -128,10 +136,11 @@ void MainWindow::on_pushButton_7_clicked()
     adress=ui->lineEdit_Adress_2->text();
    type=ui->lineEdit_Type_2->text();
    num=ui->lineEdit_Num_2->text().toInt();
+   QDateTime date=date.currentDateTime();
 
 if(ok)
 {
-    Beneficiaire B(CIN,nom, prenom, age, adress, type, num);
+    Beneficiaire B(CIN,nom, prenom, age, adress, type, num, date);
     B.modifier(CIN,nom, prenom, age, adress, type, num);
     int nextIndex = ui->stackedWidget->currentIndex() - 1;
     if( nextIndex < ui->stackedWidget->count())
@@ -142,7 +151,7 @@ if(ok)
 
 
 }
-
+//go to modifier
 void MainWindow::on_pushButton_5_clicked()
 {
     QModelIndex index=ui->tableView->selectionModel()->currentIndex();
@@ -153,4 +162,93 @@ void MainWindow::on_pushButton_5_clicked()
                 if( nextIndex < ui->stackedWidget->count())
                        ui->stackedWidget->setCurrentIndex(nextIndex);
     }
+}
+
+//search
+void MainWindow::on_lineEdit_search_textChanged(const QString &arg1)
+{
+    Beneficiaire B;
+
+    QString search = ui->lineEdit_search->text();
+     ui->tableView->setModel(B.afficher(search,0));
+}
+//tri
+void MainWindow::on_pushButton_clicked()
+{
+    if (ui->radioButton) {
+    ui->tableView->setModel(B.afficher("",1));}
+
+
+    if (ui->radioButton_2) {
+    ui->tableView->setModel(B.afficher("",2));}
+
+
+}
+//export pdf
+void MainWindow::on_pushButton_6_clicked()
+{
+    Beneficiaire B;
+    B.exportPDF(ui->tableView);
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    statistique s;
+    s.setModal(true);
+    s.exec();
+}
+//notifs
+void MainWindow::notifs()
+{QString c1,c2,c3;
+    QStringList List;
+
+    QSqlQuery query;
+    query.prepare("select * from LOGS");
+    while(query.next())
+    {
+    c1 = query.value(0).toString();
+    c2 = query.value(1).toString();
+    c3 = query.value(2).toString();
+    c1.append(": ");
+    c1.append(c2);
+    c1.append(" has ");
+    c1.append(c3);
+    c1.append("an entry.");
+    List << c1;
+    ui->listWidget->addItem("bazoula");
+    }
+
+
+            //QSqlQueryModel * model=new QSqlQueryModel();
+        //"select COUNT(*) from LOGS where DATEOP > SYSDATETIME()"
+            //model->setQuery("select * from LOGS where DATEOP > SYSDATETIME()" )	;
+
+            //QString col1 = model->data(model->index(i,1));
+            // ui->listView->setModel(model);
+
+}
+
+
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    QString c1,c2,c3;
+        QStringList List;
+
+        QSqlQuery query;
+        query.prepare("select * from LOGS WHERE DATEOP < SYSDATE");
+        query.exec();
+        while(query.next())
+        {
+        c1 = query.value(0).toString();
+        c2 = query.value(1).toString();
+        c3 = query.value(2).toString();
+        c1.append(": ");
+        c1.append(c2);
+        c1.append(" has ");
+        c1.append(c3);
+        c1.append("an entry.");
+
+        ui->listWidget->addItem(c1);
+        }
 }
