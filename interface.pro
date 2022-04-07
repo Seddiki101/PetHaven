@@ -1,8 +1,10 @@
 QT       += core gui
 QT       += sql
+QT += printsupport
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+TARGET = smtp
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -20,15 +22,20 @@ SOURCES += \
     connection.cpp \
     dons.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    smtp.cpp \
+    statistique.cpp
 
 HEADERS += \
     connection.h \
     dons.h \
-    mainwindow.h
+    mainwindow.h \
+    smtp.h \
+    statistique.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    statistique.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

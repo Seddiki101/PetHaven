@@ -16,7 +16,7 @@ class Dons
 
 public:
     Dons();
-    Dons(int,QString,QString,QString,QDate,int);
+    Dons(QString,QString,QString,QDate,int);
 
     int get_id();
     int get_mont();
@@ -38,12 +38,17 @@ public:
     bool ajouter();
     QSqlQueryModel * afficher();
     bool supprimer(int);
-    bool modifier();
+    bool modifier(int);
     bool Verif_email();
     bool Verif_nom();
     bool Verif_adresse();
     bool Verif_montant_z();
     bool Verif_id();
+   QSqlQueryModel * Trier();
+   QSqlQueryModel * Trier_ID();
+   QSqlQueryModel * Trier_NOM();
+   QSqlQueryModel * rechercher(QString);
+   QSqlQueryModel* Total_don();
 
 };
 
