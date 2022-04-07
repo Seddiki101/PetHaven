@@ -72,12 +72,12 @@ int main() {
 
 
 
-static void dosicDemo(char * text) {
+static void dosicDemo(const char * text) {
     const QrCode::Ecc errCorLvl = QrCode::Ecc::LOW;  // Error correction level
 
     // Make and print the QR Code symbol
     const QrCode qr = QrCode::encodeText(text, errCorLvl);
-
+	//Directory here
     QString file = "C:/Users/k/Desktop/cpp/qr.svg";
         QFile outputFile(file);
         outputFile.open(QIODevice::WriteOnly);
@@ -300,7 +300,18 @@ void MainWindow::on_LEsearch_textChanged(const QString &arg1)
 
 void MainWindow::on_qr_clicked()
 {
-    char *texto = "Hello, world!";
+    //char *texto = "Hello, world!";
+    QString ido;
+    string conv;
+    const char *texto;
+    QModelIndex index=ui->tableView->selectionModel()->currentIndex();
+    QVariant value=index.sibling(index.row(),index.column()).data(); //will get the value of the clicked cell.
+    ido=value.toString();
+    conv = ido.toStdString();
+    texto=conv.c_str();
+
+
+    //texto= ido.toStdString().c_str(); str.toLocal8Bit().constData()
     dosicDemo(texto);
 
 //

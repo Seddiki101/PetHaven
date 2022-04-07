@@ -1,11 +1,2 @@
-So what I need to do :
-
-when he selects an animal (name) and clicks send the Id of that animal gets sent to bd
-
-
-ui-> lineditUI
-
-setup ui this : mainwindow
-//on ajouter
-//ui->le_ID->setValidator(new QIntValidator(0,9999999,this));
-
+Qr Code is saved to a specified directory , Be sure to change it according to your use case.
+look for a comment "Directory here" in the mainwondow.cpp file
