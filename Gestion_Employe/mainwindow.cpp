@@ -133,6 +133,7 @@ void MainWindow::on_refresh_clicked()
     ui->pushButton_3->setStyleSheet("background-color: black ;");
     ui->pushButton_2->setStyleSheet("background-color: black ;");
     ui->pushButton_4->setStyleSheet("background-color: black ;");
+    ui->pushButton_9->setStyleSheet("background-color: black ;");
     ui->refresh->setStyleSheet("background-color: black ;");
     ui->refresh_2->setStyleSheet("background-color: black ;");
     ui->le_ID->setStyleSheet("background-color: black ;");
@@ -142,6 +143,7 @@ void MainWindow::on_refresh_clicked()
     ui->le_Login->setStyleSheet("background-color: black ;");
     ui->le_Prenom->setStyleSheet("background-color: black ;");
     ui->le_recherche->setStyleSheet("background-color: black ;");
+    ui->textEdit->setStyleSheet("background-color: black ;");
     ui->label_3->setStyleSheet("color: black ;");
     ui->label_4->setStyleSheet("color: black ;");
     ui->label_5->setStyleSheet("color: black ;");
@@ -176,6 +178,7 @@ void MainWindow::on_refresh_2_clicked()
     ui->pushButton_3->setStyleSheet("");
     ui->pushButton_2->setStyleSheet("");
     ui->pushButton_4->setStyleSheet("");
+    ui->pushButton_9->setStyleSheet("");
     ui->refresh->setStyleSheet("");
     ui->refresh_2->setStyleSheet("");
     ui->le_ID->setStyleSheet("");
@@ -185,6 +188,8 @@ void MainWindow::on_refresh_2_clicked()
     ui->le_Login->setStyleSheet("");
     ui->le_Prenom->setStyleSheet("");
     ui->le_recherche->setStyleSheet("");
+    ui->textEdit->setStyleSheet("");
+    ui->label->setStyleSheet("");
     ui->label_3->setStyleSheet("");
     ui->label_4->setStyleSheet("");
     ui->label_5->setStyleSheet("");
@@ -196,4 +201,22 @@ void MainWindow::on_refresh_2_clicked()
     ui->radioButton->setStyleSheet("");
     ui->radioButton_2->setStyleSheet("");
     ui->stackedWidget->show();
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    Employe E1;
+    int id;
+        QModelIndex index=ui->tableView->selectionModel()->currentIndex();
+        QVariant value=index.sibling(index.row(),index.column()).data(); //will get the value of the clicked cell.
+        id=value.toUInt();
+
+    QString appreciations=ui->textEdit->toPlainText();
+    bool test=E1.appreciation(id);
+    QMessageBox msgBox;
+    if(test)
+    {
+        msgBox.setText("suppression avec succes.");
+        ui->tableView->setModel(E.afficher());
+}
 }

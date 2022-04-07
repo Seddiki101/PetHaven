@@ -7,6 +7,7 @@
 #include <QSqlQueryModel>
 #include <QTableView>
 #include <QDate>
+#include <QDebug>
 #include <QFile>
 #include <QPdfWriter>
 #include <QPainter>
@@ -41,7 +42,10 @@ public:
     QSqlQueryModel* afficher();
     bool supprimer(int id);
     bool modifier(int id);
+    bool appreciation(int id);
     bool Verif_Email();
+    QString Cryptage(QString motdepasse);
+    QString Decryptage(QString motdepasse);
     QSqlQueryModel* triAlpha();
     QSqlQueryModel* triLogin();
     QSqlQueryModel* chercherID(QString recherche);
@@ -53,6 +57,7 @@ public:
 private:
     int id;
     QString nom,prenom,email,mdp,login;
+    QString appreciations;
 };
 
 #endif // EMPLOYE_H

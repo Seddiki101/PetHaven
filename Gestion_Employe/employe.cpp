@@ -1,6 +1,7 @@
 #include "employe.h"
 #include <QSqlQuery>
-#include<QtDebug>
+#include <QtDebug>
+
 #include <QObject>
 
 Employe::Employe()
@@ -71,6 +72,7 @@ Employe::Employe()
               query.bindValue(":prenom", prenom);
               query.bindValue(":email", email);
               query.bindValue(":login", login);
+              mdp=Cryptage(mdp);
               query.bindValue(":mdp", mdp);
 
               return query.exec();
@@ -116,6 +118,7 @@ bool Employe::modifier(int id)
           query.bindValue(":prenom", prenom);
           query.bindValue(":email", email);
           query.bindValue(":login", login);
+          mdp=Cryptage(mdp);
           query.bindValue(":mdp", mdp);
 
           return query.exec();
@@ -233,5 +236,52 @@ void Employe::pdf(QTableView *tableView)
     delete document;
 }
 
+QString Employe::Cryptage(QString motdepasse)
+{
+    std::string text = motdepasse.toLocal8Bit().constData();
+
+    //int ascii;
+    for(int i=0;i<(int)text.size();i++)
+    {
+       // ascii = motdepasse.at(i).toAscii();
+       // ascii = ascii + 5 ;
+       // motdepasse(i).toChar(ascii);
+        text[i]=text[i]+1;
+
+    }
+    qDebug()<<"Debug text";
+    motdepasse=QString::fromStdString(text);
+    qDebug()<<motdepasse;
+    return(motdepasse);
+}
+
+QString Employe::Decryptage(QString motdepasse)
+{
+    std::string text = motdepasse.toLocal8Bit().constData();
+
+    //int ascii;
+    for(int i=0;i<(int)text.size();i++)
+    {
+       // ascii = motdepasse.at(i).toAscii();
+       // ascii = ascii + 5 ;
+       // motdepasse(i).toChar(ascii);
+        text[i]=text[i]-1;
+
+    }
+    qDebug()<<"Debug text";
+    motdepasse=QString::fromStdString(text);
+    qDebug()<<motdepasse;
+    return(motdepasse);
+}
+bool Employe::appreciation(int id)
+    {
+    QSqlQuery query;
+    QString id_string=QString::number(id);
+          query.prepare("alter table employe add appreciations varchar(1000) WHERE ide=:ide");
+          query.bindValue(":ide", id);
+          query.prepare("insert into employe (appreciations)" "values :appreciations");
+          query.bindValue(":appreciations",appreciations);
 
 
+          return query.exec();
+    }

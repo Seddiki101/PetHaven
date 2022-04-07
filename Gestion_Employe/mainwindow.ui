@@ -364,6 +364,42 @@ color: rgb(255, 0, 0);</string>
        <string>Mode Dark</string>
       </property>
      </widget>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>410</y>
+        <width>104</width>
+        <height>87</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>440</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Appreciation</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_9">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>300</y>
+        <width>93</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Appreciation</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

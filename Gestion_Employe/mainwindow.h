@@ -44,6 +44,8 @@ private slots:
 
     void on_refresh_2_clicked();
 
+    void on_pushButton_9_clicked();
+
 private:
     Ui::MainWindow *ui;
     Employe E;
