@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>-10</y>
       <width>1101</width>
       <height>571</height>
      </rect>
@@ -56,8 +56,8 @@
      <widget class="QPushButton" name="btn_PDF">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>160</y>
+        <x>970</x>
+        <y>170</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -146,6 +146,9 @@
         <height>192</height>
        </rect>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+      </property>
      </widget>
      <widget class="QLineEdit" name="le_Nom">
       <property name="geometry">
@@ -160,8 +163,8 @@
      <widget class="QPushButton" name="btn_Delete">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>260</y>
+        <x>970</x>
+        <y>270</y>
         <width>93</width>
         <height>41</height>
        </rect>
@@ -186,8 +189,8 @@
      <widget class="QPushButton" name="btn_Update">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>210</y>
+        <x>970</x>
+        <y>220</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -304,27 +307,14 @@
      <widget class="QCheckBox" name="status">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>310</y>
+        <x>970</x>
+        <y>320</y>
         <width>81</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>Disponible</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="error_message">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>450</y>
-        <width>221</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="White">
@@ -379,8 +369,8 @@
      <widget class="QPushButton" name="btn_Upload">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>410</y>
+        <x>90</x>
+        <y>450</y>
         <width>91</width>
         <height>31</height>
        </rect>
@@ -404,14 +394,97 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_Image">
+     <widget class="QLabel" name="label_test">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>520</y>
-        <width>131</width>
-        <height>21</height>
+        <x>260</x>
+        <y>60</y>
+        <width>311</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>SOME STUFF FOR TESTING OR SMTH IDK</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_test0">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>110</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>test0</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_test1">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>110</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>test1</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_test2">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>110</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>test2</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_test3">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>110</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>test3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_image">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>170</y>
+        <width>191</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>31</width>
+        <height>31</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>191</width>
+        <height>171</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>

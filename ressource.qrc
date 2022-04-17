@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>res/Cypher.qss</file>
-        <file>res/dededepression.jpg</file>
-        <file>res/Dededepression.png</file>
+        <file>res/table.css</file>
+        <file>res/noImage.png</file>
     </qresource>
 </RCC>

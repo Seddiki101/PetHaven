@@ -49,9 +49,9 @@ void Animal::setDate_arr(QDate date_arr)    {this->date_arr=date_arr;}
 
 
 
-bool Animal::Empty(QString text)
+bool Animal::isEmpty(QString text)
 {
-    return text.size() == 0;
+    return text.size() == 0 || text.isEmpty() || text.isNull();
 }
 
 
@@ -59,8 +59,8 @@ bool Animal::ajouter()
 {
     QSqlQuery query;
     QString age_string=QString::number(age);
-    query.prepare("INSERT INTO animals (IDA, age, nom, espece, race, status, date_arr) "
-                  "VALUES (DEFAULT, :age, :nom, :espece, :race, DEFAULT, :date_arr)");
+    query.prepare("INSERT INTO ANIMALS (IDA, age, nom, espece, race, status, date_arr, IDI) "
+                  "VALUES (DEFAULT, :age, :nom, :espece, :race, DEFAULT, :date_arr, NULL)");
 
     query.bindValue(":age", age_string);
     query.bindValue(":nom", nom);
@@ -77,7 +77,7 @@ bool Animal::modifier(int id)
     QString id_string=QString::number(id);
     QString age_string=QString::number(age);
     QString status_string=QString::number(status);
-    query.prepare("UPDATE animals SET "
+    query.prepare("UPDATE ANIMALS SET "
                   "age=:age, nom=:nom, espece=:espece, race=:race, status=:status, date_arr=:date_arr "
                   "WHERE IDA=:id");
 
@@ -97,196 +97,188 @@ bool Animal::supprimer(int id)
     QSqlQuery query;
     QString id_string=QString::number(id);
 
-    query.prepare("DELETE FROM animals WHERE IDA=:id");
+    query.prepare("DELETE FROM ANIMALS WHERE IDA=:id");
     query.bindValue(":id", id_string);
     return query.exec();
 }
 
-QSqlQueryModel* Animal::afficher()
-{
-    QSqlQueryModel* model = new QSqlQueryModel();
 
-    model->setQuery ("SELECT * FROM animals ");
-    model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
+void setHeader(QSqlQueryModel* model)
+{
+//    model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
     model->setHeaderData (1, Qt::Horizontal, QObject::tr("Nom"));
     model->setHeaderData (2, Qt::Horizontal, QObject::tr("Race"));
     model->setHeaderData (3, Qt::Horizontal, QObject::tr("Espece"));
     model->setHeaderData (4, Qt::Horizontal, QObject::tr("Age"));
     model->setHeaderData (5, Qt::Horizontal, QObject::tr("Status"));
     model->setHeaderData (6, Qt::Horizontal, QObject::tr("Date"));
+//    model->setHeaderData (7, Qt::Horizontal, QObject::tr("Image"));
+}
+
+
+QSqlTableModel* Animal::afficher()
+{
+    QSqlTableModel* model = new QSqlTableModel();
+
+    model->setTable("ANIMALS");
+    model->select();
+
+    setHeader(model);
 
     return model;
 }
 
 
-QSqlQueryModel* Animal::sortName()
+QSqlTableModel* Animal::sortData(QString Where, int Column, Qt::SortOrder SortOrder)
 {
-    QSqlQueryModel* model=new QSqlQueryModel();
+    QSqlTableModel* model=new QSqlTableModel();
 
-    model->setQuery("SELECT * FROM animals "
-                    "ORDER BY LOWER(nom) ASC");
+    model->setTable("ANIMALS");             // Select the table from the database
 
-    model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
-    model->setHeaderData (1, Qt::Horizontal, QObject::tr("Nom"));
-    model->setHeaderData (2, Qt::Horizontal, QObject::tr("Race"));
-    model->setHeaderData (3, Qt::Horizontal, QObject::tr("Espece"));
-    model->setHeaderData (4, Qt::Horizontal, QObject::tr("Age"));
-    model->setHeaderData (5, Qt::Horizontal, QObject::tr("Status"));
-    model->setHeaderData (6, Qt::Horizontal, QObject::tr("Date"));
-
-    return model;
-}
-
-QSqlQueryModel* Animal::sortDates()
-{
-    QSqlQueryModel* model=new QSqlQueryModel();
-
-    model->setQuery("SELECT * FROM animals "
-                    "ORDER BY date_arr DESC");
-
-    model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
-    model->setHeaderData (1, Qt::Horizontal, QObject::tr("Nom"));
-    model->setHeaderData (2, Qt::Horizontal, QObject::tr("Race"));
-    model->setHeaderData (3, Qt::Horizontal, QObject::tr("Espece"));
-    model->setHeaderData (4, Qt::Horizontal, QObject::tr("Age"));
-    model->setHeaderData (5, Qt::Horizontal, QObject::tr("Status"));
-    model->setHeaderData (6, Qt::Horizontal, QObject::tr("Date"));
-
-    return model;
-}
-
-
-
-
-QSqlQueryModel* Animal::searchID(QString research)
-{
-    QSqlQueryModel* model=new QSqlQueryModel();
-    QSqlQuery query;
-
-    if (research.length() != 0)
-    {
-    query.prepare("SELECT * FROM animals "
-                  "WHERE IDA=?");
-    query.addBindValue(research);
-    query.exec();
-    model->setQuery(query);
-    }
-    else
-    {
-        return afficher();
+    // Assign WHERE clause only if Where argument is set
+    if (!isEmpty(Where)) {
+        model->setFilter(Where);            // Create a WHERE clause
     }
 
+    // Assign ORDER BY clause only if Column argument is set
+    if (Column != -1) {
+        model->setSort(Column, SortOrder);  // Create an ORDER BY clause, Column is an int, refer to setHeader() to see which column it defines
+    }
+
+    // Does the same as "afficher" if no argument is passed
+    model->select();                        // Fetch all the data from the selected table
+
+    setHeader(model);
     return model;
 }
 
 
-
-QSqlQueryModel* Animal::searchName(QString research)
+bool writeToFile(QString data)
 {
-    QSqlQueryModel* model=new QSqlQueryModel();
-    QSqlQuery query;
+    QFile file("historic.log");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
+        file.flush();
+        QTextStream stream(&file);
+        stream << data;
 
-    if (research.length() != 0)
-    {
-
-    query.prepare("SELECT * FROM animals "
-                  "WHERE nom LIKE '"+research+"%' OR race LIKE '"+research+"%' OR espece LIKE '"+research+"%'");
-
-    query.addBindValue(research);
-    query.exec();
-    model->setQuery(query);
-
+        file.close();
+        return true;
     }
-    else
-    {
-        return afficher();
-    }
-
-    return model;
+    return false;
 }
-
 
 QString Animal::historic(QString data)
 {
-    QString currentdate = QDateTime::currentDateTime().toString("hh:mm:ss - ");
-    data = currentdate + data;
-    return data;
+    QString currentdate = QDateTime::currentDateTime().toString("dd:MM:yyyy hh:mm:ss -- ");
+
+    // Some data and return to line for the logs
+    writeToFile (currentdate + data + '\n');
+
+    // Current hour for normal session (no need for all demn dates when in the session)
+    currentdate = QDateTime::currentDateTime().toString("hh:mm:ss -- ");
+    return currentdate + data;
 }
 
 
-void Animal::modifyRessource(QString link)
+bool Animal::addImage(QString filepath, QString filename)
 {
-    QFile ressourceFile("../Gestion Animal/ressource.qrc");
-    if (!ressourceFile.open(QIODevice::ReadWrite)) {
-        return ;
-    }
-
-    // ressourceFile.write();
-    ressourceFile.flush();
-
-    QTextStream stream(&ressourceFile);
-
-    while (!stream.atEnd())
+    QByteArray dataByte;
+    QFile file(filepath);
+    if (file.open(QIODevice::ReadOnly))
     {
-        QString line = stream.readLine();
-        if (line.contains("<!--bruh-->"))
-        {
-            qInfo() << "read to write lmao";
-            stream << "    <file>" + link + "</file>\n" + "    <!--bruh-->\n";
-        }
-        qInfo() << line;
+        dataByte = file.readAll();
+        file.close();
+    }
+    else
+    {
+        return false;   // The file could not be opened or smth
+    }
+    QSqlQuery query;
+    query.prepare("INSERT INTO IMAGE (IDI, nom, img, date_added, filepath) "
+                  "VALUES (DEFAULT, :nom, :img, :date_added, :filepath)");
+    query.bindValue(":nom", filename);
+    query.bindValue(":img", dataByte, QSql::In | QSql::Binary);
+    query.bindValue(":date_added", QDateTime::currentDateTime());
+    query.bindValue(":filepath", filepath);
+
+    return query.exec();
+}
+
+bool Animal::updateImage(int id, QString filepath, QString filename)
+{
+    QByteArray dataByte;
+    QFile file(filepath);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        dataByte = file.readAll();
+        file.close();
+    }
+    else
+    {
+        return false;   // The file could not be opened or smth
     }
 
-//    ressourceFile.seek(0);
-//    qInfo () << ressourceFile.readAll();
+    QSqlQuery query;
+    QString id_string=QString::number(id);
+    query.prepare("UPDATE IMAGE SET "
+                  "nom=:nom, img=:img, date_added=:date_added, filepath=:filepath "
+                  "WHERE IDI=:id");
 
-    ressourceFile.close();
+    query.bindValue(":id", id_string);
+    query.bindValue(":nom", filename);
+    query.bindValue(":img", dataByte, QSql::In | QSql::Binary);
+    query.bindValue(":date_added", QDateTime::currentDateTime());
+    query.bindValue(":filepath", filepath);
+
+    return query.exec();
 }
 
 
 void Animal::generatePdf(QTableView* tableView)
 {
-    QString strStream;
-    QTextStream out(&strStream);
-
+    QString header, css, text;
     const int rowCount = tableView->model()->rowCount();
     const int columnCount = tableView->model()->columnCount();
 
-    out <<  "<html>\n"
-        "<head>\n"
-        "<meta Content=\"Text/html; charset=Windows-1251\">\n"
-        <<  QString("<title>%1</title>\n").arg("test")
-        <<  "</head>\n"
-        "<body bgcolor=#ffffff link=#5000A0>\n"
-        "<table border=1 cellspacing=0 cellpadding=2>\n";
+// Create the header
+    header += "<html><head><meta Content='Text/html; charset=Windows-1251'>";
+    header += "<title>Some epic PDF File</title>";
+    header += "<link rel='stylesheet' type='text/css' href='./../Gestion Animal/res/table.css'>";
+    header += "</head><body>";
 
-    // headers
-    out << "<thead><tr bgcolor=#f0f0f0>";
-    for (int column = 0; column < columnCount; column++)
-        if (!tableView->isColumnHidden(column))
-            out << QString("<th>%1</th>").arg(tableView->model()->headerData(column, Qt::Horizontal).toString());
-    out << "</tr></thead>\n";
+// Some simple css in case files are too complicated to link
+    css += "<style type='text/css'>";
+    css += "table {border: solid 1px #DDEEEE;border-collapse: collapse;border-spacing: 0;font: normal 13px Arial, sans-serif;}";
+    css += "</style>";
 
-    // data table
+// Create the table
+    text += "<table><thead><tr>";
+
+// Fill the table headers
+    for (int column = 0; column < columnCount; column++) {
+        if (!tableView->isColumnHidden(column)) {
+            text += QString("<th>%1</th>").arg(tableView->model()->headerData(column, Qt::Horizontal).toString());
+        }
+    }
+    text += "</tr></thead><tbody>";
+
+// Fill table cells
     for (int row = 0; row < rowCount; row++) {
-        out << "<tr>";
+        text += "<tr>";
         for (int column = 0; column < columnCount; column++) {
             if (!tableView->isColumnHidden(column)) {
                 QString data = tableView->model()->data(tableView->model()->index(row, column)).toString().simplified();
-                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                text += QString("<td>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
             }
         }
-        out << "</tr>\n";
+        text += "</tr></tbody>";
     }
-    out <<  "</table>\n"
-        "</body>\n"
-        "</html>\n";
+    text += "</table></body></html>";
 
     QTextDocument *document = new QTextDocument();
-    document->setHtml(strStream);
+    document->setHtml(header + text);
 
     QPrinter printer;
-
     QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
     if (dialog->exec() == QDialog::Accepted) {
         document->print(&printer);

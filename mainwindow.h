@@ -1,10 +1,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
+
 #include "animal.h"
+#include "arduino.h"
+
 #include <QMainWindow>
 #include <QCheckBox>
 #include <QMessageBox>
 #include <QValidator>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -39,8 +44,23 @@ private slots:
 
     void on_btn_Upload_clicked();
 
+    void update_label();
+
+    void on_btn_test0_clicked();
+
+    void on_btn_test1_clicked();
+
+    void on_btn_test2_clicked();
+
+    void on_btn_test3_clicked();
+
+    void on_tableView_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Animal A;
+
+    QByteArray data;        // variable containing incoming data from the Arduino card
+    Arduino Ar;             // temporary object Arduino (arduino.h)
 };
 #endif // MAINWINDOW_H

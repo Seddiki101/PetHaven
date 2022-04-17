@@ -1,22 +1,40 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "animal.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->le_Age->setValidator(new QIntValidator(0,1000,this));
 
+    int ret = Ar.connect_arduino();             // Start the connexion with Arduino
+    switch (ret) {
+        case 0:
+            qDebug() << "Arduino avaible and connected to : " << Ar.getarduino_port_name();
+        break;
+        case 1:
+            qDebug() << "Arduino avaible but not connected to : " << Ar.getarduino_port_name();
+        break;
+        case -1:
+            qDebug() << "Arduino is not doing the worky worky.";
+        break;
+    }
+
+    // Starts the slot (or function) 'update_label' after receiving 'readyRead' signal (meaning the arduino card just yeeted some data over)
+    QObject::connect(Ar.getserial(), SIGNAL(readyRead()), this, SLOT(update_label()));
+
+    // Create new RegExp then make it into a validator
     QRegExp reg("^[a-zA-Z]{1,20}$");
     QValidator *validator = new QRegExpValidator(reg, this);
 
+    // Set validators for some inputs
+    ui->le_Age->setValidator(new QIntValidator(0,1000,this));
     ui->le_Nom->setValidator(validator);
     ui->le_Race->setValidator(validator);
     ui->le_Espece->setValidator(validator);
 
-    ui->tableView->setModel(A.afficher());
+    ui->tableView->setModel(A.afficher());      // Display database content in the tableView
+    ui->tableView->hideColumn(0);               // Hide the ID Column
+    ui->tableView->hideColumn(7);               // Hide the Image Column
+
 }
 
 MainWindow::~MainWindow()
@@ -24,10 +42,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::update_label()
+{
+    data = Ar.read_from_arduino();
+    if (data == "1")
+        ui->label_test->setText("WE CONNECTED BABYYYYYY");
+    else if (data == "0")
+        ui->label_test->setText("AAAAAAAAAAAAAAAAAAAAAA");
+    else if (data == "2")
+        ui->label_test->setText(".2. .U. >-< '-' 'u' ^^' ");
+    else if (data == "3")
+        ui->label_test->setText("3 is like Ɛ or is Ɛ like 3 ?");
+    else
+        ui->label_test->setText("nothing");
+}
 
 void MainWindow::on_btn_Refresh_clicked()
 {
-    Animal A;
     ui->tableView->setModel (A.afficher());
 }
 
@@ -44,7 +75,7 @@ void MainWindow::on_btn_Add_clicked()
     Animal A(Age, 0, Nom, Espece, Race, Date);
 
 
-    if ( ! (A.Empty(Nom) || A.Empty(Espece) || A.Empty(Race)) ) {
+    if ( ! (A.isEmpty(Nom) || A.isEmpty(Espece) || A.isEmpty(Race)) ) {
         QMessageBox msgBox;
         if(A.ajouter())
         {
@@ -83,7 +114,7 @@ void MainWindow::on_btn_Update_clicked()
     Animal A(Age, Status, Nom, Espece, Race, Date);
     QMessageBox msgBox;
 
-    if ( ! (A.Empty(Nom) || A.Empty(Espece) || A.Empty(Race) || value.isNull() ) ) {
+    if ( ! (A.isEmpty(Nom) || A.isEmpty(Espece) || A.isEmpty(Race) || value.isNull() ) ) {
         if(A.modifier(value.toUInt()))
         {
             msgBox.setText ("Modification avec succes.");
@@ -112,8 +143,6 @@ void MainWindow::on_btn_Update_clicked()
 
 void MainWindow::on_btn_Delete_clicked()
 {
-    Animal A;
-
     QModelIndex index = ui->tableView->selectionModel()->currentIndex();
     QVariant value = index.sibling(index.row(), 0).data();      // gather ID  of the selected row
     QVariant tempName = index.sibling(index.row(), 1).data();   // gather NOM of the selected row
@@ -134,50 +163,52 @@ void MainWindow::on_btn_Delete_clicked()
 
 void MainWindow::on_btn_Sort_clicked()
 {
-    Animal A;
-
     if (ui->sort_name->isChecked()) {
-        ui->tableView->setModel(A.sortName());
+        ui->tableView->setModel(A.sortData("", 1));
     }
     else if (ui->sort_date->isChecked()) {
-        ui->tableView->setModel(A.sortDates());
+        ui->tableView->setModel(A.sortData("", 6, Qt::DescendingOrder));
     }
     else {
-        ui->tableView->setModel(A.afficher());
+        ui->tableView->setModel(A.sortData());
     }
-
 }
 
 void MainWindow::on_btn_Upload_clicked()
 {
-    Animal A;
 
-    QString link = ui->le_Image->text();
+    QString imageFile = QFileDialog::getOpenFileName(0, "Select Image", "C:\\", "Image Files (*.jpg *.jpeg *.png)");
 
-//    link = "..\\Gestion Animal\\res\\dededepression.jpg";
-//    link = "..\\Gestion Animal\\res\\dededepression.png";
+    QFileInfo info(imageFile);
+    QString filename = info.fileName();
+    QString filepath = info.absoluteFilePath();
 
-    QPixmap pixmap(link);
-    QIcon ButtonIcon(pixmap);
-    ui->btn_Upload->setIcon(ButtonIcon);
+    QPixmap image (imageFile);
 
-    ui->btn_Upload->resize(pixmap.rect().size());
-    ui->btn_Upload->setIconSize(pixmap.rect().size());
+    ui->lblBkImge->setPixmap(image);
+    ui->lblBkImge->setScaledContents( true );
+    ui->lblBkImge->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+//    ui->lblBkImge->show();
+
+//    QIcon ButtonIcon(image);
+//    ui->btn_Upload->setIcon(ButtonIcon);
+
+//    ui->btn_Upload->resize(image.rect().size());
+//    ui->btn_Upload->setIconSize(image.rect().size());
+
+    A.addImage(filepath, filename);
 }
-
 
 void MainWindow::on_btn_PDF_clicked()
 {
-    Animal A;
     A.generatePdf(ui->tableView);
 }
 
 
 void MainWindow::on_le_Search_textChanged()
 {
-    Animal A;
     QString research = ui->le_Search->text();
-    ui->tableView->setModel(A.searchName(research));
+    ui->tableView->setModel(A.sortData("nom LIKE '"+research+"%' OR race LIKE '"+research+"%' OR espece LIKE '"+research+"%' OR IDA LIKE '"+research+"%' OR age LIKE '"+research+"%'"));
 }
 
 void MainWindow::on_Black_clicked()
@@ -205,7 +236,6 @@ void MainWindow::on_Black_clicked()
     ui->le_Espece->setStyleSheet("");
     ui->le_Age->setStyleSheet("");
     ui->le_Date_arr->setStyleSheet("");
-    ui->le_Image->setStyleSheet("");
 
     ui->label_age->setStyleSheet("");
     ui->label_nom->setStyleSheet("");
@@ -247,7 +277,6 @@ void MainWindow::on_White_clicked()
     ui->le_Espece->setStyleSheet("background-color: black ;");
     ui->le_Age->setStyleSheet("background-color: black ;");
     ui->le_Date_arr->setStyleSheet("background-color: black ;");
-    ui->le_Image->setStyleSheet("background-color: black ;");
 
     ui->label_age->setStyleSheet("color: black ;");
     ui->label_nom->setStyleSheet("color: black ;");
@@ -262,4 +291,72 @@ void MainWindow::on_White_clicked()
 
     ui->stackedWidget->show();
     ui->list_historic->addItem(A.historic("Switched to white mode."));
+}
+
+void MainWindow::on_btn_test0_clicked()
+{
+    Ar.write_to_arduino("0");           // Sends 0 to Arduino
+}
+
+void MainWindow::on_btn_test1_clicked()
+{
+    Ar.write_to_arduino("1");           // Sends 1 to Arduino
+}
+
+void MainWindow::on_btn_test2_clicked()
+{
+   Ar.write_to_arduino("2");           // Sends 2 to Arduino
+}
+
+void MainWindow::on_btn_test3_clicked()
+{
+   Ar.write_to_arduino("3");           // Sends 3 to Arduino
+}
+
+
+
+// The start of something that would finally be good i hope
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    qDebug() << "\nRow: " << index.row() << " Column: " << index.column();
+
+//     index.data()         <-- Contains data type and actual data of the clicked cell
+//     index.row()          <-- Contains the row (int) of the clicked cell
+//     index.column()       <-- Contains the column (int) of the clicked cell
+//    ui->tableView->setCurrentIndex(index);
+//    ui->tableView->edit(index);
+
+//    ui->tableView->model()->insertRows(index.row()+1, 1);
+
+
+    //    QModelIndex index = model->index(0, 7);
+    //    QByteArray Bytes = model->data(index).toByteArray();
+    //    QPixmap pixmap;
+    //    pixmap.loadFromData(Bytes);
+    //    model->setData(index, pixmap.loadFromData(Bytes));
+        // pixmap Contains the actual image
+        // Doing setPixmap or something similar will set the image
+
+    // Grab the data of the 7th row (hidden)
+    QVariant value = index.sibling(index.row(), 7).data();
+    qDebug() << value;
+
+
+    // Test if there's an image
+    if (value.isNull()) {
+        QPixmap pixmap(":/res/noImage.png");
+        ui->label_image->setScaledContents(true);
+        ui->label_image->setPixmap(pixmap);
+    }
+    else {
+        QPixmap pixmap;
+        QByteArray Bytes = value.toByteArray();
+        pixmap.loadFromData(Bytes);
+        ui->label_image->setScaledContents(true);
+        ui->label_image->setPixmap(pixmap);
+    }
+
+    qDebug() << "index data : " << index.data();
+    qDebug() << "ui index data : " << ui->tableView->model()->data(index);
 }

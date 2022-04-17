@@ -1,16 +1,20 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
-#include <QSqlQueryModel>
+
 #include <QSqlQuery>
+#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 
 #include <QObject>
 #include <QString>
 #include <QDate>
 #include <QDateTime>
 #include <QTableView>
+#include <QtWidgets>
 
 #include <QFile>
+#include <QFileDialog>
 #include <QTextStream>
 #include <QTextDocument>
 #include <QPrinter>
@@ -20,9 +24,12 @@
 #include <QDebug>
 
 
+
 class Animal
 {
-    int age, status;
+
+protected:
+    int age, status, imageID;
     QString nom, espece, race;
     QDate date_arr;
 
@@ -43,22 +50,31 @@ public:
     void setEspece (QString);
     void setRace (QString);
     void setDate_arr (QDate);
+    void setImage(int); // Simply sets an int corresponding to an image's ID
 
-    QSqlQueryModel* afficher();
+    QSqlTableModel* afficher();
     bool ajouter();
-    bool modifier(int id);
-    bool supprimer(int id);
-    bool Empty(QString);
+    bool modifier(int);
+    bool supprimer(int);
+    bool isEmpty(QString);
 
-    QSqlQueryModel* sortName();
-    QSqlQueryModel* sortDates();
-    QSqlQueryModel* searchID(QString);
-    QSqlQueryModel* searchName(QString);
-
+    QSqlTableModel* sortData(QString = "", int = -1, Qt::SortOrder = Qt::AscendingOrder);
     QString historic(QString);
-    void modifyRessource(QString);
+    bool addImage(QString, QString);
+    bool updateImage(int, QString, QString);
 
     void generatePdf(QTableView*);
+};
+
+class AnimalEdit : public Animal
+{
+
+public:
+    // Used to construct some queries, kinda useless ngl
+    QString QueryConstructor(QString, QString, QString = "", QString = "");
+    // Construct some Edit query to edit one element of the database at once
+    bool Edit(int, QString, QString = "", int = -1, QDate = QDate::currentDate());
+
 };
 
 

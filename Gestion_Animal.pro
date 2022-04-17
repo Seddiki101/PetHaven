@@ -1,6 +1,8 @@
 QT       += core gui
+QT       += widgets
 QT       += sql
 QT       += printsupport
+QT       += serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -18,12 +20,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     animal.cpp \
+    animalEdit.cpp \
+    arduino.cpp \
     connexion.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     animal.h \
+    arduino.h \
     connexion.h \
     mainwindow.h
 
