@@ -29,8 +29,6 @@ int Arduino::connect_arduino()
             }
         }
     }
-
-    qDebug() << "arduino_port_name is :" << arduino_port_name;
     if(arduino_is_available) {                                      // configuration de la communication ( débit...)
         serial->setPortName(arduino_port_name);
         if(serial->open(QSerialPort::ReadWrite)) {
@@ -74,7 +72,6 @@ int Arduino::write_to_arduino( QByteArray d)
         return 0;
     }
     else {
-        qDebug() << "Couldn't write to serial!";
         return -1;
     }
 }

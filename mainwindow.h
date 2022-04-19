@@ -11,6 +11,7 @@
 #include <QValidator>
 
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -46,14 +47,6 @@ private slots:
 
     void update_label();
 
-    void on_btn_test0_clicked();
-
-    void on_btn_test1_clicked();
-
-    void on_btn_test2_clicked();
-
-    void on_btn_test3_clicked();
-
     void on_tableView_clicked(const QModelIndex &index);
 
 private:
@@ -63,4 +56,6 @@ private:
     QByteArray data;        // variable containing incoming data from the Arduino card
     Arduino Ar;             // temporary object Arduino (arduino.h)
 };
+
+
 #endif // MAINWINDOW_H

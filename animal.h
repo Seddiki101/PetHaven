@@ -4,18 +4,14 @@
 
 #include <QSqlQuery>
 #include <QSqlTableModel>
-#include <QSqlRelationalTableModel>
 
-#include <QObject>
 #include <QString>
 #include <QDate>
 #include <QDateTime>
 #include <QTableView>
-#include <QtWidgets>
 
 #include <QFile>
 #include <QFileDialog>
-#include <QTextStream>
 #include <QTextDocument>
 #include <QPrinter>
 #include <QPrintDialog>
@@ -28,8 +24,8 @@
 class Animal
 {
 
-protected:
-    int age, status, imageID;
+private:
+    int age, status;
     QString nom, espece, race;
     QDate date_arr;
 
@@ -37,6 +33,7 @@ public:
     Animal();
     Animal(int, int, QString, QString, QString, QDate);
 
+    // The army of getters even though probably none of them will ever be used
     int getAge();
     int getStatus();
     QString getNom();
@@ -44,37 +41,27 @@ public:
     QString getRace();
     QDate getDate_arr();
 
+    // The army of setters even though probably none of them will ever be used
     void setAge (int);
     void setStatus (int);
     void setNom (QString);
     void setEspece (QString);
     void setRace (QString);
     void setDate_arr (QDate);
-    void setImage(int); // Simply sets an int corresponding to an image's ID
 
-    QSqlTableModel* afficher();
-    bool ajouter();
-    bool modifier(int);
-    bool supprimer(int);
-    bool isEmpty(QString);
+    QSqlTableModel* afficher ();    // Show the data from the database
+    bool ajouter ();                // Add some stuff to the database
+    bool modifier (int);            // Modify some stuff, will probably be deprecated, Edit() is technically more practical
+    bool supprimer (int);           // Delete some stuff from the database. Cool function, deleting stuff is amusing
+    bool isEmpty (QString);         // Test if a string is empty even though QString::isNull() already exists
 
-    QSqlTableModel* sortData(QString = "", int = -1, Qt::SortOrder = Qt::AscendingOrder);
-    QString historic(QString);
-    bool addImage(QString, QString);
-    bool updateImage(int, QString, QString);
+    QSqlTableModel* sortData (QString = "", int = -1, Qt::SortOrder = Qt::AscendingOrder);  // Epic function to sort data, works like a query constructor for SELECT, WHERE, LIKE etc.
+    QString historic (QString);                                                             // Print in the current session and on a text file changes made during the execution of the application
+    bool updateImage (int, QString);                                                        // Upload an image to the databse from the pc
+    void generatePdf (QTableView*);                                                         // Generates a PDF file through HTML
 
-    void generatePdf(QTableView*);
-};
-
-class AnimalEdit : public Animal
-{
-
-public:
-    // Used to construct some queries, kinda useless ngl
-    QString QueryConstructor(QString, QString, QString = "", QString = "");
-    // Construct some Edit query to edit one element of the database at once
-    bool Edit(int, QString, QString = "", int = -1, QDate = QDate::currentDate());
-
+    QString QueryConstructor (QString, QString, QString = "", QString = "");                // Used to construct some queries, kinda useless ngl
+    bool Edit (int, QString, QString = "", int = -1, QDate = QDate::currentDate());         // Construct some Edit query to edit one element of the database at once
 };
 
 

@@ -46,15 +46,15 @@ void MainWindow::update_label()
 {
     data = Ar.read_from_arduino();
     if (data == "1")
-        ui->label_test->setText("WE CONNECTED BABYYYYYY");
+        ui->label_image->setText("WE CONNECTED BABYYYYYY");
     else if (data == "0")
-        ui->label_test->setText("AAAAAAAAAAAAAAAAAAAAAA");
+        ui->label_image->setText("AAAAAAAAAAAAAAAAAAAAAA");
     else if (data == "2")
-        ui->label_test->setText(".2. .U. >-< '-' 'u' ^^' ");
+        ui->label_image->setText(".2. .U. >-< '-' 'u' ^^' ");
     else if (data == "3")
-        ui->label_test->setText("3 is like Ɛ or is Ɛ like 3 ?");
+        ui->label_image->setText("3 is like Ɛ or is Ɛ like 3 ?");
     else
-        ui->label_test->setText("nothing");
+        ui->label_image->setText("nothing");
 }
 
 void MainWindow::on_btn_Refresh_clicked()
@@ -100,8 +100,8 @@ bool test(QVariant test) {
 
 void MainWindow::on_btn_Update_clicked()
 {
-    QModelIndex index=ui->tableView->selectionModel()->currentIndex();
-    QVariant value=index.sibling(index.row(), 0).data();
+    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
+    QVariant id = index.sibling(index.row(), 0).data();
     QVariant tempNom = index.sibling(index.row(), 1).data();   // gather NOM of the selected row
 
     int Status = ui->status->isChecked();
@@ -114,8 +114,8 @@ void MainWindow::on_btn_Update_clicked()
     Animal A(Age, Status, Nom, Espece, Race, Date);
     QMessageBox msgBox;
 
-    if ( ! (A.isEmpty(Nom) || A.isEmpty(Espece) || A.isEmpty(Race) || value.isNull() ) ) {
-        if(A.modifier(value.toUInt()))
+    if ( ! (A.isEmpty(Nom) || A.isEmpty(Espece) || A.isEmpty(Race) || id.isNull() ) ) {
+        if(A.modifier(id.toUInt()))
         {
             msgBox.setText ("Modification avec succes.");
             ui->tableView->setModel (A.afficher());
@@ -144,12 +144,12 @@ void MainWindow::on_btn_Update_clicked()
 void MainWindow::on_btn_Delete_clicked()
 {
     QModelIndex index = ui->tableView->selectionModel()->currentIndex();
-    QVariant value = index.sibling(index.row(), 0).data();      // gather ID  of the selected row
+    QVariant id = index.sibling(index.row(), 0).data();      // gather ID  of the selected row
     QVariant tempName = index.sibling(index.row(), 1).data();   // gather NOM of the selected row
 
 
     QMessageBox msgBox;
-    if(A.supprimer(value.toUInt()) && !value.isNull())
+    if (A.supprimer(id.toUInt()) && !id.isNull())
     {
         msgBox.setText("suppression avec succes.");
         ui->tableView->setModel(A.afficher());
@@ -176,27 +176,18 @@ void MainWindow::on_btn_Sort_clicked()
 
 void MainWindow::on_btn_Upload_clicked()
 {
-
+    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
+    QVariant id = index.sibling(index.row(), 0).data();      // gather ID  of the selected row
     QString imageFile = QFileDialog::getOpenFileName(0, "Select Image", "C:\\", "Image Files (*.jpg *.jpeg *.png)");
 
     QFileInfo info(imageFile);
-    QString filename = info.fileName();
     QString filepath = info.absoluteFilePath();
-
-    QPixmap image (imageFile);
-
-    ui->lblBkImge->setPixmap(image);
-    ui->lblBkImge->setScaledContents( true );
-    ui->lblBkImge->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-//    ui->lblBkImge->show();
-
 //    QIcon ButtonIcon(image);
 //    ui->btn_Upload->setIcon(ButtonIcon);
-
 //    ui->btn_Upload->resize(image.rect().size());
 //    ui->btn_Upload->setIconSize(image.rect().size());
 
-    A.addImage(filepath, filename);
+    A.updateImage(id.toUInt(), filepath);
 }
 
 void MainWindow::on_btn_PDF_clicked()
@@ -293,30 +284,11 @@ void MainWindow::on_White_clicked()
     ui->list_historic->addItem(A.historic("Switched to white mode."));
 }
 
-void MainWindow::on_btn_test0_clicked()
-{
-    Ar.write_to_arduino("0");           // Sends 0 to Arduino
-}
-
-void MainWindow::on_btn_test1_clicked()
-{
-    Ar.write_to_arduino("1");           // Sends 1 to Arduino
-}
-
-void MainWindow::on_btn_test2_clicked()
-{
-   Ar.write_to_arduino("2");           // Sends 2 to Arduino
-}
-
-void MainWindow::on_btn_test3_clicked()
-{
-   Ar.write_to_arduino("3");           // Sends 3 to Arduino
-}
 
 
-
-// The start of something that would finally be good i hope
-
+// Some test and stuff
+// Currently put the image to a label so it can be seen
+// Still don't know how to directly put the image in the QTableView
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
     qDebug() << "\nRow: " << index.row() << " Column: " << index.column();
@@ -340,8 +312,6 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 
     // Grab the data of the 7th row (hidden)
     QVariant value = index.sibling(index.row(), 7).data();
-    qDebug() << value;
-
 
     // Test if there's an image
     if (value.isNull()) {
@@ -356,7 +326,4 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
         ui->label_image->setScaledContents(true);
         ui->label_image->setPixmap(pixmap);
     }
-
-    qDebug() << "index data : " << index.data();
-    qDebug() << "ui index data : " << ui->tableView->model()->data(index);
 }

@@ -20,7 +20,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     animal.cpp \
-    animalEdit.cpp \
     arduino.cpp \
     connexion.cpp \
     main.cpp \
