@@ -1,4 +1,4 @@
-#include "../header/animal.h"
+#include "../headers/animal.h"
 
 
 //******************************************************************//
@@ -52,7 +52,6 @@ void Animal::setDate_arr(QDate date_arr)    {this->date_arr=date_arr;}
 // Must be called everytime after the model is updated
 void setHeader(QSqlQueryModel* model)
 {
-//    model->setHeaderData (0, Qt::Horizontal, QObject::tr("ID"));
     model->setHeaderData (1, Qt::Horizontal, QObject::tr("Nom"));
     model->setHeaderData (2, Qt::Horizontal, QObject::tr("Race"));
     model->setHeaderData (3, Qt::Horizontal, QObject::tr("Espece"));
@@ -79,11 +78,10 @@ void Animal::afficher(QTableView *table)
 bool Animal::ajouter()
 {
     QSqlQuery query;
-    QString age_string=QString::number(age);
     query.prepare("INSERT INTO ANIMALS (IDA, age, nom, espece, race, status, date_arr, image) "
                   "VALUES (DEFAULT, :age, :nom, :espece, :race, DEFAULT, :date_arr, NULL)");
 
-    query.bindValue(":age", age_string);
+    query.bindValue(":age", age);
     query.bindValue(":nom", nom);
     query.bindValue(":espece", espece);
     query.bindValue(":race", race);
@@ -97,16 +95,13 @@ bool Animal::ajouter()
 bool Animal::modifier(int id)
 {
     QSqlQuery query;
-    QString id_string=QString::number(id);
-    QString age_string=QString::number(age);
-    QString status_string=QString::number(status);
     query.prepare("UPDATE ANIMALS SET "
                   "age=:age, nom=:nom, espece=:espece, race=:race, status=:status, date_arr=:date_arr "
                   "WHERE IDA=:id");
 
-    query.bindValue(":id", id_string);
-    query.bindValue(":age", age_string);
-    query.bindValue(":status", status_string);
+    query.bindValue(":id", id);
+    query.bindValue(":age", age);
+    query.bindValue(":status", status);
     query.bindValue(":nom", nom);
     query.bindValue(":espece", espece);
     query.bindValue(":race", race);
@@ -119,10 +114,9 @@ bool Animal::modifier(int id)
 bool Animal::supprimer(int id)
 {
     QSqlQuery query;
-    QString id_string=QString::number(id);
 
     query.prepare("DELETE FROM ANIMALS WHERE IDA=:id");
-    query.bindValue(":id", id_string);
+    query.bindValue(":id", id);
     return query.exec();
 }
 
@@ -208,12 +202,11 @@ bool Animal::updateImage(int id, QString filepath)
     }
 
     QSqlQuery query;
-    QString id_string=QString::number(id);
     query.prepare("UPDATE ANIMALS SET "
                   "IMAGE=:image "
                   "WHERE IDA=:id");
 
-    query.bindValue(":id", id_string);
+    query.bindValue(":id", id);
     query.bindValue(":image", dataByte, QSql::In | QSql::Binary);
 
     return query.exec();
@@ -297,8 +290,7 @@ QString Animal::QueryConstructor(QString Command1, QString TableName, QString Co
 // And even if they do everything at once, you call just call this beautiful function multiple times
 bool Animal::Edit (int id, QString columnName, QString dataString, int dataInt, QDate dataDate) {
     QSqlQuery query;
-    QString id_string=QString::number(id);
-    query.bindValue(":id", id_string);
+    query.bindValue(":id", id);
 
     if (!isEmpty(dataString)) {
         query.bindValue(":data", dataString);

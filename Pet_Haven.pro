@@ -22,19 +22,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     connexion.cpp \
     main.cpp \
-    mainwindow.cpp \
     sources/SwitchButton.cpp \
     sources/animal.cpp \
     sources/arduino.cpp \
-    sources/employe.cpp
+    sources/employe.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     connexion.h \
-    header/animal.h \
-    mainwindow.h \
-    header/arduino.h \
-    header/SwitchButton.h \
-    header/employe.h \
+    headers/animal.h \
+    headers/arduino.h \
+    headers/SwitchButton.h \
+    headers/employe.h \
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

@@ -1,4 +1,4 @@
-#include "../header/employe.h"
+#include "../headers/employe.h"
 
 
 Employe::Employe()
@@ -10,183 +10,140 @@ Employe::Employe()
     mdp="";
     login="";
     appreciations=0;
-  }
+}
 
 
-    Employe::Employe(int id,QString nom ,QString prenom,QString email,QString login,QString mdp, int appreciations)
-    {
+Employe::Employe(int id,QString nom ,QString prenom,QString email,QString login,QString mdp, int appreciations)
+{
     this->id=id; this->nom=nom; this->prenom=prenom;this->email=email; this->login=login; this->mdp=mdp; this->appreciations=appreciations;
-    }
+}
 
 
-        int Employe::getid_Employe()
-        {
-            return id;
-        }
+int Employe::getid_Employe()                                {return id;}
+QString Employe::getnom_Employe()                           {return nom;}
+QString Employe::getprenom_Employe()                        {return prenom;}
+QString Employe::getemail_Employe()                         {return email;}
+QString Employe::getmdp_Employe()                           {return mdp;}
+QString Employe::getlogin_Employe()                         {return login;}
+int Employe::getappreciations_Employe()                     {return appreciations;}
 
+void Employe::setid_Employe(int id)                         {this->id=id;}
+void Employe::setnom_Employe(QString nom)                   {this->nom=nom;}
+void Employe::setprenom_Employe(QString prenom)             {this->prenom=prenom;}
+void Employe::setemail_Employe(QString email)               {this->email=email;}
+void Employe::setmdp_Employe(QString mdp)                   {this->mdp=mdp;}
+void Employe::setlogin_Employe(QString login)               {this->login=login;}
+void Employe::setappreciations_Employe(int appreciations)   {this->appreciations=appreciations;}
 
-        QString Employe::getnom_Employe()
-        {
-            return nom;
-        }
+bool Employe::ajouter_Employe()
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO employe (ide, nom, prenom,email,login,mdp,appreciations) "
+                "VALUES (DEFAULT, :nom, :prenom, :email, :login, :mdp, :appreciations)");
 
-        QString Employe::getprenom_Employe()
-        {
-            return prenom ;
-        }
+    query.bindValue(":nom", nom);
+    query.bindValue(":prenom", prenom);
+    query.bindValue(":email", email);
+    query.bindValue(":login", login);
+    mdp=Cryptage_Employe(mdp);
+    query.bindValue(":mdp", mdp);
+    query.bindValue(":appreciations", appreciations);
 
-        QString Employe::getemail_Employe()
-        {
-            return email ;
-        }
-
-        QString Employe::getmdp_Employe()
-        {
-            return mdp;
-        }
-
-        QString Employe::getlogin_Employe()
-        {
-            return login;
-        }
-
-        int Employe::getappreciations_Employe()
-        {
-            return appreciations;
-        }
-
-    void Employe::setid_Employe(int id){this->id=id;}
-    void Employe::setnom_Employe(QString nom){this->nom=nom;}
-    void Employe::setprenom_Employe(QString prenom){this->prenom=prenom;}
-    void Employe::setemail_Employe(QString email){this->email=email;}
-    void Employe::setmdp_Employe(QString mdp){this->mdp=mdp;}
-    void Employe::setlogin_Employe(QString login){this->login=login;}
-    void Employe::setappreciations_Employe(int appreciations){this->appreciations=appreciations;}
-
-    bool Employe::ajouter_Employe()
-    {
-
-        QSqlQuery query;
-        QString id_string=QString::number(id);
-              query.prepare("INSERT INTO employe (ide, nom, prenom,email,login,mdp,appreciations) "
-                            "VALUES (DEFAULT, :nom, :prenom, :email, :login, :mdp, :appreciations)");
-              //query.bindValue(":id", id_string);
-              query.bindValue(":nom", nom);
-              query.bindValue(":prenom", prenom);
-              query.bindValue(":email", email);
-              query.bindValue(":login", login);
-              mdp=Cryptage_Employe(mdp);
-              query.bindValue(":mdp", mdp);
-              query.bindValue(":appreciations", appreciations);
-
-              return query.exec();
-    }
+    return query.exec();
+}
 
 bool Employe::supprimer_Employe(int id)
-    {
+{
     QSqlQuery query;
-    QString id_string=QString::number(id);
-          query.prepare("DELETE FROM employe WHERE ide=:ide");
-          query.bindValue(":ide", id);
+    query.prepare("DELETE FROM employe WHERE ide=:ide");
+    query.bindValue(":ide", id);
 
-
-          return query.exec();
-    }
+    return query.exec();
+}
 
 QSqlQueryModel* Employe::afficher_Employe()
 {
-  QSqlQueryModel *model = new QSqlQueryModel;
-  model->setQuery("SELECT * FROM employe");
-  model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_Employe"));
-  model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
-  model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenom"));
-  model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
-  model->setHeaderData(4, Qt::Horizontal, QObject::tr("Username"));
-  model->setHeaderData(5, Qt::Horizontal, QObject::tr("Mot De Passe"));
-  model->setHeaderData(6, Qt::Horizontal, QObject::tr("Appreciations"));
-  return model;
+    QSqlQueryModel *model = new QSqlQueryModel;
+    model->setQuery("SELECT * FROM employe");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_Employe"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenom"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Username"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Mot De Passe"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Appreciations"));
+    return model;
 }
 
 bool Employe::modifier_Employe(int id)
 {
     QSqlQuery query;
-    QString id_string=QString::number(id);
+    query.prepare("UPDATE employe SET "
+          "nom=:nom,prenom=:prenom,email=:email,login=:login,mdp=:mdp,appreciations=:appreciations "
+          "WHERE IDe=:ide");
+    query.bindValue(":ide",id);
+    query.bindValue(":nom", nom);
+    query.bindValue(":prenom", prenom);
+    query.bindValue(":email", email);
+    query.bindValue(":login", login);
+    query.bindValue(":mdp", Cryptage_Employe(mdp));
+    query.bindValue(":appreciations", appreciations);
 
-//    QString status_string=QString::number(status);
-          query.prepare("UPDATE employe SET "
-                  "nom=:nom,prenom=:prenom,email=:email,login=:login,mdp=:mdp,appreciations=:appreciations "
-                  "WHERE IDe=:ide");
-          query.bindValue(":ide",id_string);
-          query.bindValue(":nom", nom);
-          query.bindValue(":prenom", prenom);
-          query.bindValue(":email", email);
-          query.bindValue(":login", login);
-          mdp=Cryptage_Employe(mdp);
-          query.bindValue(":mdp", mdp);
-          query.bindValue(":appreciations", appreciations);
-
-          return query.exec();
+    return query.exec();
 }
 
 bool Employe::Verif_Email_Employe()
 {
     if (email.contains("@",Qt::CaseInsensitive)==false)
        return true;
-    else return false;
+    else
+        return false;
 }
 
 QSqlQueryModel* Employe::triNom_Employe()
 {
-
-QSqlQueryModel* model =new QSqlQueryModel();
-model->setQuery("SELECT * FROM employe order by employe.nom");
-return model;
-
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM employe order by employe.nom");
+    return model;
 }
 
 QSqlQueryModel* Employe::triLogin_Employe()
 {
-
-QSqlQueryModel* model =new QSqlQueryModel();
-model->setQuery("SELECT * FROM employe order by employe.login");
-return model;
-
+    QSqlQueryModel* model =new QSqlQueryModel();
+    model->setQuery("SELECT * FROM employe order by employe.login");
+    return model;
 }
 
 QSqlQueryModel* Employe::chercherID_Employe(QString recherche)
 {
-
-QSqlQueryModel* model =new QSqlQueryModel();
-QSqlQuery query;
-if(recherche.length()!=0)
-{
-query.prepare("SELECT * FROM employe where ide=?");
-query.addBindValue(recherche);
-query.exec();
-model->setQuery(query);
-}
-else{
-    model->setQuery("SELECT * FROM employe");
-}
-return model;
+    QSqlQueryModel* model =new QSqlQueryModel();
+    QSqlQuery query;
+    if (recherche.length()!=0) {
+        query.prepare("SELECT * FROM employe where ide=?");
+        query.addBindValue(recherche);
+        query.exec();
+        model->setQuery(query);
+    }
+    else {
+        model->setQuery("SELECT * FROM employe");
+    }
+    return model;
 }
 
 QSqlQueryModel* Employe::chercherNom_Employe(QString recherche)
 {
-
-QSqlQueryModel* model =new QSqlQueryModel();
-QSqlQuery query;
-if(recherche.length()!=0)
-{
-query.prepare("SELECT * FROM employe where nom LIKE'"+recherche+"%'");
-query.addBindValue(recherche);
-query.exec();
-model->setQuery(query);
-}
-else{
-    model->setQuery("SELECT * FROM employe");
-}
-return model;
+    QSqlQueryModel* model =new QSqlQueryModel();
+    QSqlQuery query;
+    if (recherche.length()!=0) {
+        query.prepare("SELECT * FROM employe where nom LIKE'"+recherche+"%'");
+        query.addBindValue(recherche);
+        query.exec();
+        model->setQuery(query);
+    }
+    else {
+        model->setQuery("SELECT * FROM employe");
+    }
+    return model;
 }
 
 void Employe::pdf_Employe(QTableView *tableView)
@@ -293,7 +250,6 @@ QList<QVariant> Employe::appreciation_Employe(int arg)
 
     return list;
 }
-
 
 bool Employe::verifyLogin(QString login, QString mdp)
 {

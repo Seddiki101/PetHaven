@@ -2,12 +2,12 @@
 #define MAINWINDOW_H
 
 
-#include "header/SwitchButton.h"
-#include "header/arduino.h"
+#include "headers/SwitchButton.h"
+#include "headers/arduino.h"
 
-#include "header/employe.h"
+#include "headers/employe.h"
 
-#include "header/animal.h"
+#include "headers/animal.h"
 
 
 #include <QMainWindow>
