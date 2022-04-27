@@ -16,23 +16,23 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_btn_Refresh_clicked();
+    void on_Livraison_btn_Refresh_clicked();
 
-    void on_btn_Search_clicked();
+    void on_Livraison_btn_Search_clicked();
 
-    void on_btn_Add_clicked();
+    void on_Livraison_btn_Add_clicked();
 
-    void on_btn_Update_clicked();
+    void on_Livraison_btn_Update_clicked();
 
-    void on_btn_Delete_clicked();
+    void on_Livraison_btn_Delete_clicked();
 
-    void on_btn_Sort_clicked();
+    void on_Livraison_btn_Sort_clicked();
 
-    void on_btn_PDF_clicked();
+    void on_Livraison_btn_PDF_clicked();
 
-    void on_le_Search_textChanged(const QString &arg1);
+    void on_Livraison_le_Search_textChanged(const QString &arg1);
 
-    void on_tableView_activated(const QModelIndex &index);
+    void on_Livraison_tableView_activated(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

@@ -1,7 +1,8 @@
 #include "livraison.h"
 #include <QSqlQuery>
-#include<QtDebug>
+#include <QtDebug>
 #include <QObject>
+using namespace std;
 
 Livraison::Livraison()
 {

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tableView->setModel(L.afficher());
+    ui->Livraison_tableView->setModel(L.afficher());
 }
 
 MainWindow::~MainWindow()
@@ -20,34 +20,34 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_btn_Refresh_clicked()
+void MainWindow::on_Livraison_btn_Refresh_clicked()
 {
     Livraison L;
-    ui->tableView->setModel(L.afficher());
+    ui->Livraison_tableView->setModel(L.afficher());
 }
 
 
-void MainWindow::on_btn_Add_clicked()
+void MainWindow::on_Livraison_btn_Add_clicked()
 {
-    QDateTime DateTime=ui->le_Date->dateTime();
-    QString Adresse=ui->le_Arrive->text();
-    QString Adresse_dep=ui->le_Depart->text();
+    QDateTime DateTime=ui->Livraison_le_Date->dateTime();
+    QString Adresse=ui->Livraison_le_Arrive->text();
+    QString Adresse_dep=ui->Livraison_le_Depart->text();
 
     Livraison L(DateTime,Adresse,Adresse_dep);
     if (L.controlA() || L.controlAD())
     {
         if (L.controlA())
         {
-            ui->err2->clear();
-            ui->err2->setText("Champ Obligatoire");
-            ui->le_Arrive->clear();
+            ui->Livraison_err2->clear();
+            ui->Livraison_err2->setText("Champ Obligatoire");
+            ui->Livraison_le_Arrive->clear();
         }
 
         if (L.controlAD())
         {
-            ui->err1->clear();
-            ui->err1->setText("Champ Obligatoire");
-            ui->le_Depart->clear();
+            ui->Livraison_err1->clear();
+            ui->Livraison_err1->setText("Champ Obligatoire");
+            ui->Livraison_le_Depart->clear();
         }
 
     }
@@ -55,27 +55,27 @@ void MainWindow::on_btn_Add_clicked()
     QMessageBox msgBox;
     if(test)
     { msgBox.setText("Ajout avec succes.");
-        ui->tableView->setModel(L.afficher());
+        ui->Livraison_tableView->setModel(L.afficher());
     }
 
     QRegularExpression reg("^([0-9]{1,5}\\s[a-zA-Z0-9\\s]{1,99})$");
     QRegularExpressionValidator validator(reg, 0);
 
     int pos = 0;
-    QString temp = ui->le_Depart->text();
+    QString temp = ui->Livraison_le_Depart->text();
     validator.validate (temp, pos);
 }
 
-void MainWindow::on_btn_Update_clicked()
+void MainWindow::on_Livraison_btn_Update_clicked()
 {
     int id;
-    QModelIndex index=ui->tableView->selectionModel()->currentIndex();
+    QModelIndex index=ui->Livraison_tableView->selectionModel()->currentIndex();
     QVariant value=index.sibling(index.row(),index.column()).data();
     id=value.toUInt();
 
-    QDateTime DateTime=ui->le_Date->dateTime();
-    QString Adresse=ui->le_Arrive->text();
-    QString Adresse_dep=ui->le_Depart->text();
+    QDateTime DateTime=ui->Livraison_le_Date->dateTime();
+    QString Adresse=ui->Livraison_le_Arrive->text();
+    QString Adresse_dep=ui->Livraison_le_Depart->text();
 
     Livraison L(DateTime,Adresse,Adresse_dep);
     bool test=L.modifier(id);
@@ -83,17 +83,17 @@ void MainWindow::on_btn_Update_clicked()
     if(test)
     {
         msgBox.setText ("Modification avec succes.");
-        ui->tableView->setModel (L.afficher());
+        ui->Livraison_tableView->setModel (L.afficher());
     }
 }
 
 
-void MainWindow::on_btn_Delete_clicked()
+void MainWindow::on_Livraison_btn_Delete_clicked()
 {
     Livraison L1;
 
     int id;
-    QModelIndex index=ui->tableView->selectionModel()->currentIndex();
+    QModelIndex index=ui->Livraison_tableView->selectionModel()->currentIndex();
     QVariant value=index.sibling(index.row(),index.column()).data();
     id=value.toUInt();
 
@@ -102,44 +102,44 @@ void MainWindow::on_btn_Delete_clicked()
     if(test)
     {
         msgBox.setText("suppression avec succes.");
-        ui->tableView->setModel(L.afficher());
+        ui->Livraison_tableView->setModel(L.afficher());
     }
 }
 
 
 
-void MainWindow::on_btn_Sort_clicked()
+void MainWindow::on_Livraison_btn_Sort_clicked()
 {
     Livraison L;
-    if (ui->sort_name->isChecked())
+    if (ui->Livraison_sort_name->isChecked())
     {
-        ui->tableView->setModel(L.triAlpha());
+        ui->Livraison_tableView->setModel(L.triAlpha());
     }
 
-    if (ui->sort_date->isChecked())
+    if (ui->Livraison_sort_date->isChecked())
     {
-        ui->tableView->setModel(L.triDate());
+        ui->Livraison_tableView->setModel(L.triDate());
     }
 }
 
-void MainWindow::on_btn_PDF_clicked()
+void MainWindow::on_Livraison_btn_PDF_clicked()
 {
     Livraison L;
-    L.generatePdf(ui->tableView);
+    L.generatePdf(ui->Livraison_tableView);
 }
 
-void MainWindow::on_btn_Search_clicked()
+void MainWindow::on_Livraison_btn_Search_clicked()
 {
     Livraison L;
-    QString recherche=ui->le_Search->text();
-    ui->tableView->setModel(L.chercher(recherche));
+    QString recherche=ui->Livraison_le_Search->text();
+    ui->Livraison_tableView->setModel(L.chercher(recherche));
 }
 
-void MainWindow::on_le_Search_textChanged(const QString &arg1)
+void MainWindow::on_Livraison_le_Search_textChanged(const QString &arg1)
 {
     Livraison L;
-    QString recherche=ui->le_Search->text();
-    ui->tableView->setModel(L.search(recherche));
+    QString recherche=ui->Livraison_le_Search->text();
+    ui->Livraison_tableView->setModel(L.search(recherche));
 
 }
 

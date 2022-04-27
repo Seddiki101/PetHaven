@@ -459,3 +459,30 @@ QScrollBar::sub-page:vertical
     background-color: #d8dce6;
 
 }
+
+
+QCalendarWidget QToolButton::disabled
+{
+	background-color: #5c5c5c;
+}
+
+QCalendarWidget QToolButton::hovered
+{
+	background-color: #5564f2;
+}
+
+QCalendarWidget QToolButton::pressed
+{
+	background-color: #3d4ef2;
+}
+
+
+QCalendarWidget QMenu 
+{
+
+}
+
+QCalendarWidget QSpinBox 
+{ 
+
+}

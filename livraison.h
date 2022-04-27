@@ -1,13 +1,22 @@
 #ifndef LIVRAISON_H
 #define LIVRAISON_H
-#include<QString>
-#include<QDateTime>
-#include<QSqlQueryModel>
-#include<QTableView>
-#include<QPdfWriter>
+#include <QApplication>
+#include <QString>
+#include <QDateTime>
+#include <QSqlQueryModel>
+#include <QTableView>
+
+#include <QPdfWriter>
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QTextDocument>
+
+#include <QGeoAddress>
+#include <QGeoCoordinate>
+#include <QGeoLocation>
+#include <QGeoCodingManager>
+#include <QGeoServiceProvider>
+using namespace std;
 
 /*
 #include <QObject>
@@ -56,7 +65,7 @@ private:
 
 };
 
-#endif // EMPLOYE_H
+#endif // LIVRAISON_H
 
 
 

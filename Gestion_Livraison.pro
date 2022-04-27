@@ -1,6 +1,12 @@
-QT       += core gui
-QT       += sql
-QT       += printsupport
+QT += core gui
+QT += sql
+QT += printsupport
+QT += widgets
+QT += positioning
+QT += location
+QT += serialport
+
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
