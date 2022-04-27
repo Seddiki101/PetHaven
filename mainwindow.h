@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 
-#include "animal.h"
-#include "arduino.h"
+#include "headers/animal.h"
+#include "headers/arduino.h"
+#include "headers/SwitchButton.h"
 
 #include <QMainWindow>
 #include <QMessageBox>
@@ -37,10 +38,6 @@ private slots:
     void on_animal_btn_PDF_clicked();
 
     void on_animal_le_Search_textChanged();
-
-    void Animal_Blackmode();
-
-    void Animal_Whitemode();
 
     void on_animal_btn_Upload_clicked();
 

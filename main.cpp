@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     //open qss file
-    QFile file(":/res/Cypher.qss");
+    QFile file(":/ressources/DarkTheme.qss");
     file.open(QFile::ReadOnly | QFile::Text);
 
     //setup stylesheet

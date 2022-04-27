@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "SwitchButton.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -48,6 +47,20 @@ void MainWindow::toggle_stylesheet(QString path)
     QFile file(path);
     file.open(QFile::ReadOnly | QFile::Text);
     app->setStyleSheet(QString(file.readAll()));
+}
+
+void MainWindow::switch_switchClicked()
+{
+    Switch* switch1 = ui->switch_widget->findChild<Switch*>();
+    if (switch1->checkState() == Qt::Unchecked) {
+        toggle_stylesheet(":/ressources/LightTheme.qss");
+    }
+    else if (switch1->checkState() == Qt::Checked) {
+        toggle_stylesheet(":/ressources/DarkTheme.qss");
+    }
+    else {
+        qDebug() << "This is not supposed to happen";
+    }
 }
 
 
