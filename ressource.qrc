@@ -1,7 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/Cypher.qss</file>
-        <file>res/table.css</file>
-        <file>res/noImage.png</file>
+        <file>ressources/Cypher.qss</file>
+        <file>ressources/table.css</file>
+        <file>ressources/noImage.png</file>
+        <file>ressources/DarkTheme.qss</file>
+        <file>ressources/LightTheme.qss</file>
     </qresource>
 </RCC>

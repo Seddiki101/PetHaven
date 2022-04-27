@@ -1,14 +1,16 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
-
 #include <QSqlQuery>
 #include <QSqlTableModel>
+#include <QStyledItemDelegate>
+#include <QPainter>
 
 #include <QString>
 #include <QDate>
 #include <QDateTime>
 #include <QTableView>
+#include <QtWidgets>
 
 #include <QFile>
 #include <QFileDialog>
@@ -20,6 +22,18 @@
 #include <QDebug>
 
 
+class CustomModel : public QSqlTableModel
+{
+protected:
+    QVariant data(const QModelIndex &idx, int role = Qt::DisplayRole) const override;
+};
+
+class CustomStyle : public QStyledItemDelegate
+{
+protected:
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+};
+
 
 class Animal
 {
@@ -30,6 +44,7 @@ private:
     QDate date_arr;
 
 public:
+
     Animal();
     Animal(int, int, QString, QString, QString, QDate);
 
@@ -49,11 +64,11 @@ public:
     void setRace (QString);
     void setDate_arr (QDate);
 
-    QSqlTableModel* afficher ();    // Show the data from the database
-    bool ajouter ();                // Add some stuff to the database
-    bool modifier (int);            // Modify some stuff, will probably be deprecated, Edit() is technically more practical
-    bool supprimer (int);           // Delete some stuff from the database. Cool function, deleting stuff is amusing
-    bool isEmpty (QString);         // Test if a string is empty even though QString::isNull() already exists
+    void afficher (QTableView*);                // Show the data from the database
+    bool ajouter ();                            // Add some stuff to the database
+    bool modifier (int);                        // Modify some stuff, will probably be deprecated, Edit() is technically more practical
+    bool supprimer (int);                       // Delete some stuff from the database. Cool function, deleting stuff is amusing
+    bool isEmpty (QString);                     // Test if a string is empty even though QString::isNull() already exists
 
     QSqlTableModel* sortData (QString = "", int = -1, Qt::SortOrder = Qt::AscendingOrder);  // Epic function to sort data, works like a query constructor for SELECT, WHERE, LIKE etc.
     QString historic (QString);                                                             // Print in the current session and on a text file changes made during the execution of the application
@@ -62,6 +77,7 @@ public:
 
     QString QueryConstructor (QString, QString, QString = "", QString = "");                // Used to construct some queries, kinda useless ngl
     bool Edit (int, QString, QString = "", int = -1, QDate = QDate::currentDate());         // Construct some Edit query to edit one element of the database at once
+    void setWidgets (QTableView *table);
 };
 
 

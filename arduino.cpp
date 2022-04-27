@@ -21,8 +21,8 @@ QSerialPort *Arduino::getserial()
 int Arduino::connect_arduino()
 {
     // recherche du port sur lequel la carte arduino identifée par  arduino_uno_vendor_id est connectée
-    foreach (const QSerialPortInfo &serial_port_info, QSerialPortInfo::availablePorts()){
-        if (serial_port_info.hasVendorIdentifier() && serial_port_info.hasProductIdentifier()){
+    foreach (const QSerialPortInfo &serial_port_info, QSerialPortInfo::availablePorts()) {
+        if (serial_port_info.hasVendorIdentifier() && serial_port_info.hasProductIdentifier()) {
             if (serial_port_info.vendorIdentifier() == arduino_uno_vendor_id && serial_port_info.productIdentifier() == arduino_uno_producy_id) {
                 arduino_is_available = true;
                 arduino_port_name=serial_port_info.portName();
@@ -57,7 +57,7 @@ int Arduino::close_arduino()
 
  QByteArray Arduino::read_from_arduino()
 {
-    if (serial->isReadable()){
+    if (serial->isReadable()) {
         data=serial->readAll();     //récupérer les données reçues
         return data;
     }

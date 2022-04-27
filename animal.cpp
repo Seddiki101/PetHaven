@@ -59,19 +59,19 @@ void setHeader(QSqlQueryModel* model)
     model->setHeaderData (4, Qt::Horizontal, QObject::tr("Age"));
     model->setHeaderData (5, Qt::Horizontal, QObject::tr("Status"));
     model->setHeaderData (6, Qt::Horizontal, QObject::tr("Date"));
-//    model->setHeaderData (7, Qt::Horizontal, QObject::tr("Image"));
+    model->setHeaderData (7, Qt::Horizontal, QObject::tr("Image"));
 }
 
 // Epic function that shows stuff
-QSqlTableModel* Animal::afficher()
+void Animal::afficher(QTableView *table)
 {
-    QSqlTableModel* model = new QSqlTableModel();
-
+//    QSqlTableModel *model = new QSqlTableModel;
+    CustomModel *model = new CustomModel;
     model->setTable("ANIMALS");
     model->select();
     setHeader(model);
-
-    return model;
+    table->setModel(model);
+    setWidgets(table);
 }
 
 // Function "ajouter()" that... adds things
@@ -79,7 +79,7 @@ bool Animal::ajouter()
 {
     QSqlQuery query;
     QString age_string=QString::number(age);
-    query.prepare("INSERT INTO ANIMALS (IDA, age, nom, espece, race, status, date_arr, IDI) "
+    query.prepare("INSERT INTO ANIMALS (IDA, age, nom, espece, race, status, date_arr, image) "
                   "VALUES (DEFAULT, :age, :nom, :espece, :race, DEFAULT, :date_arr, NULL)");
 
     query.bindValue(":age", age_string);
@@ -142,7 +142,7 @@ bool Animal::isEmpty(QString text)
 // If called without argument, technically does the same as "afficher()"
 QSqlTableModel* Animal::sortData(QString Where, int Column, Qt::SortOrder SortOrder)
 {
-    QSqlTableModel* model=new QSqlTableModel();
+    CustomModel *model = new CustomModel;
 
     model->setTable("ANIMALS");             // Select the table from the database
 
@@ -162,7 +162,6 @@ QSqlTableModel* Animal::sortData(QString Where, int Column, Qt::SortOrder SortOr
     setHeader(model);
     return model;
 }
-
 
 // Append some data (string) at the end of a text file
 bool writeToFile(QString data)
@@ -211,8 +210,9 @@ bool Animal::updateImage(int id, QString filepath)
     QString id_string=QString::number(id);
     query.prepare("UPDATE ANIMALS SET "
                   "IMAGE=:image "
-                  "WHERE IDI=:id");
+                  "WHERE IDA=:id");
 
+    query.bindValue(":id", id_string);
     query.bindValue(":image", dataByte, QSql::In | QSql::Binary);
 
     return query.exec();
@@ -312,4 +312,94 @@ bool Animal::Edit (int id, QString columnName, QString dataString, int dataInt, 
 
     query.prepare("UPDATE animals SET " + columnName + "=:data WHERE IDA=:id");
     return query.exec();
+
+}
+
+// I tried to do some fancy stuff but it didn't work
+// At least i tried
+
+
+QVariant CustomModel::data(const QModelIndex &index, int role) const
+{
+    // 5 is status column
+    if (index.column() != 5) {
+        if (role == Qt::TextAlignmentRole)
+            return Qt::AlignCenter;
+    }
+
+    return QSqlTableModel::data(index, role);
+}
+
+//QVariant CustomModel::data(const QModelIndex &idx, int role) const
+//{
+//     if (idx.column() == 7) {
+//        if (role == Qt::DisplayRole)
+//            return QString(); // return the path string for display role
+
+//        QPixmap pixmap(":/res/noImage.png");
+
+//        if (role == Qt::DecorationRole)
+//            return pixmap;   // return QPixmap for decoration role
+
+//        if (role == Qt::SizeHintRole)
+//            return pixmap.size(); // in case need the image size
+
+//     }
+//     return QSqlTableModel::data( idx, role ); // use original data() outside the imageColumn
+//}
+
+void CustomStyle::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    if (index.column() == 7)
+    {
+        QPixmap pixmap(":/res/noImage.png");
+
+        pixmap = pixmap.scaled(option.rect.size(), Qt::KeepAspectRatio);
+        int centerCell = option.rect.width() / 2;
+        int centerPixmap = pixmap.width() / 2;
+
+        painter->drawPixmap(centerCell - centerPixmap, option.rect.y(), pixmap);
+    }
+    else
+        QStyledItemDelegate::paint(painter, option, index);
+}
+
+void Animal::setWidgets(QTableView *table) {
+    for (int i = 0; i < table->model()->rowCount(); i++) {
+        // Creates a new label widget
+        QLabel* imageLabel = new QLabel;
+        imageLabel->setScaledContents(true);
+        imageLabel->setObjectName("imageLabel");
+
+        // Fetch the data of the 7th column that contains the .blob image from the databse
+        QVariant value = table->model()->index(i, 7).data();
+        // Test if there's an image in the database
+        if (value.isNull()) {
+            QPixmap pixmap(":/res/noImage.png");
+            imageLabel->setPixmap(pixmap);
+            table->setIndexWidget(table->model()->index(i, 7), imageLabel);
+        }
+        else {
+            QPixmap pixmap;
+            QByteArray Bytes = value.toByteArray();
+            pixmap.loadFromData(Bytes);
+            imageLabel->setPixmap(pixmap);
+            table->setIndexWidget(table->model()->index(i, 7), imageLabel);
+        }
+
+        // Creates a new checkbox widget
+        QCheckBox* statusCheckbox = new QCheckBox;
+        statusCheckbox->setObjectName("statusCheckbox");
+
+        if (table->model()->index(i, 5).data().toBool()) {
+            statusCheckbox->setCheckState(Qt::Checked);
+            statusCheckbox->setText("Avaible");
+        }
+        else {
+            statusCheckbox->setCheckState(Qt::Unchecked);
+            statusCheckbox->setText("Not Avaible");
+        }
+        statusCheckbox->setEnabled(false);
+        table->setIndexWidget(table->model()->index(i, 5), statusCheckbox);
+    }
 }

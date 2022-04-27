@@ -18,7 +18,7 @@ public:                                                 // méthodes de la class
     QByteArray read_from_arduino();                     // recevoir des données de la carte Arduino
     QSerialPort* getserial();                           // accesseur
     QString getarduino_port_name();
-
+    int tempDate;
 
 private:
     static const quint16 arduino_uno_vendor_id=9025;

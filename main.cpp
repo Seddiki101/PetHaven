@@ -15,12 +15,11 @@ int main(int argc, char *argv[])
 
     //open qss file
     QFile file(":/res/Cypher.qss");
-    file.open(QFile::ReadOnly);
-
-    QString styleSheet { QString(file.readAll()) };
+    file.open(QFile::ReadOnly | QFile::Text);
 
     //setup stylesheet
-    a.setStyleSheet(styleSheet);
+    a.setStyleSheet(QString(file.readAll()));
+    a.setApplicationName("Cypher Gestion App");
 
     if(test)
     {

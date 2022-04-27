@@ -78,58 +78,15 @@ QPushButton::pressed
 
 
 /*-----QCheckBox-----*/
-QCheckBox
-{
-	background-color: transparent;
-	color: #5c55e9;
-	font-size: 10px;
-	font-weight: bold;
-	border: none;
-	border-radius: 5px;
-
+QCheckBox{
+  color: #808080;
+  background-color:transparent;
 }
 
-
-/*-----QCheckBox-----*/
-QCheckBox::indicator
-{
-    background-color: #323232;
-    border: 1px solid darkgray;
-    width: 12px;
-    height: 12px;
-
-}
-
-
-QCheckBox::indicator:checked
-{
-    image:url("./ressources/check.png");
-	background-color: #5c55e9;
-    border: 1px solid #5c55e9;
-
-}
-
-
-QCheckBox::indicator:unchecked:hover
-{
-    border: 1px solid #5c55e9;
-
-}
-
-
-QCheckBox::disabled
-{
-	color: #656565;
-
-}
-
-
-QCheckBox::indicator:disabled
-{
-	background-color: #656565;
-	color: #656565;
-    border: 1px solid #656565;
-
+QCheckBox::indicator{
+  color: #808080;
+  width:18px;
+  height:18px;
 }
 
 

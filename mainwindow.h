@@ -6,7 +6,6 @@
 #include "arduino.h"
 
 #include <QMainWindow>
-#include <QCheckBox>
 #include <QMessageBox>
 #include <QValidator>
 
@@ -25,36 +24,37 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_btn_Refresh_clicked();
+    void on_animal_btn_Refresh_clicked();
 
-    void on_btn_Add_clicked();
+    void on_animal_btn_Add_clicked();
 
-    void on_btn_Update_clicked();
+    void on_animal_btn_Update_clicked();
 
-    void on_btn_Delete_clicked();
+    void on_animal_btn_Delete_clicked();
 
-    void on_btn_Sort_clicked();
+    void on_animal_btn_Sort_clicked();
 
-    void on_btn_PDF_clicked();
+    void on_animal_btn_PDF_clicked();
 
-    void on_le_Search_textChanged();
+    void on_animal_le_Search_textChanged();
 
-    void on_Black_clicked();
+    void Animal_Blackmode();
 
-    void on_White_clicked();
+    void Animal_Whitemode();
 
-    void on_btn_Upload_clicked();
+    void on_animal_btn_Upload_clicked();
 
-    void update_label();
+    void on_animal_tableView_clicked(const QModelIndex &);
 
-    void on_tableView_clicked(const QModelIndex &index);
+    void header_headerClicked();
+
+    void switch_switchClicked();
+
+    void toggle_stylesheet(QString);
 
 private:
     Ui::MainWindow *ui;
     Animal A;
-
-    QByteArray data;        // variable containing incoming data from the Arduino card
-    Arduino Ar;             // temporary object Arduino (arduino.h)
 };
 
 

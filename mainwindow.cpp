@@ -1,40 +1,36 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "SwitchButton.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    int ret = Ar.connect_arduino();             // Start the connexion with Arduino
-    switch (ret) {
-        case 0:
-            qDebug() << "Arduino avaible and connected to : " << Ar.getarduino_port_name();
-        break;
-        case 1:
-            qDebug() << "Arduino avaible but not connected to : " << Ar.getarduino_port_name();
-        break;
-        case -1:
-            qDebug() << "Arduino is not doing the worky worky.";
-        break;
-    }
-
-    // Starts the slot (or function) 'update_label' after receiving 'readyRead' signal (meaning the arduino card just yeeted some data over)
-    QObject::connect(Ar.getserial(), SIGNAL(readyRead()), this, SLOT(update_label()));
+//    int ret = Ar.connect_arduino();             // Start the connexion with Arduino
+//    QObject::connect(Ar.getserial(), SIGNAL(readyRead()), this, SLOT(update_label()));
 
     // Create new RegExp then make it into a validator
     QRegExp reg("^[a-zA-Z]{1,20}$");
     QValidator *validator = new QRegExpValidator(reg, this);
 
     // Set validators for some inputs
-    ui->le_Age->setValidator(new QIntValidator(0,1000,this));
-    ui->le_Nom->setValidator(validator);
-    ui->le_Race->setValidator(validator);
-    ui->le_Espece->setValidator(validator);
+    ui->animal_le_Age->setValidator(new QIntValidator(0, 1000, this));
+    ui->animal_le_Nom->setValidator(validator);
+    ui->animal_le_Race->setValidator(validator);
+    ui->animal_le_Espece->setValidator(validator);
 
-    ui->tableView->setModel(A.afficher());      // Display database content in the tableView
-    ui->tableView->hideColumn(0);               // Hide the ID Column
-    ui->tableView->hideColumn(7);               // Hide the Image Column
+    A.afficher(ui->animal_tableView);           // Display database content in the tableView
+    ui->animal_tableView->hideColumn(0);        // Hide the ID Column
+    ui->animal_tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->animal_tableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    QObject::connect(ui->animal_tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(header_headerClicked()));
+
+    // Creates the epic Switch button to switch some stuff left and right
+    Switch* switchWidget = new Switch("", ui->switch_widget);
+    switchWidget->setLayoutDirection(Qt::LeftToRight);
+    switchWidget->setChecked(true);
+    QObject::connect(switchWidget, SIGNAL(clicked()), this, SLOT(switch_switchClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -42,288 +38,241 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::update_label()
+void MainWindow::toggle_stylesheet(QString path)
 {
-    data = Ar.read_from_arduino();
-    if (data == "1")
-        ui->label_image->setText("WE CONNECTED BABYYYYYY");
-    else if (data == "0")
-        ui->label_image->setText("AAAAAAAAAAAAAAAAAAAAAA");
-    else if (data == "2")
-        ui->label_image->setText(".2. .U. >-< '-' 'u' ^^' ");
-    else if (data == "3")
-        ui->label_image->setText("3 is like Ɛ or is Ɛ like 3 ?");
-    else
-        ui->label_image->setText("nothing");
-}
+    QApplication *app = qApp;
+    if (app == NULL) {
+        qDebug() << "No app running somehow";
+    }
 
-void MainWindow::on_btn_Refresh_clicked()
-{
-    ui->tableView->setModel (A.afficher());
+    QFile file(path);
+    file.open(QFile::ReadOnly | QFile::Text);
+    app->setStyleSheet(QString(file.readAll()));
 }
 
 
-void MainWindow::on_btn_Add_clicked()
+void MainWindow::on_animal_btn_Refresh_clicked()
+{
+    A.afficher(ui->animal_tableView);
+    ui->animal_checkbox_Status->setCheckState(Qt::Unchecked);
+    ui->animal_checkbox_Status->setText("Select an animal");
+}
+
+void MainWindow::on_animal_btn_Add_clicked()
 {
 
-    int Age = ui->le_Age->text().toUInt();
-    QString Nom = ui->le_Nom->text();
-    QString Espece = ui->le_Espece->text();
-    QString Race = ui->le_Race->text();
-    QDate Date = ui->le_Date_arr->date();
+    int Age = ui->animal_le_Age->text().toUInt();
+    QString Nom = ui->animal_le_Nom->text();
+    QString Espece = ui->animal_le_Espece->text();
+    QString Race = ui->animal_le_Race->text();
+    QDate Date = ui->animal_le_dateArr->date();
 
     Animal A(Age, 0, Nom, Espece, Race, Date);
 
-
     if ( ! (A.isEmpty(Nom) || A.isEmpty(Espece) || A.isEmpty(Race)) ) {
-        QMessageBox msgBox;
-        if(A.ajouter())
-        {
-            msgBox.setText ("Ajout avec succes.");
-            ui->tableView->setModel (A.afficher());
-            ui->list_historic->addItem(A.historic("Animal '" + Nom + "' added with success."));
+        if (A.ajouter()) {
+            A.afficher(ui->animal_tableView);
+            ui->animal_Historic->addItem(A.historic("Animal '" + Nom + "' added with success."));
         }
-        else
-        {
-            ui->list_historic->addItem(A.historic("Failed to add."));
+        else {
+            ui->animal_Historic->addItem(A.historic("Failed to add."));
         }
     }
-    else
-    {
-        ui->list_historic->addItem(A.historic("Failed to add, missing arguments."));
+    else {
+        ui->animal_Historic->addItem(A.historic("Failed to add, missing arguments."));
     }
 }
 
-bool test(QVariant test) {
-    return test.isNull();
-}
-
-void MainWindow::on_btn_Update_clicked()
+void MainWindow::on_animal_btn_Update_clicked()
 {
-    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
+    QModelIndex index = ui->animal_tableView->selectionModel()->currentIndex();
     QVariant id = index.sibling(index.row(), 0).data();
     QVariant tempNom = index.sibling(index.row(), 1).data();   // gather NOM of the selected row
 
-    int Status = ui->status->isChecked();
-    int Age = ui->le_Age->text().toUInt();
-    QString Nom = ui->le_Nom->text();
-    QString Espece = ui->le_Espece->text();
-    QString Race = ui->le_Race->text();
-    QDate Date = ui->le_Date_arr->date();
+    int Status = ui->animal_checkbox_Status->isChecked();
+    int Age = ui->animal_le_Age->text().toUInt();
+    QString Nom = ui->animal_le_Nom->text();
+    QString Espece = ui->animal_le_Espece->text();
+    QString Race = ui->animal_le_Race->text();
+    QDate Date = ui->animal_le_dateArr->date();
 
     Animal A(Age, Status, Nom, Espece, Race, Date);
-    QMessageBox msgBox;
 
     if ( ! (A.isEmpty(Nom) || A.isEmpty(Espece) || A.isEmpty(Race) || id.isNull() ) ) {
-        if(A.modifier(id.toUInt()))
-        {
-            msgBox.setText ("Modification avec succes.");
-            ui->tableView->setModel (A.afficher());
-
-            if (Nom != tempNom.toString())
-            {
-                ui->list_historic->addItem(A.historic("Animal '" + tempNom.toString() + "' modified to '"+ Nom +"' with success."));
+        if(A.modifier(id.toUInt())) {
+            A.afficher(ui->animal_tableView);
+            if (Nom != tempNom.toString()) {
+                ui->animal_Historic->addItem(A.historic("Animal '" + tempNom.toString() + "' modified to '"+ Nom +"' with success."));
             }
-            else
-            {
-                ui->list_historic->addItem(A.historic("Animal '" + Nom + "' modified with success."));
+            else {
+                ui->animal_Historic->addItem(A.historic("Animal '" + Nom + "' modified with success."));
             }
         }
-        else
-        {
-            ui->list_historic->addItem(A.historic("Failed to modify."));
+        else {
+            ui->animal_Historic->addItem(A.historic("Failed to modify."));
         }
-    }
-    else
-    {
-        ui->list_historic->addItem(A.historic("Failed to update, missing arguments or nothing selected."));
-    }
-}
-
-
-void MainWindow::on_btn_Delete_clicked()
-{
-    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
-    QVariant id = index.sibling(index.row(), 0).data();      // gather ID  of the selected row
-    QVariant tempName = index.sibling(index.row(), 1).data();   // gather NOM of the selected row
-
-
-    QMessageBox msgBox;
-    if (A.supprimer(id.toUInt()) && !id.isNull())
-    {
-        msgBox.setText("suppression avec succes.");
-        ui->tableView->setModel(A.afficher());
-        ui->list_historic->addItem(A.historic("Deleted Animal '" + tempName.toString() + "' with success."));
-    }
-    else
-    {
-        ui->list_historic->addItem(A.historic("Failed to delete, nothing selected."));
-    }
-}
-
-void MainWindow::on_btn_Sort_clicked()
-{
-    if (ui->sort_name->isChecked()) {
-        ui->tableView->setModel(A.sortData("", 1));
-    }
-    else if (ui->sort_date->isChecked()) {
-        ui->tableView->setModel(A.sortData("", 6, Qt::DescendingOrder));
     }
     else {
-        ui->tableView->setModel(A.sortData());
+        ui->animal_Historic->addItem(A.historic("Failed to update, missing arguments or nothing selected."));
     }
 }
 
-void MainWindow::on_btn_Upload_clicked()
+void MainWindow::on_animal_btn_Delete_clicked()
 {
-    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
+    QModelIndex index = ui->animal_tableView->selectionModel()->currentIndex();
+    QVariant id = index.sibling(index.row(), 0).data();         // gather ID  of the selected row
+    QVariant tempName = index.sibling(index.row(), 1).data();   // gather NOM of the selected row
+    if (A.supprimer(id.toUInt()) && !id.isNull()) {
+        A.afficher(ui->animal_tableView);
+        ui->animal_Historic->addItem(A.historic("Deleted Animal '" + tempName.toString() + "' with success."));
+    }
+    else {
+        ui->animal_Historic->addItem(A.historic("Failed to delete, nothing selected."));
+    }
+}
+
+void MainWindow::on_animal_btn_Upload_clicked()
+{
+    QModelIndex index = ui->animal_tableView->selectionModel()->currentIndex();
     QVariant id = index.sibling(index.row(), 0).data();      // gather ID  of the selected row
-    QString imageFile = QFileDialog::getOpenFileName(0, "Select Image", "C:\\", "Image Files (*.jpg *.jpeg *.png)");
 
-    QFileInfo info(imageFile);
-    QString filepath = info.absoluteFilePath();
-//    QIcon ButtonIcon(image);
-//    ui->btn_Upload->setIcon(ButtonIcon);
-//    ui->btn_Upload->resize(image.rect().size());
-//    ui->btn_Upload->setIconSize(image.rect().size());
+    if (!id.isNull()) {
+        QString imageFile = QFileDialog::getOpenFileName(0, "Select Image", "C:\\", "Image Files (*.jpg *.jpeg *.png)");
 
-    A.updateImage(id.toUInt(), filepath);
+        QFileInfo info(imageFile);
+        QString filepath = info.absoluteFilePath();
+        A.updateImage(id.toUInt(), filepath);
+        A.afficher(ui->animal_tableView);
+    }
+    else {
+        QMessageBox::information(this, "Upload", "Please select an animal before uploading");
+    }
 }
 
-void MainWindow::on_btn_PDF_clicked()
+void MainWindow::on_animal_btn_Sort_clicked()
 {
-    A.generatePdf(ui->tableView);
+    if (ui->animal_check_Name->isChecked()) {
+        ui->animal_tableView->setModel(A.sortData("", 1));
+        ui->animal_tableView->horizontalHeader()->setSortIndicator(1, Qt::AscendingOrder);
+    }
+    else if (ui->animal_check_Date->isChecked()) {
+        ui->animal_tableView->setModel(A.sortData("", 6, Qt::DescendingOrder));
+        ui->animal_tableView->horizontalHeader()->setSortIndicator(6, Qt::DescendingOrder);
+    }
+    else {
+        ui->animal_tableView->setModel(A.sortData());
+    }
+    A.setWidgets(ui->animal_tableView);
 }
 
-
-void MainWindow::on_le_Search_textChanged()
+void MainWindow::on_animal_btn_PDF_clicked()
 {
-    QString research = ui->le_Search->text();
-    ui->tableView->setModel(A.sortData("nom LIKE '"+research+"%' OR race LIKE '"+research+"%' OR espece LIKE '"+research+"%' OR IDA LIKE '"+research+"%' OR age LIKE '"+research+"%'"));
+    A.generatePdf(ui->animal_tableView);
 }
 
-void MainWindow::on_Black_clicked()
+
+void MainWindow::on_animal_le_Search_textChanged()
 {
-    ui->stackedWidget->setStyleSheet("");
-    ui->centralwidget->setStyleSheet("");
-
-    ui->Title->setStyleSheet("");
-    ui->list_title->setStyleSheet("");
-    ui->list_historic->setStyleSheet("");
-    ui->btn_Sort->setStyleSheet("");
-    ui->btn_Add->setStyleSheet("");
-    ui->btn_Update->setStyleSheet("");
-    ui->btn_Delete->setStyleSheet("");
-    ui->btn_PDF->setStyleSheet("");
-    ui->btn_Refresh->setStyleSheet("");
-    ui->btn_Upload->setStyleSheet("");
-
-    ui->White->setStyleSheet("");
-    ui->Black->setStyleSheet("");
-
-    ui->le_Search->setStyleSheet("");
-    ui->le_Nom->setStyleSheet("");
-    ui->le_Race->setStyleSheet("");
-    ui->le_Espece->setStyleSheet("");
-    ui->le_Age->setStyleSheet("");
-    ui->le_Date_arr->setStyleSheet("");
-
-    ui->label_age->setStyleSheet("");
-    ui->label_nom->setStyleSheet("");
-    ui->label_race->setStyleSheet("");
-    ui->label_espece->setStyleSheet("");
-    ui->label_date_arr->setStyleSheet("");
-    ui->label_historic->setStyleSheet("");
-    ui->status->setStyleSheet("");
-
-    ui->sort_date->setStyleSheet("");
-    ui->sort_name->setStyleSheet("");
-
-    ui->stackedWidget->show();
-    ui->list_historic->addItem(A.historic("Switched to dark mode."));
+    QString research = ui->animal_le_Search->text();
+    ui->animal_tableView->setModel(A.sortData("nom LIKE '"+research+"%' OR race LIKE '"+research+"%' OR espece LIKE '"+research+"%' OR IDA LIKE '"+research+"%' OR age LIKE '"+research+"%'"));
+    A.setWidgets(ui->animal_tableView);
 }
 
-void MainWindow::on_White_clicked()
+void MainWindow::header_headerClicked()
 {
-    ui->stackedWidget->setStyleSheet("background-color: white ;");
-    ui->centralwidget->setStyleSheet("background-color: white ;");
-
-    ui->Title->setStyleSheet("color: black ;");
-    ui->list_title->setStyleSheet("color: black ;");
-    ui->list_historic->setStyleSheet("background-color: black; alternate-background-color: black;");
-    ui->btn_Sort->setStyleSheet("background-color: black ;");
-    ui->btn_Add->setStyleSheet("background-color: black ;");
-    ui->btn_Update->setStyleSheet("background-color: black ;");
-    ui->btn_Delete->setStyleSheet("background-color: black ;");
-    ui->btn_PDF->setStyleSheet("background-color: black ;");
-    ui->btn_Refresh->setStyleSheet("background-color: black ;");
-    ui->btn_Upload->setStyleSheet("background-color: black ;");
-
-    ui->White->setStyleSheet("background-color: black ;");
-    ui->Black->setStyleSheet("background-color: black ;");
-
-    ui->le_Search->setStyleSheet("background-color: black ;");
-    ui->le_Nom->setStyleSheet("background-color: black ;");
-    ui->le_Race->setStyleSheet("background-color: black ;");
-    ui->le_Espece->setStyleSheet("background-color: black ;");
-    ui->le_Age->setStyleSheet("background-color: black ;");
-    ui->le_Date_arr->setStyleSheet("background-color: black ;");
-
-    ui->label_age->setStyleSheet("color: black ;");
-    ui->label_nom->setStyleSheet("color: black ;");
-    ui->label_race->setStyleSheet("color: black ;");
-    ui->label_espece->setStyleSheet("color: black ;");
-    ui->label_date_arr->setStyleSheet("color: black ;");
-    ui->label_historic->setStyleSheet("color: black ;");
-    ui->status->setStyleSheet("color: black ;");
-
-    ui->sort_date->setStyleSheet("color: black ;");
-    ui->sort_name->setStyleSheet("color: black ; ");
-
-    ui->stackedWidget->show();
-    ui->list_historic->addItem(A.historic("Switched to white mode."));
+    A.setWidgets(ui->animal_tableView);
 }
-
-
 
 // Some test and stuff
 // Currently put the image to a label so it can be seen
-// Still don't know how to directly put the image in the QTableView
-void MainWindow::on_tableView_clicked(const QModelIndex &index)
+void MainWindow::on_animal_tableView_clicked(const QModelIndex &index)
 {
-    qDebug() << "\nRow: " << index.row() << " Column: " << index.column();
 
-//     index.data()         <-- Contains data type and actual data of the clicked cell
-//     index.row()          <-- Contains the row (int) of the clicked cell
-//     index.column()       <-- Contains the column (int) of the clicked cell
-//    ui->tableView->setCurrentIndex(index);
-//    ui->tableView->edit(index);
+// Code below was used to set animage from the table in a label
+//    QVariant value = index.sibling(index.row(), 7).data();
+//    if (value.isNull()) {
+//        QPixmap pixmap(":/res/noImage.png");
+//        ui->animal_label_Image->setScaledContents(true);
+//        ui->animal_label_Image->setPixmap(pixmap);
+//    }
+//    else {
+//        QPixmap pixmap;
+//        QByteArray Bytes = value.toByteArray();
+//        pixmap.loadFromData(Bytes);
 
-//    ui->tableView->model()->insertRows(index.row()+1, 1);
+//        ui->animal_label_Image->setScaledContents(true);
+//        ui->animal_label_Image->setPixmap(pixmap);
+//    }
 
-
-    //    QModelIndex index = model->index(0, 7);
-    //    QByteArray Bytes = model->data(index).toByteArray();
-    //    QPixmap pixmap;
-    //    pixmap.loadFromData(Bytes);
-    //    model->setData(index, pixmap.loadFromData(Bytes));
-        // pixmap Contains the actual image
-        // Doing setPixmap or something similar will set the image
-
-    // Grab the data of the 7th row (hidden)
-    QVariant value = index.sibling(index.row(), 7).data();
-
-    // Test if there's an image
-    if (value.isNull()) {
-        QPixmap pixmap(":/res/noImage.png");
-        ui->label_image->setScaledContents(true);
-        ui->label_image->setPixmap(pixmap);
+    if (index.sibling(index.row(), 5).data().toBool()) {
+        ui->animal_checkbox_Status->setCheckState(Qt::Checked);
     }
     else {
-        QPixmap pixmap;
-        QByteArray Bytes = value.toByteArray();
-        pixmap.loadFromData(Bytes);
-        ui->label_image->setScaledContents(true);
-        ui->label_image->setPixmap(pixmap);
+        ui->animal_checkbox_Status->setCheckState(Qt::Unchecked);
     }
+    ui->animal_checkbox_Status->setText(index.sibling(index.row(), 1).data().toString());
 }
+
+
+// Some Arduino functions
+
+//void MainWindow::on_pushButton_clicked()
+//{
+
+//    Ar.write_to_arduino("1");
+
+//    QString time = QDateTime::currentDateTime().toString("hh:mm:ss");
+//    QString date = QDate::currentDate()
+//            .toString();
+//    QString ERH = date + " " + time;
+//    // cut at the 16th char
+
+
+//    Ar.tempDate =  QDateTime::currentDateTime().toTime_t() + 3600;
+//    qDebug () << "Time in unix timestamp : "<< Ar.tempDate;
+//    qDebug () << "Time normal i guess : "<< QDateTime::currentDateTime();
+
+//    QString Unix = "T" + QString::number(Ar.tempDate);
+
+//    qDebug () << Unix;
+//    Ar.write_to_arduino(Unix.toUtf8());
+//    Ar.write_to_arduino(Unix.toUtf8());
+
+//}
+
+//void MainWindow::on_pushButton_2_clicked()
+//{
+
+//    Ar.write_to_arduino("0");
+//    Ar.write_to_arduino("0");
+
+//    data = Ar.read_from_arduino();
+
+
+//    QString E = QString(data);
+//    int INT = data.toUInt();
+//    qDebug () << "data from Arduino no : "<< E << " Potentially INT : " << INT;
+//    qDebug () << Ar.tempDate;
+
+//    QString newString = E.left(10);
+//    qDebug () << "OK THIS IS SUPPOSEDF TO BE GOOD I SEAR S : " << newString;
+
+//    int unixDate = newString.toUInt();
+
+
+//    unixDate -= Ar.tempDate;
+//    qDebug () << unixDate;
+
+//    int days = unixDate / 86400;
+//    if (days > 0)
+//        unixDate -= days * 86400;
+//    int hours = unixDate / 3600;
+//    if (hours > 0)
+//        unixDate -= hours * 3600;
+//    int minutes = unixDate / 60;
+//    if (minutes > 0)
+//        unixDate -= minutes * 60;
+//    int seconds = unixDate;
+//    qDebug () << "Time elapsed : ";
+//    qDebug() << "Days: " << days << " Hours: " << hours << " Minutes: " << minutes << " Seconds: " << seconds;
+//}
