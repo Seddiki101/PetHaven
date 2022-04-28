@@ -185,7 +185,6 @@ void Switch::paintEvent(QPaintEvent*) {
 
         p.setBrush(thumbBrushAnimation->currentValue().value<QColor>());
         p.setRenderHint(QPainter::Antialiasing, true);
-        //        qDebug() << thumbRect << thumbPosAniamtion->currentValue();
         p.drawEllipse(thumbRect.center(), THUMB_RADIUS - SHADOW_ELEVATION - 1.0, THUMB_RADIUS - SHADOW_ELEVATION - 1.0);
         p.setRenderHint(QPainter::Antialiasing, false);
 

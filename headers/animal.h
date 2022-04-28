@@ -19,8 +19,6 @@
 #include <QPrintDialog>
 #include <QPdfWriter>
 
-#include <QDebug>
-
 
 class CustomModel : public QSqlTableModel
 {

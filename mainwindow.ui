@@ -10,15 +10,23 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string/>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_19">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="login_Widget">
        <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -38,9 +46,9 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_11">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <layout class="QHBoxLayout" name="h1">
               <item>
-               <spacer name="horizontalSpacer">
+               <spacer name="Spacer5">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -53,9 +61,9 @@
                </spacer>
               </item>
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_10">
+               <layout class="QVBoxLayout" name="v1">
                 <item>
-                 <spacer name="verticalSpacer_2">
+                 <spacer name="Spacer4">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -68,9 +76,9 @@
                  </spacer>
                 </item>
                 <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <layout class="QVBoxLayout" name="v2">
                   <item>
-                   <widget class="QLabel" name="label_3">
+                   <widget class="QLabel" name="Login_Title">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -92,7 +100,7 @@
                    </widget>
                   </item>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
+                   <layout class="QHBoxLayout" name="v3">
                     <item>
                      <widget class="QLabel" name="Login_Label">
                       <property name="minimumSize">
@@ -112,7 +120,7 @@
                    </layout>
                   </item>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout">
+                   <layout class="QHBoxLayout" name="h2">
                     <item>
                      <widget class="QLabel" name="Password_Label">
                       <property name="minimumSize">
@@ -132,9 +140,9 @@
                    </layout>
                   </item>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_17">
+                   <layout class="QHBoxLayout" name="h3">
                     <item>
-                     <spacer name="horizontalSpacer_4">
+                     <spacer name="Spacer2">
                       <property name="orientation">
                        <enum>Qt::Horizontal</enum>
                       </property>
@@ -147,9 +155,9 @@
                      </spacer>
                     </item>
                     <item>
-                     <layout class="QVBoxLayout" name="verticalLayout">
+                     <layout class="QVBoxLayout" name="v4">
                       <item>
-                       <spacer name="verticalSpacer_3">
+                       <spacer name="Spacer54">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -180,7 +188,7 @@
                      </layout>
                     </item>
                     <item>
-                     <spacer name="horizontalSpacer_3">
+                     <spacer name="Spacer1">
                       <property name="orientation">
                        <enum>Qt::Horizontal</enum>
                       </property>
@@ -197,7 +205,7 @@
                  </layout>
                 </item>
                 <item>
-                 <spacer name="verticalSpacer">
+                 <spacer name="Spacer3">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -209,10 +217,20 @@
                   </property>
                  </spacer>
                 </item>
+                <item>
+                 <widget class="QLabel" name="label_RFID_STATUS">
+                  <property name="text">
+                   <string>(Scan card to login)</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
               <item>
-               <spacer name="horizontalSpacer_2">
+               <spacer name="Spacer6">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -233,6 +251,11 @@
        </layout>
       </widget>
       <widget class="QWidget" name="main_Widget">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+        </font>
+       </property>
        <layout class="QVBoxLayout" name="verticalLayout_14">
         <item>
          <widget class="QScrollArea" name="main_scrollArea">
@@ -252,7 +275,7 @@
             <item>
              <layout class="QHBoxLayout" name="Main_Layout">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0">
+               <layout class="QVBoxLayout" name="v5" stretch="0,0,0,0,0,0,0,0">
                 <property name="bottomMargin">
                  <number>0</number>
                 </property>
@@ -286,6 +309,11 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="Gestions_Employees">
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Employees</string>
                   </property>
@@ -293,6 +321,11 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="Gestion_Adoptions">
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Adoptions</string>
                   </property>
@@ -300,6 +333,11 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="Gestion_Animals">
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Animals</string>
                   </property>
@@ -307,6 +345,11 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="Gestion_Beneficiaries">
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Beneficiaries</string>
                   </property>
@@ -314,6 +357,11 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="Gestion_Deliveries">
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Deliveries</string>
                   </property>
@@ -321,8 +369,26 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="Gestion_Donations">
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Donations</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Disconnect_Button">
+                  <property name="font">
+                   <font/>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: #808080</string>
+                  </property>
+                  <property name="text">
+                   <string>Logout</string>
                   </property>
                  </widget>
                 </item>
@@ -330,16 +396,29 @@
               </item>
               <item>
                <widget class="QStackedWidget" name="Main_StackedWidget">
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                 </font>
+                </property>
+                <property name="currentIndex">
+                 <number>0</number>
+                </property>
                 <widget class="QWidget" name="Employees">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                  </font>
+                 </property>
                  <layout class="QVBoxLayout" name="verticalLayout_12" stretch="0">
                   <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0">
+                   <layout class="QVBoxLayout" name="v9" stretch="0,0">
                     <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="1,0,0">
+                     <layout class="QHBoxLayout" name="h4" stretch="1,0,0">
                       <item>
-                       <layout class="QVBoxLayout" name="verticalLayout_5">
+                       <layout class="QVBoxLayout" name="v8">
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_10">
+                         <layout class="QHBoxLayout" name="h51">
                           <item>
                            <widget class="QLabel" name="Employee_List_Employees">
                             <property name="text">
@@ -365,9 +444,9 @@
                        </layout>
                       </item>
                       <item>
-                       <layout class="QVBoxLayout" name="verticalLayout_3">
+                       <layout class="QVBoxLayout" name="v7">
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_9">
+                         <layout class="QHBoxLayout" name="h53">
                           <item>
                            <widget class="QLabel" name="Employee_ID_Label">
                             <property name="text">
@@ -381,7 +460,7 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_4">
+                         <layout class="QHBoxLayout" name="h54">
                           <item>
                            <widget class="QLabel" name="Employee_Nom_Label">
                             <property name="text">
@@ -395,7 +474,7 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_6">
+                         <layout class="QHBoxLayout" name="h55">
                           <item>
                            <widget class="QLabel" name="Employee_Prenom_Label">
                             <property name="text">
@@ -409,7 +488,7 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_5">
+                         <layout class="QHBoxLayout" name="h56">
                           <item>
                            <widget class="QLabel" name="Employee_Login_Label">
                             <property name="text">
@@ -423,7 +502,7 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_7">
+                         <layout class="QHBoxLayout" name="h57">
                           <item>
                            <widget class="QLabel" name="Employee_MDP_Label">
                             <property name="text">
@@ -437,7 +516,7 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_3">
+                         <layout class="QHBoxLayout" name="h58">
                           <item>
                            <widget class="QLabel" name="Employee_Note_label">
                             <property name="text">
@@ -451,7 +530,7 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_8">
+                         <layout class="QHBoxLayout" name="h59">
                           <item>
                            <widget class="QLabel" name="Employee_Email_Label">
                             <property name="text">
@@ -467,7 +546,7 @@
                        </layout>
                       </item>
                       <item>
-                       <layout class="QVBoxLayout" name="verticalLayout_4">
+                       <layout class="QVBoxLayout" name="v6">
                         <property name="bottomMargin">
                          <number>0</number>
                         </property>
@@ -479,7 +558,7 @@
                          </widget>
                         </item>
                         <item>
-                         <spacer name="verticalSpacer_5">
+                         <spacer name="Spacer8">
                           <property name="orientation">
                            <enum>Qt::Vertical</enum>
                           </property>
@@ -492,7 +571,7 @@
                          </spacer>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_21">
+                         <layout class="QHBoxLayout" name="h5">
                           <property name="bottomMargin">
                            <number>10</number>
                           </property>
@@ -521,7 +600,7 @@
                          </layout>
                         </item>
                         <item>
-                         <spacer name="verticalSpacer_4">
+                         <spacer name="Spacer7">
                           <property name="orientation">
                            <enum>Qt::Vertical</enum>
                           </property>
@@ -534,7 +613,7 @@
                          </spacer>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_20">
+                         <layout class="QHBoxLayout" name="h6">
                           <property name="bottomMargin">
                            <number>0</number>
                           </property>
@@ -557,7 +636,7 @@
                          </layout>
                         </item>
                         <item>
-                         <spacer name="verticalSpacer_6">
+                         <spacer name="Spacer9">
                           <property name="orientation">
                            <enum>Qt::Vertical</enum>
                           </property>
@@ -574,11 +653,11 @@
                      </layout>
                     </item>
                     <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_16">
+                     <layout class="QHBoxLayout" name="h52">
                       <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_15">
+                       <layout class="QHBoxLayout" name="h61">
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_12">
+                         <layout class="QHBoxLayout" name="h60">
                           <item>
                            <widget class="QPushButton" name="Employee_Sort">
                             <property name="text">
@@ -588,9 +667,6 @@
                           </item>
                           <item>
                            <widget class="QRadioButton" name="Employee_Login_Sort">
-                            <property name="styleSheet">
-                             <string notr="true">color: rgb(255, 255, 255);</string>
-                            </property>
                             <property name="text">
                              <string>Login</string>
                             </property>
@@ -598,9 +674,6 @@
                           </item>
                           <item>
                            <widget class="QRadioButton" name="Employee_Nom_Sort">
-                            <property name="styleSheet">
-                             <string notr="true">color: rgb(255, 255, 255);</string>
-                            </property>
                             <property name="text">
                              <string>Name</string>
                             </property>
@@ -611,7 +684,7 @@
                        </layout>
                       </item>
                       <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_11">
+                       <layout class="QHBoxLayout" name="h62">
                         <item>
                          <widget class="QPushButton" name="Employee_Ajouter">
                           <property name="text">
@@ -636,7 +709,7 @@
                        </layout>
                       </item>
                       <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_13">
+                       <layout class="QHBoxLayout" name="h63">
                         <item>
                          <widget class="QPushButton" name="Employee_Appreciation">
                           <property name="text">
@@ -659,8 +732,355 @@
                   </item>
                  </layout>
                 </widget>
+                <widget class="QWidget" name="Adoptions">
+                 <layout class="QGridLayout" name="g50">
+                  <item row="0" column="0">
+                   <widget class="QStackedWidget" name="adoptions_stackedWidget">
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="Adoption_page_1">
+                     <layout class="QGridLayout" name="g51">
+                      <item row="0" column="0" rowspan="2" colspan="2">
+                       <layout class="QHBoxLayout" name="h90">
+                        <item>
+                         <layout class="QVBoxLayout" name="v90">
+                          <item>
+                           <layout class="QVBoxLayout" name="v91">
+                            <item>
+                             <layout class="QVBoxLayout" name="v92">
+                              <item>
+                               <widget class="QLabel" name="label_5">
+                                <property name="text">
+                                 <string>List of adoptions</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h91">
+                                <item>
+                                 <layout class="QHBoxLayout" name="h92">
+                                  <item>
+                                   <widget class="QLineEdit" name="LEsearch"/>
+                                  </item>
+                                  <item>
+                                   <widget class="QPushButton" name="searchado">
+                                    <property name="text">
+                                     <string>Search</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                 </layout>
+                                </item>
+                                <item>
+                                 <spacer name="Spacer92">
+                                  <property name="orientation">
+                                   <enum>Qt::Horizontal</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="refresh">
+                                  <property name="text">
+                                   <string>Refresh</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                            <item>
+                             <widget class="QTableView" name="tabAdo1"/>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h93">
+                            <item>
+                             <widget class="QPushButton" name="sortado">
+                              <property name="text">
+                               <string>Sort</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QRadioButton" name="radioButton">
+                              <property name="styleSheet">
+                               <string notr="true"/>
+                              </property>
+                              <property name="text">
+                               <string>Date</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QRadioButton" name="radioButton_2">
+                              <property name="styleSheet">
+                               <string notr="true"/>
+                              </property>
+                              <property name="text">
+                               <string>Name</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="v93">
+                          <item>
+                           <layout class="QVBoxLayout" name="v94">
+                            <item>
+                             <widget class="QPushButton" name="addopage">
+                              <property name="text">
+                               <string>Add</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="updatePage">
+                              <property name="text">
+                               <string>Update</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="supado">
+                              <property name="text">
+                               <string>Supprimer</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QVBoxLayout" name="v95">
+                            <item>
+                             <widget class="QPushButton" name="adopdf">
+                              <property name="text">
+                               <string>Print</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="qr">
+                              <property name="text">
+                               <string>QR</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="adocsv">
+                              <property name="text">
+                               <string>Extract CSV</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QVBoxLayout" name="v96">
+                            <item>
+                             <widget class="QPushButton" name="Total">
+                              <property name="text">
+                               <string>Total</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="stat">
+                              <property name="text">
+                               <string>Stats</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="Adoption_page_2">
+                     <layout class="QGridLayout" name="g53">
+                      <item row="0" column="0">
+                       <layout class="QHBoxLayout" name="h94">
+                        <item>
+                         <layout class="QVBoxLayout" name="v97">
+                          <item>
+                           <widget class="QLabel" name="label_4">
+                            <property name="text">
+                             <string>Select Beneficiary ID</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QTableView" name="tableView_2"/>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="h95">
+                          <item>
+                           <layout class="QVBoxLayout" name="v98">
+                            <item>
+                             <widget class="QLabel" name="label_6">
+                              <property name="text">
+                               <string>Select Pet ID</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QTableView" name="tableView_3"/>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QVBoxLayout" name="v99">
+                            <item>
+                             <spacer name="Spacer90">
+                              <property name="orientation">
+                               <enum>Qt::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="addado">
+                              <property name="text">
+                               <string>add</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="Back">
+                              <property name="text">
+                               <string>Back</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <spacer name="Spacer91">
+                              <property name="orientation">
+                               <enum>Qt::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="Adoption_page_3">
+                     <layout class="QGridLayout" name="g54">
+                      <item row="0" column="0">
+                       <layout class="QVBoxLayout" name="v100">
+                        <item>
+                         <layout class="QVBoxLayout" name="v101">
+                          <item>
+                           <widget class="QLabel" name="label_10">
+                            <property name="text">
+                             <string>Select ID to update</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QTableView" name="tabAdo2"/>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="h96">
+                          <item>
+                           <layout class="QVBoxLayout" name="v102">
+                            <item>
+                             <layout class="QHBoxLayout" name="h97">
+                              <item>
+                               <widget class="QLabel" name="label_12">
+                                <property name="text">
+                                 <string>Beneficiary ID</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="lineEdit_8"/>
+                              </item>
+                             </layout>
+                            </item>
+                            <item>
+                             <layout class="QHBoxLayout" name="h98">
+                              <item>
+                               <widget class="QLabel" name="label_11">
+                                <property name="text">
+                                 <string>Animal ID</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="lineEdit_9"/>
+                              </item>
+                             </layout>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h99">
+                            <item>
+                             <widget class="QPushButton" name="back2">
+                              <property name="text">
+                               <string>Back</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="upado">
+                              <property name="text">
+                               <string>Update</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
                 <widget class="QWidget" name="Animals">
-                 <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                  </font>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_18">
                   <property name="spacing">
                    <number>6</number>
                   </property>
@@ -677,17 +1097,25 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="2,1">
+                   <layout class="QHBoxLayout" name="h7" stretch="2,1">
                     <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_7">
+                     <layout class="QVBoxLayout" name="v14">
                       <item>
-                       <layout class="QVBoxLayout" name="verticalLayout_6">
+                       <layout class="QVBoxLayout" name="v13">
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_2">
+                         <layout class="QHBoxLayout" name="h8">
                           <item>
                            <widget class="QLabel" name="animal_label_tableTitle">
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>12</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
                             <property name="text">
-                             <string>List of Animal</string>
+                             <string>List of Animals</string>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -695,7 +1123,7 @@
                            </widget>
                           </item>
                           <item>
-                           <spacer name="horizontalSpacer">
+                           <spacer name="Spacer10">
                             <property name="orientation">
                              <enum>Qt::Horizontal</enum>
                             </property>
@@ -718,7 +1146,7 @@
                            <widget class="QLineEdit" name="animal_le_Search"/>
                           </item>
                           <item>
-                           <spacer name="horizontalSpacer_3">
+                           <spacer name="Spacer11">
                             <property name="orientation">
                              <enum>Qt::Horizontal</enum>
                             </property>
@@ -741,7 +1169,7 @@
                            </widget>
                           </item>
                           <item>
-                           <spacer name="horizontalSpacer_4">
+                           <spacer name="Spacer12">
                             <property name="orientation">
                              <enum>Qt::Horizontal</enum>
                             </property>
@@ -759,7 +1187,7 @@
                          </layout>
                         </item>
                         <item>
-                         <spacer name="verticalSpacer_3">
+                         <spacer name="Spacer13">
                           <property name="orientation">
                            <enum>Qt::Vertical</enum>
                           </property>
@@ -802,7 +1230,7 @@
                        </layout>
                       </item>
                       <item>
-                       <spacer name="verticalSpacer">
+                       <spacer name="Spacer14">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -818,9 +1246,9 @@
                        </spacer>
                       </item>
                       <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_15">
+                       <layout class="QHBoxLayout" name="h9">
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_13">
+                         <layout class="QHBoxLayout" name="h65">
                           <item>
                            <widget class="QPushButton" name="animal_btn_Sort">
                             <property name="text">
@@ -851,7 +1279,7 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout">
+                         <layout class="QHBoxLayout" name="h66">
                           <item>
                            <widget class="QPushButton" name="animal_btn_PDF">
                             <property name="text">
@@ -873,15 +1301,15 @@
                      </layout>
                     </item>
                     <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_4">
+                     <layout class="QVBoxLayout" name="v12">
                       <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_11">
+                       <layout class="QHBoxLayout" name="h10">
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0">
+                         <layout class="QVBoxLayout" name="v11" stretch="0,0,0">
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_14">
+                           <layout class="QHBoxLayout" name="h11">
                             <item>
-                             <spacer name="horizontalSpacer_2">
+                             <spacer name="Spacer15">
                               <property name="orientation">
                                <enum>Qt::Horizontal</enum>
                               </property>
@@ -909,7 +1337,7 @@
                            </layout>
                           </item>
                           <item>
-                           <spacer name="verticalSpacer_4">
+                           <spacer name="Spacer16">
                             <property name="orientation">
                              <enum>Qt::Vertical</enum>
                             </property>
@@ -925,7 +1353,7 @@
                            </spacer>
                           </item>
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_12">
+                           <layout class="QHBoxLayout" name="h12">
                             <item>
                              <widget class="QListWidget" name="animal_Historic"/>
                             </item>
@@ -934,9 +1362,9 @@
                          </layout>
                         </item>
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0">
+                         <layout class="QVBoxLayout" name="v10" stretch="0,0,0,0,0,0">
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_9">
+                           <layout class="QHBoxLayout" name="h67">
                             <item>
                              <widget class="QLabel" name="animal_label_Nom">
                               <property name="minimumSize">
@@ -959,7 +1387,7 @@
                            </layout>
                           </item>
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_4">
+                           <layout class="QHBoxLayout" name="h68">
                             <item>
                              <widget class="QLabel" name="animal_label_Race">
                               <property name="minimumSize">
@@ -982,7 +1410,7 @@
                            </layout>
                           </item>
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_6">
+                           <layout class="QHBoxLayout" name="h69">
                             <property name="spacing">
                              <number>6</number>
                             </property>
@@ -1008,7 +1436,7 @@
                            </layout>
                           </item>
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_5">
+                           <layout class="QHBoxLayout" name="h72">
                             <property name="spacing">
                              <number>6</number>
                             </property>
@@ -1034,7 +1462,7 @@
                            </layout>
                           </item>
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_7">
+                           <layout class="QHBoxLayout" name="h70">
                             <item>
                              <widget class="QLabel" name="animal_label_dateArr">
                               <property name="minimumSize">
@@ -1063,7 +1491,7 @@
                            </layout>
                           </item>
                           <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_8">
+                           <layout class="QHBoxLayout" name="h71">
                             <item>
                              <widget class="QLabel" name="animal_label_Status">
                               <property name="minimumSize">
@@ -1088,6 +1516,14 @@
                             </item>
                             <item>
                              <widget class="QCheckBox" name="animal_checkbox_Status">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>8</pointsize>
+                                <weight>50</weight>
+                                <bold>false</bold>
+                               </font>
+                              </property>
                               <property name="styleSheet">
                                <string notr="true"/>
                               </property>
@@ -1106,7 +1542,7 @@
                        </layout>
                       </item>
                       <item>
-                       <spacer name="verticalSpacer_2">
+                       <spacer name="Spacer17">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -1122,7 +1558,7 @@
                        </spacer>
                       </item>
                       <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_10">
+                       <layout class="QHBoxLayout" name="h13">
                         <item>
                          <widget class="QPushButton" name="animal_btn_Add">
                           <property name="text">
@@ -1152,6 +1588,2016 @@
                   </item>
                  </layout>
                 </widget>
+                <widget class="QWidget" name="Beneficiaires">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                  </font>
+                 </property>
+                 <layout class="QGridLayout" name="g1">
+                  <item row="0" column="0">
+                   <widget class="QStackedWidget" name="BENEFICIAIRE_stackedWidget">
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="BENEFICIAIRE_page1">
+                     <layout class="QGridLayout" name="g2">
+                      <item row="1" column="0">
+                       <widget class="QScrollArea" name="scrollArea">
+                        <property name="widgetResizable">
+                         <bool>true</bool>
+                        </property>
+                        <widget class="QWidget" name="scrollAreaWidgetContents_3">
+                         <property name="geometry">
+                          <rect>
+                           <x>0</x>
+                           <y>0</y>
+                           <width>516</width>
+                           <height>295</height>
+                          </rect>
+                         </property>
+                         <layout class="QGridLayout" name="g3">
+                          <item row="0" column="0">
+                           <layout class="QVBoxLayout" name="v23">
+                            <item>
+                             <layout class="QHBoxLayout" name="h14">
+                              <item>
+                               <widget class="QLabel" name="BENEFICIAIRE_TITLE_BeneficiarManager">
+                                <property name="font">
+                                 <font>
+                                  <family>Segoe UI</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Plain</enum>
+                                </property>
+                                <property name="text">
+                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Beneficiary Manager&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                                <property name="scaledContents">
+                                 <bool>true</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <spacer name="Spacer18">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="BENEFICIAIRE_label_Notif_Indicator">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>10</width>
+                                  <height>10</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>20</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                                <property name="baseSize">
+                                 <size>
+                                  <width>20</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true"/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QPushButton" name="BENEFICIAIRE_pushButton_Notifications">
+                                <property name="text">
+                                 <string>Notifications</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </item>
+                            <item>
+                             <layout class="QHBoxLayout" name="h15">
+                              <item>
+                               <layout class="QVBoxLayout" name="v22">
+                                <item>
+                                 <widget class="QLabel" name="label_ListofBeneficiairies">
+                                  <property name="text">
+                                   <string>List of Beneficiaries</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <layout class="QVBoxLayout" name="v20">
+                                  <item>
+                                   <layout class="QHBoxLayout" name="h16">
+                                    <item>
+                                     <widget class="QPushButton" name="BENEFICIAIRE_pushButton_Statistics">
+                                      <property name="text">
+                                       <string>Satistics</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QPushButton" name="BENEFICIAIRE_pushButton_Sort">
+                                      <property name="text">
+                                       <string>Sort</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QRadioButton" name="BENEFICIAIRE_radioButton_Sort_ByAge">
+                                      <property name="styleSheet">
+                                       <string notr="true">color: rgb(255, 255, 255);</string>
+                                      </property>
+                                      <property name="text">
+                                       <string>By age</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QRadioButton" name="BENEFICIAIRE_radioButton_Sort_ByName">
+                                      <property name="styleSheet">
+                                       <string notr="true">color: rgb(255, 255, 255);</string>
+                                      </property>
+                                      <property name="text">
+                                       <string>By name</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QComboBox" name="BENEFICIAIRE_comboBox_Sorting"/>
+                                    </item>
+                                   </layout>
+                                  </item>
+                                  <item>
+                                   <widget class="QTableView" name="BENEFICIAIRE_tableView">
+                                    <property name="styleSheet">
+                                     <string notr="true">background-color: rgb(112, 112, 112);</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item>
+                                   <layout class="QHBoxLayout" name="h17">
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_Search_ByName">
+                                      <property name="text">
+                                       <string>Search by name:</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Search"/>
+                                    </item>
+                                   </layout>
+                                  </item>
+                                 </layout>
+                                </item>
+                                <item>
+                                 <layout class="QHBoxLayout" name="h18">
+                                  <item>
+                                   <widget class="QPushButton" name="BENEFICIAIRE_pushButton_GotoEdit">
+                                    <property name="text">
+                                     <string>Edit</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item>
+                                   <widget class="QPushButton" name="BENEFICIAIRE_pushButton_Delete">
+                                    <property name="text">
+                                     <string>Delete</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item>
+                                   <widget class="QPushButton" name="BENEFICIAIRE_pushButton_ExportPDF">
+                                    <property name="text">
+                                     <string>Export</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                 </layout>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <widget class="Line" name="line_separator">
+                                <property name="orientation">
+                                 <enum>Qt::Vertical</enum>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <layout class="QVBoxLayout" name="v21">
+                                <item>
+                                 <layout class="QHBoxLayout" name="h19">
+                                  <item>
+                                   <layout class="QVBoxLayout" name="v19">
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_CIN">
+                                      <property name="text">
+                                       <string>CIN</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_Name">
+                                      <property name="text">
+                                       <string>Name</string>
+                                      </property>
+                                      <property name="buddy">
+                                       <cstring>BENEFICIAIRE_lineEdit_Name</cstring>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_LastName">
+                                      <property name="text">
+                                       <string>Last Name</string>
+                                      </property>
+                                      <property name="buddy">
+                                       <cstring>BENEFICIAIRE_lineEdit_LastName</cstring>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_Age">
+                                      <property name="text">
+                                       <string>Age</string>
+                                      </property>
+                                      <property name="buddy">
+                                       <cstring>BENEFICIAIRE_lineEdit_Age</cstring>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_Adress">
+                                      <property name="text">
+                                       <string>Adress</string>
+                                      </property>
+                                      <property name="buddy">
+                                       <cstring>BENEFICIAIRE_lineEdit_Adress</cstring>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_Type">
+                                      <property name="text">
+                                       <string>Type</string>
+                                      </property>
+                                      <property name="buddy">
+                                       <cstring>BENEFICIAIRE_lineEdit_Type</cstring>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLabel" name="BENEFICIAIRE_label_Num">
+                                      <property name="text">
+                                       <string>Num</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                   </layout>
+                                  </item>
+                                  <item>
+                                   <layout class="QVBoxLayout" name="v18">
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_CIN"/>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Name"/>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_LastName"/>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Age"/>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Adress"/>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Type"/>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Num"/>
+                                    </item>
+                                   </layout>
+                                  </item>
+                                 </layout>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_label_Errors">
+                                  <property name="sizePolicy">
+                                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                   </sizepolicy>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">color: rgb(255, 0, 4);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="BENEFICIAIRE_pushButton_AddNew">
+                                  <property name="text">
+                                   <string> Add new</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </widget>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QListWidget" name="BENEFICIAIRE_listWidget">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>300</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="BENEFICIAIRE_page2">
+                     <layout class="QGridLayout" name="g4">
+                      <item row="0" column="0">
+                       <widget class="QScrollArea" name="scrollArea_2">
+                        <property name="widgetResizable">
+                         <bool>true</bool>
+                        </property>
+                        <widget class="QWidget" name="scrollAreaWidgetContents_4">
+                         <property name="geometry">
+                          <rect>
+                           <x>0</x>
+                           <y>0</y>
+                           <width>133</width>
+                           <height>255</height>
+                          </rect>
+                         </property>
+                         <layout class="QGridLayout" name="g5">
+                          <item row="0" column="0">
+                           <layout class="QVBoxLayout" name="v16">
+                            <item>
+                             <layout class="QHBoxLayout" name="h74">
+                              <item>
+                               <layout class="QVBoxLayout" name="v15">
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_CHANGE_CIN">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>CIN</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_CHANGE_name">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Name</string>
+                                  </property>
+                                  <property name="buddy">
+                                   <cstring>BENEFICIAIRE_lineEdit_Name</cstring>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_CHANGE_lastname">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Last Name</string>
+                                  </property>
+                                  <property name="buddy">
+                                   <cstring>BENEFICIAIRE_lineEdit_LastName</cstring>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_CHANGE_age">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Age</string>
+                                  </property>
+                                  <property name="buddy">
+                                   <cstring>BENEFICIAIRE_lineEdit_Age</cstring>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_CHANGE_adress">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Adress</string>
+                                  </property>
+                                  <property name="buddy">
+                                   <cstring>BENEFICIAIRE_lineEdit_Adress</cstring>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_CHANGE_type">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Type</string>
+                                  </property>
+                                  <property name="buddy">
+                                   <cstring>BENEFICIAIRE_lineEdit_Type</cstring>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="BENEFICIAIRE_CHANGE_num">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Num</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QVBoxLayout" name="v14_2">
+                                <item>
+                                 <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_CIN_2">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Name_2">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_LastName_2">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Age_2">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Adress_2">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Type_2">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="BENEFICIAIRE_lineEdit_Num_2">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="BENEFICIAIRE_label_Errors_2">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">color: rgb(255, 0, 4);</string>
+                              </property>
+                              <property name="text">
+                               <string/>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="BENEFICIAIRE_pushButton_ConfirmChanges">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Confirm changes</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </widget>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="Deliveries">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                  </font>
+                 </property>
+                 <layout class="QGridLayout" name="g30">
+                  <item row="0" column="0">
+                   <layout class="QVBoxLayout" name="v70">
+                    <item>
+                     <layout class="QHBoxLayout" name="h76">
+                      <property name="topMargin">
+                       <number>10</number>
+                      </property>
+                      <item>
+                       <spacer name="Spacer72">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                         <enum>QSizePolicy::Minimum</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>100</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="Livraison_list_title">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>12</pointsize>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Livraisons</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="Spacer73">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="h80">
+                      <item>
+                       <layout class="QVBoxLayout" name="v71">
+                        <item>
+                         <layout class="QVBoxLayout" name="h81">
+                          <item>
+                           <layout class="QHBoxLayout" name="h82">
+                            <item>
+                             <widget class="QLineEdit" name="Livraison_le_Search">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                               </font>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="Livraison_btn_Search">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>ID search</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <spacer name="Spacer70">
+                              <property name="orientation">
+                               <enum>Qt::Horizontal</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>40</width>
+                                <height>20</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="Livraison_btn_Refresh">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Refresh</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <widget class="QTableView" name="Livraison_tableView">
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="v72">
+                          <item>
+                           <layout class="QHBoxLayout" name="h86">
+                            <item>
+                             <widget class="QPushButton" name="Livraison_btn_Sort">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Sort</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QRadioButton" name="Livraison_sort_date">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                               </font>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true"/>
+                              </property>
+                              <property name="text">
+                               <string>Date</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QRadioButton" name="Livraison_sort_name">
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                               </font>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true"/>
+                              </property>
+                              <property name="text">
+                               <string>Destination</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h87">
+                            <item>
+                             <layout class="QVBoxLayout" name="v73">
+                              <item>
+                               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                                <item>
+                                 <widget class="QLabel" name="Livraison_label_race">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Ad. Départ</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="Livraison_le_Depart">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="Livraison_err1">
+                                  <property name="styleSheet">
+                                   <string notr="true">color: red;</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                                <item>
+                                 <widget class="QLabel" name="Livraison_label_espece">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Ad. Arrivé</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="Livraison_le_Arrive">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="Livraison_err2">
+                                  <property name="styleSheet">
+                                   <string notr="true">color: red;</string>
+                                  </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                            <item>
+                             <layout class="QVBoxLayout" name="v74">
+                              <item>
+                               <layout class="QHBoxLayout" name="h84">
+                                <item>
+                                 <widget class="QLabel" name="Livraison_label_date">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Date livraison</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QDateTimeEdit" name="Livraison_le_Date">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true"/>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h85">
+                                <item>
+                                 <spacer name="Spacer71">
+                                  <property name="orientation">
+                                   <enum>Qt::Horizontal</enum>
+                                  </property>
+                                  <property name="sizeType">
+                                   <enum>QSizePolicy::Preferred</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="Livraison_btn_Add">
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                   </font>
+                                  </property>
+                                  <property name="text">
+                                   <string>Add</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QVBoxLayout" name="v75">
+                        <item>
+                         <widget class="QPushButton" name="Livraison_btn_PDF">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Extract PDF</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="Livraison_btn_Update">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Update</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="Livraison_btn_Delete">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Supprimer</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="Livraison_Loca">
+                          <property name="text">
+                           <string>Localisation</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="Livraison_status">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Disponible</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <widget class="NewCalendarWidget" name="Livraison_calendarWidget">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QCalendarWidget QToolButton {
+      height: 30px;
+      width: 120px;
+      color: white;
+      font-size: 22px;
+      icon-size: 56px, 56px;
+      background-color: blue;
+  }
+  QCalendarWidget QMenu {
+      width: 150px;
+      left: 20px;
+      color: white;
+      font-size: 18px;
+      background-color: rgb(255, 255, 255);
+  }
+  QCalendarWidget QSpinBox { 
+      width: 150px; 
+      font-size:24px; 
+      color: white; 
+      background-color: white;
+      selection-background-color: rgb(136,136,136);
+      selection-color: rgb(255, 255, 255);
+  }</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="Donations">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                  </font>
+                 </property>
+                 <layout class="QGridLayout" name="g6">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="Dons_Title">
+                    <property name="styleSheet">
+                     <string notr="true">font: 63 italic 30pt &quot;Segoe UI&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string>Gestion Des Dons </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QTabWidget" name="tabWidget">
+                    <property name="styleSheet">
+                     <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
+                    </property>
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>16</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                    <widget class="QWidget" name="tab">
+                     <attribute name="title">
+                      <string>Ajouter</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="g7">
+                      <item row="0" column="0">
+                       <widget class="QGroupBox" name="groupBox">
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="title">
+                         <string>   Ajouter un don   </string>
+                        </property>
+                        <layout class="QGridLayout" name="g8">
+                         <item row="0" column="0" rowspan="2" colspan="2">
+                          <layout class="QVBoxLayout" name="v39" stretch="3,0,1">
+                           <item>
+                            <layout class="QHBoxLayout" name="h20" stretch="0,0">
+                             <item>
+                              <layout class="QVBoxLayout" name="v38">
+                               <item>
+                                <layout class="QHBoxLayout" name="h21">
+                                 <item>
+                                  <widget class="QLabel" name="label_Montant_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Montant</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_montant_dons"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h22">
+                                 <item>
+                                  <widget class="QLabel" name="label_Date_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Date</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QDateEdit" name="de_dons">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QVBoxLayout" name="v37">
+                               <item>
+                                <layout class="QHBoxLayout" name="h23">
+                                 <item>
+                                  <widget class="QLabel" name="label_mail_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Email du donateur</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_email_dons"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="email_verif_dons">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">color: rgb(255, 0, 0);</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h24">
+                                 <item>
+                                  <widget class="QLabel" name="label_adresse_dons">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Adresse du donateur</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_adresse_dons"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h25">
+                                 <item>
+                                  <widget class="QLabel" name="label_nom_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Nom du donateur</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_nom_don"/>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <spacer name="verticalSpacer">
+                             <property name="orientation">
+                              <enum>Qt::Vertical</enum>
+                             </property>
+                             <property name="sizeType">
+                              <enum>QSizePolicy::Expanding</enum>
+                             </property>
+                             <property name="sizeHint" stdset="0">
+                              <size>
+                               <width>20</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </spacer>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="h26">
+                             <item>
+                              <spacer name="Spacer19">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="Annuler_dons">
+                               <property name="text">
+                                <string>Annuler</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="Confirmer_dons">
+                               <property name="text">
+                                <string>Confirmer</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <spacer name="Spacer20">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                            </layout>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_2">
+                     <attribute name="title">
+                      <string>Supprimer</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="g9">
+                      <item row="0" column="0">
+                       <widget class="QGroupBox" name="groupBox_2">
+                        <property name="styleSheet">
+                         <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
+                        </property>
+                        <property name="title">
+                         <string>   Supprimer un don   </string>
+                        </property>
+                        <layout class="QGridLayout" name="g10">
+                         <item row="0" column="0">
+                          <layout class="QVBoxLayout" name="v35">
+                           <item>
+                            <layout class="QHBoxLayout" name="h27">
+                             <item>
+                              <widget class="QLabel" name="label_id_supp_dons">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string>ID</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLineEdit" name="le_id_Supp_dons"/>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="h28">
+                             <item>
+                              <spacer name="Spacer21">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="supprimer_dons">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="text">
+                                <string>Supprimer</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <spacer name="Spacer22">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                            </layout>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_3">
+                     <attribute name="title">
+                      <string>Modifier</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="g11">
+                      <item row="0" column="0">
+                       <widget class="QGroupBox" name="groupBox_3">
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="title">
+                         <string>   Modifier un don  </string>
+                        </property>
+                        <layout class="QGridLayout" name="g12">
+                         <item row="0" column="0" rowspan="2" colspan="2">
+                          <layout class="QVBoxLayout" name="v33" stretch="3,0,1">
+                           <item>
+                            <layout class="QHBoxLayout" name="h35" stretch="0,0">
+                             <item>
+                              <layout class="QVBoxLayout" name="v32">
+                               <item>
+                                <layout class="QHBoxLayout" name="h29">
+                                 <item>
+                                  <widget class="QLabel" name="label_nom_modiff_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Nom du donateur</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_nom_Modif_dons"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h30">
+                                 <item>
+                                  <widget class="QLabel" name="label_montant_modiff_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Montant</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_montant_Modif_dons"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h31">
+                                 <item>
+                                  <widget class="QLabel" name="label_date_modiff_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Date</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QDateEdit" name="de_Modif_dons">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true"/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </item>
+                             <item>
+                              <layout class="QVBoxLayout" name="v31">
+                               <item>
+                                <layout class="QHBoxLayout" name="h32">
+                                 <item>
+                                  <widget class="QLabel" name="label_id_modiff_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>ID</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_id_Modif_dons"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h33">
+                                 <item>
+                                  <widget class="QLabel" name="label_mail_modiff_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Email du donateur</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_email_Modif_dons"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="email_verif_Modif_dons">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">color: rgb(255, 0, 0);</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h34">
+                                 <item>
+                                  <widget class="QLabel" name="label_adresse_modiff_dons">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Adresse du donateur</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_adresse_Modif_dons"/>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <spacer name="verticalSpacer_2">
+                             <property name="orientation">
+                              <enum>Qt::Vertical</enum>
+                             </property>
+                             <property name="sizeHint" stdset="0">
+                              <size>
+                               <width>20</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </spacer>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="h36">
+                             <item>
+                              <spacer name="Spacer23">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="Annuler_Modif_dons">
+                               <property name="text">
+                                <string>Annuler</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="Modifier_dons">
+                               <property name="text">
+                                <string>Modifier</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <spacer name="Spacer24">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                            </layout>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_4">
+                     <attribute name="title">
+                      <string>Afficher</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="g13">
+                      <item row="0" column="0">
+                       <layout class="QVBoxLayout" name="v30">
+                        <item>
+                         <widget class="QTableView" name="tableView_dons">
+                          <property name="styleSheet">
+                           <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="h38">
+                          <item>
+                           <layout class="QHBoxLayout" name="h39">
+                            <item>
+                             <widget class="QTableView" name="tableView_T_dons">
+                              <property name="styleSheet">
+                               <string notr="true"/>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="Total_dons">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>Total des dons</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QVBoxLayout" name="v29">
+                            <item>
+                             <spacer name="Spacer25">
+                              <property name="orientation">
+                               <enum>Qt::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="Refresh_dons">
+                              <property name="text">
+                               <string>Refresh</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="stats_dons">
+                              <property name="text">
+                               <string>Stats</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="Arduino_dons">
+                              <property name="text">
+                               <string>Afficheur</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <spacer name="Spacer26">
+                              <property name="orientation">
+                               <enum>Qt::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h40">
+                            <item>
+                             <widget class="QPushButton" name="PDF_dons">
+                              <property name="text">
+                               <string>PDF</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="le_chercher_dons"/>
+                            </item>
+                            <item>
+                             <widget class="QComboBox" name="comboBox_dons">
+                              <property name="styleSheet">
+                               <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(85, 85, 255);</string>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>Tri</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Par ID</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Par Nom</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Par Montant</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_5">
+                     <attribute name="title">
+                      <string>Mailing</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="g14">
+                      <item row="0" column="0">
+                       <layout class="QVBoxLayout" name="v28">
+                        <item>
+                         <layout class="QVBoxLayout" name="v27">
+                          <item>
+                           <layout class="QHBoxLayout" name="h42">
+                            <item>
+                             <widget class="QLabel" name="label_SMTP_server">
+                              <property name="minimumSize">
+                               <size>
+                                <width>150</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>SMTP server</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="le_server_SMTP">
+                              <property name="echoMode">
+                               <enum>QLineEdit::NoEcho</enum>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h43">
+                            <item>
+                             <widget class="QLabel" name="label_SMTP_port">
+                              <property name="minimumSize">
+                               <size>
+                                <width>150</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>PORT</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="le_port_SMTP">
+                              <property name="echoMode">
+                               <enum>QLineEdit::NoEcho</enum>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h44">
+                            <item>
+                             <widget class="QLabel" name="label_SMTP_mail">
+                              <property name="minimumSize">
+                               <size>
+                                <width>150</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>Your email</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="le_mail_SMTP">
+                              <property name="echoMode">
+                               <enum>QLineEdit::NoEcho</enum>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h45">
+                            <item>
+                             <widget class="QLabel" name="label_SMTP_passwd">
+                              <property name="minimumSize">
+                               <size>
+                                <width>150</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>Your password</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="le_passwd_SMTP">
+                              <property name="echoMode">
+                               <enum>QLineEdit::Password</enum>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h46">
+                            <item>
+                             <widget class="QLabel" name="label_SMTP_destination">
+                              <property name="minimumSize">
+                               <size>
+                                <width>150</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>Envoyer à</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="le_rcpt_SMTP"/>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h47">
+                            <item>
+                             <widget class="QLabel" name="label_SMTP_objet">
+                              <property name="minimumSize">
+                               <size>
+                                <width>150</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>Objet</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="le_objet_SMTP"/>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="v26">
+                          <item>
+                           <layout class="QHBoxLayout" name="h48">
+                            <item>
+                             <widget class="QLabel" name="label_SMTP_message">
+                              <property name="minimumSize">
+                               <size>
+                                <width>150</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>Message</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPlainTextEdit" name="le_msg_SMTP"/>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="h49">
+                            <item>
+                             <widget class="QPushButton" name="envoyer_SMTP">
+                              <property name="text">
+                               <string>Envoyer</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="annuler_SMTP">
+                              <property name="text">
+                               <string>Annuler</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_6">
+                     <attribute name="title">
+                      <string>Arduino</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="g16">
+                      <item row="0" column="0">
+                       <layout class="QHBoxLayout" name="h50">
+                        <item>
+                         <widget class="QTableView" name="tableView_Ard_dons"/>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
                </widget>
               </item>
              </layout>
@@ -1178,6 +3624,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>NewCalendarWidget</class>
+   <extends>QCalendarWidget</extends>
+   <header>headers/newcalendarwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

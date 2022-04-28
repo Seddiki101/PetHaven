@@ -39,11 +39,18 @@ QLabel
 
 }
 
+/*-----QPlainTextEdit-----*/
+QPlainTextEdit
+{
+	color: #000;
+
+}
+
 
 /*-----QPushButton-----*/
 QPushButton
 {
-	background-color: #00ff4f;
+	background-color: #0082be;
 	color: #000000;
 	font-weight: bold;
 	border-style: solid;
@@ -130,7 +137,6 @@ QLineEdit
 	border-color: #4a4c68;
 
 }
-
 
 /*-----QListWidget-----*/
 QListWidget

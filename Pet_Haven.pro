@@ -1,11 +1,16 @@
 QT       += core gui
 QT       += sql
 QT       += printsupport
+
 QT       += serialport
+QT       += network
 QT       += widgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += positioning
+QT       += location
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+TARGET = smtp
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -23,21 +28,45 @@ SOURCES += \
     connexion.cpp \
     main.cpp \
     sources/SwitchButton.cpp \
+    sources/adoption.cpp \
     sources/animal.cpp \
     sources/arduino.cpp \
+    sources/beneficiaire.cpp \
     sources/employe.cpp \
+    sources/livraison.cpp \
+    sources/newcalendarwidget.cpp \
+    sources/qr.cpp \
+    sources/qrcodegen.cpp \
+    sources/smtp.cpp \
+    sources/statistique_adoptions.cpp \
+    sources/statistique_beneficiaires.cpp \
+    sources/statistique_dons.cpp \
+    sources/dons.cpp \
     mainwindow.cpp
 
 HEADERS += \
     connexion.h \
+    headers/adoption.h \
     headers/animal.h \
     headers/arduino.h \
     headers/SwitchButton.h \
+    headers/beneficiaire.h \
     headers/employe.h \
+    headers/livraison.h \
+    headers/newcalendarwidget.h \
+    headers/qrcodegen.h \
+    headers/smtp.h \
+    headers/statistique_adoptions.h \
+    headers/statistique_beneficiaires.h \
+    headers/statistique_dons.h \
+    headers/dons.h \
     mainwindow.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    statistique_adoptions.ui \
+    statistique_beneficiaires.ui \
+    statistique_dons.ui
 
 RESOURCES += \
     ressource.qrc
