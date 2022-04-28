@@ -35,20 +35,22 @@ public:
     void set_date(QDate);
 
 
-    bool ajouter();
-    QSqlQueryModel * afficher();
-    bool supprimer(int);
-    bool modifier(int);
+    bool ajouter_dons();
+    QSqlQueryModel * afficher_dons();
+    bool supprimer_dons(int);
+    bool modifier_dons(int);
     bool Verif_email();
     bool Verif_nom();
     bool Verif_adresse();
     bool Verif_montant_z();
     bool Verif_id();
-   QSqlQueryModel * Trier();
-   QSqlQueryModel * Trier_ID();
-   QSqlQueryModel * Trier_NOM();
-   QSqlQueryModel * rechercher(QString);
+   QSqlQueryModel * Trier_dons();
+   QSqlQueryModel * Trier_ID_dons();
+   QSqlQueryModel * Trier_NOM_dons();
+   QSqlQueryModel * rechercher_dons(QString);
    QSqlQueryModel* Total_don();
+   QSqlQueryModel * afficher_capteur();
+   QSqlQueryModel * afficher_capteur2();
 
 };
 

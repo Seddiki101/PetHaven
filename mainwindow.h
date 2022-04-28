@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include"dons.h"
 #include "smtp.h"
+#include "arduino.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -20,39 +21,44 @@ private slots:
 
     void sendMail();
     void mailSent(QString);
-    void on_Confirmer_clicked();
+    void on_Confirmer_dons_clicked();
 
-    void on_supprimer_clicked();
+    void on_supprimer_dons_clicked();
 
     void on_Refresh_clicked();
 
-    void on_Modifier_clicked();
+    void on_Modifier_dons_clicked();
 
     void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_Annuler_dons_clicked();
 
-    void on_Annuler_clicked();
+    void on_Annuler_Modif_dons_clicked();
 
     void on_Trier_clicked();
 
     void on_Chercher_clicked();
 
-    void on_Total_clicked();
+    void on_Total_dons_clicked();
 
-    void on_comboBox_activated(const QString &arg1);
+    void on_comboBox_dons_activated(const QString &arg1);
 
-    void on_le_chercher_textChanged(const QString &arg1);
+    void on_le_chercher_dons_textChanged(const QString &arg1);
 
-    void on_PDF_clicked();
+    void on_PDF_dons_clicked();
 
-    void on_stats_clicked();
+    void on_stats_dons_clicked();
 
-    void on_sendBtn_clicked();
+    void on_envoyer_SMTP_clicked();
+
+    void on_Arduino_dons_clicked();
+    void update_label();
 
 private:
     Ui::MainWindow *ui;
     Dons Dtmp;
+    QByteArray data;
+    Arduino A;
 
 };
 #endif // MAINWINDOW_H

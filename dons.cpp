@@ -32,7 +32,7 @@ void Dons::set_ads(QString a){adresse=a;}
 void Dons::set_email(QString ma){email=ma;}
 void Dons::set_date(QDate d){date=d;}
 
-bool Dons::ajouter()
+bool Dons::ajouter_dons()
 {
    QSqlQuery Query;
    //QString res= QString::number(id);
@@ -48,7 +48,7 @@ bool Dons::ajouter()
    return Query.exec();
 }
 
-bool Dons::supprimer(int id)
+bool Dons::supprimer_dons(int id)
 {
     QSqlQuery query;
     QString res=QString::number(id);
@@ -56,7 +56,7 @@ bool Dons::supprimer(int id)
     query.bindValue(":id",id);
     return query.exec();
 }
-QSqlQueryModel * Dons::afficher()
+QSqlQueryModel * Dons::afficher_dons()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("SELECT * FROM DONS");
@@ -68,7 +68,7 @@ QSqlQueryModel * Dons::afficher()
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("Montant"));
     return model;
 }
-bool Dons::modifier(int id)
+bool Dons::modifier_dons(int id)
 {
     QSqlQuery query;
        QString res=QString::number(id);
@@ -116,7 +116,7 @@ bool Dons::Verif_id()
     else return false;
 }
 
-QSqlQueryModel * Dons::Trier()
+QSqlQueryModel * Dons::Trier_dons()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("SELECT * FROM DONS ORDER BY MONTANT DESC");
@@ -129,7 +129,7 @@ QSqlQueryModel * Dons::Trier()
     return model;
 }
 
-QSqlQueryModel * Dons::Trier_ID()
+QSqlQueryModel * Dons::Trier_ID_dons()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("SELECT * FROM DONS ORDER BY ID DESC");
@@ -142,7 +142,7 @@ QSqlQueryModel * Dons::Trier_ID()
     return model;
 }
 
-QSqlQueryModel * Dons::Trier_NOM()
+QSqlQueryModel * Dons::Trier_NOM_dons()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("SELECT * FROM DONS ORDER BY NOM_DON ASC ");
@@ -155,7 +155,7 @@ QSqlQueryModel * Dons::Trier_NOM()
     return model;
 }
 
-QSqlQueryModel* Dons::rechercher(QString recherche)
+QSqlQueryModel* Dons::rechercher_dons(QString recherche)
 {
     QSqlQueryModel* model=new QSqlQueryModel();
 
@@ -180,5 +180,29 @@ QSqlQueryModel* Dons::Total_don()
     QSqlQueryModel* model=new QSqlQueryModel();
     model->setQuery("SELECT SUM(MONTANT)as SOMME FROM DONS");
 
+    return model;
+}
+QSqlQueryModel * Dons::afficher_capteur()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM (SELECT * FROM DONS ORDER BY DATE_DON DESC) WHERE rownum <= 1");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("Adresse"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("Email"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Date"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("Montant"));
+    return model;
+}
+QSqlQueryModel * Dons::afficher_capteur2()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM (SELECT * FROM DONS ORDER BY MONTANT DESC) WHERE rownum <= 1");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("Adresse"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("Email"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Date"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("Montant"));
     return model;
 }
