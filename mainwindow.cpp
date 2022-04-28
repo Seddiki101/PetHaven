@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "livraison.h"
+#include "newcalendarwidget.h"
 #include <QMessageBox>
 #include <QIntValidator>
 #include <QValidator>
+#include <QProcess>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -13,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->Livraison_tableView->setModel(L.afficher());
 }
+
+
+
 
 MainWindow::~MainWindow()
 {
@@ -144,6 +149,14 @@ void MainWindow::on_Livraison_le_Search_textChanged(const QString &arg1)
 }
 
 
+void MainWindow::on_Livraison_Loca_clicked()
+{
+    QString program = "C:/Users/kaisb/Desktop/build-MapTest-Desktop_Qt_5_9_9_MinGW_32bit-Debug/debug/MapTest.exe";
+    QStringList arguments;
+    QProcess *chromeProcess = new QProcess(this);
+    chromeProcess->start(program);
+}
+
 //void MainWindow::on_pb_afficher_clicked()
 //{
 //    ui->stackedWidget->setCurrentIndex(1);
@@ -153,4 +166,3 @@ void MainWindow::on_Livraison_le_Search_textChanged(const QString &arg1)
 //{
 //    ui->stackedWidget->setCurrentIndex(2);
 //}
-

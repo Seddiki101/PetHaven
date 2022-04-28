@@ -34,6 +34,12 @@ private slots:
 
     void on_Livraison_tableView_activated(const QModelIndex &index);
 
+    void on_pushButton_clicked();
+
+    void on_Livraison_Loca_clicked();
+
+    void on_Livraison_calendarWidget_clicked(const QDate &date);
+
 private:
     Ui::MainWindow *ui;
     Livraison L;

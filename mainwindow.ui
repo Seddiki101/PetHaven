@@ -17,8 +17,8 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>30</y>
+      <x>60</x>
+      <y>10</y>
       <width>1061</width>
       <height>541</height>
      </rect>
@@ -155,6 +155,12 @@
         <width>581</width>
         <height>192</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>581</width>
+        <height>0</height>
+       </size>
       </property>
       <property name="styleSheet">
        <string notr="true"/>
@@ -332,7 +338,7 @@
        <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
-     <widget class="QCalendarWidget" name="Livraison_calendarWidget">
+     <widget class="CalendarManager" name="Livraison_calendarWidget">
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -367,11 +373,31 @@
   }</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="Livraison_Loca">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>110</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Localisation</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CalendarManager</class>
+   <extends>QCalendarWidget</extends>
+   <header>calendarmanager.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

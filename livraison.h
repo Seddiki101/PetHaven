@@ -18,19 +18,6 @@
 #include <QGeoServiceProvider>
 using namespace std;
 
-/*
-#include <QObject>
-#include <QWidget>
-#include <QFile>
-#include <QPainter>
-#include <QMessageBox>
-#include <QTextStream>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QCoreApplication>
-#include <QFileDialog>
-*/
-
 class Livraison
 {
 public:

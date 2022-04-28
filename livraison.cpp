@@ -16,7 +16,6 @@ Livraison::Livraison(QDateTime DateTime, QString adresse ,QString adresse_dep)
     this->DateTime=DateTime; this->adresse=adresse; this->adresse_dep=adresse_dep;
 }
 
-
 void Livraison::setadresse(QString adresse){this->adresse=adresse;}
 void Livraison::setadresse_dep(QString adresse_dep){this->adresse_dep=adresse_dep;}
 void Livraison::setDateTime(QDateTime DateTime){this->DateTime=DateTime;}

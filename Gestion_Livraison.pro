@@ -27,12 +27,14 @@ SOURCES += \
     connexion.cpp \
     livraison.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    newcalendarwidget.cpp
 
 HEADERS += \
     connexion.h \
     livraison.h \
-    mainwindow.h
+    mainwindow.h \
+    newcalendarwidget.h
 
 FORMS += \
     mainwindow.ui
