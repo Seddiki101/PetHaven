@@ -382,7 +382,7 @@ static void dosicDemo(const char * text) {
     // Make and print the QR Code symbol
     const QrCode qr = QrCode::encodeText(text, errCorLvl);
     //Directory here
-    QString file = ":/ressources/qr.svg";
+    QString file = "C:/Users/ilyes/Desktop/Pet_Haven/ressources/qr.svg";
         QFile outputFile(file);
         outputFile.open(QIODevice::WriteOnly);
 
@@ -555,13 +555,15 @@ void MainWindow::on_qr_clicked()
     string conv;
     const char *texto;
     QModelIndex index=ui->tabAdo1->selectionModel()->currentIndex();
-    QVariant value=index.sibling(index.row(),0).data(); //will get the value of the ROW'S ID
+    QVariant value=index.sibling(index.row(),index.column()).data(); //will get the value of the clicked cell.
     ido=value.toString();
     conv = ido.toStdString();
     texto=conv.c_str();
 
+
     //texto= ido.toStdString().c_str(); str.toLocal8Bit().constData()
     dosicDemo(texto);
+
 }
 
 void MainWindow::on_Total_clicked()
@@ -976,7 +978,7 @@ void MainWindow::saveLastnotif()
  QString str = date_str.append(" ");
  str = str.append(time_str);
 
-  QFile file("lastnotif.txt");
+  QFile file("C:/Users/ilyes/Desktop/Pet_Haven/lastnotif.txt");
  if(!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate ))
  {
       qDebug()<< "Could not open file! File not written.";
@@ -992,7 +994,7 @@ file.write(str.toUtf8());
 
 QString MainWindow::LoadLastnotif()
 {
-    QFile file("lastnotif.txt");
+    QFile file("C:/Users/ilyes/Desktop/Pet_Haven/lastnotif.txt");
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug()<< "Could not open file! File not read.";
@@ -1100,14 +1102,6 @@ void MainWindow::on_BENEFICIAIRE_pushButton_Notifications_clicked()
     saveLastnotif();
 
 }
-
-
-//******************************************************************//
-//                                                                  //
-//                  BENEFICIARIES FUNCTIONS                         //
-//                                                                  //
-//******************************************************************//
-
 
 
 //******************************************************************//

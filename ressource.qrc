@@ -7,6 +7,5 @@
         <file>ressources/LightTheme.qss</file>
         <file>ressources/Cstartpage.qss</file>
         <file>ressources/Wstartpage.qss</file>
-        <file>ressources/qr.svg</file>
     </qresource>
 </RCC>
