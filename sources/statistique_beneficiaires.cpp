@@ -26,8 +26,7 @@ int statistique_beneficiaires::Statistique_beneficiaires_partie2()
     {
             count++ ;
     }
-
-return count ;
+    return count ;
 }
 
 int statistique_beneficiaires::Statistique_beneficiaires_partie3()
@@ -39,30 +38,28 @@ int statistique_beneficiaires::Statistique_beneficiaires_partie3()
     {
             count++ ;
     }
-
-return count ;
+    return count ;
 }
 
 
-void statistique_beneficiaires::paintEvent_beneficiaires(QPaintEvent *)
+void statistique_beneficiaires::paintEvent(QPaintEvent *)
 {
 
     int b=Statistique_beneficiaires_partie2(); //count occurences param1
-    cout<<b<<endl ;
     int c=Statistique_beneficiaires_partie3();//count occurences param2
-    cout<<c<<endl ;
 
-        float s2= b*100 ;
-        float s3=c*100;
-        float nb = b+c ; //number of all occurences
-        float q2 ;
-        q2 = s2/nb ; //param1 %
-        float q3;
-        q3=s3/nb; //param2 %
-        float y  ;
-        y = (q2*360)/100 ; //param1 on pie
-        float m; //param2 on pie
-        m= (q3*360)/100;
+    float s2= b*100 ;
+    float s3=c*100;
+    float nb = b+c ; //number of all occurences
+    float q2 ;
+    q2 = s2/nb ; //param1 %
+    float q3;
+    q3=s3/nb; //param2 %
+    float y  ;
+    y = (q2*360)/100 ; //param1 on pie
+    float m; //param2 on pie
+    m= (q3*360)/100;
+
     QPainter painter(this);
     QRectF size=QRectF(350,150,this->width()-700,this->width()-700); //canvas geometry config
 
@@ -71,8 +68,8 @@ void statistique_beneficiaires::paintEvent_beneficiaires(QPaintEvent *)
     painter.drawPie(size,0,16*y); //draw pie slice param1 from origin
     painter.setBrush(Qt::red); //color2
     painter.drawPie(size,16*y,16*m); //draw pie slice param2 starting where param1 ends
-    ui->label_2->setText("+18") ;
-    ui->label_4->setText("-18") ;
-    ui->label_3->setNum(q2) ;
-    ui->label_6->setNum(q3) ;
+    ui->BENEFICIAIRE_label_2->setText("+18") ;
+    ui->BENEFICIAIRE_label_4->setText("-18") ;
+    ui->BENEFICIAIRE_label_3->setNum(q2) ;
+    ui->BENEFICIAIRE_label_6->setNum(q3) ;
 }

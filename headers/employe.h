@@ -22,7 +22,7 @@ class Employe
 {
 public:
     Employe();
-    Employe(int,QString,QString,QString,QString,QString,int);
+    Employe(int,QString,QString,QString,QString,QString,int,QString);
 
     int getid_Employe();
     QString getnom_Employe();
@@ -60,7 +60,7 @@ public:
 
 private:
     int id, appreciations;
-    QString nom,prenom,email,mdp,login;
+    QString nom,prenom,email,mdp,login,key_card;
 };
 
 

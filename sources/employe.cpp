@@ -10,12 +10,14 @@ Employe::Employe()
     mdp="";
     login="";
     appreciations=0;
+    key_card="";
 }
 
 
-Employe::Employe(int id,QString nom ,QString prenom,QString email,QString login,QString mdp, int appreciations)
+Employe::Employe(int id,QString nom ,QString prenom,QString email,QString login,QString mdp, int appreciations,QString key_card)
 {
     this->id=id; this->nom=nom; this->prenom=prenom;this->email=email; this->login=login; this->mdp=mdp; this->appreciations=appreciations;
+    this->key_card=key_card;
 }
 
 
@@ -38,8 +40,8 @@ void Employe::setappreciations_Employe(int appreciations)   {this->appreciations
 bool Employe::ajouter_Employe()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO employe (ide, nom, prenom,email,login,mdp,appreciations) "
-                "VALUES (DEFAULT, :nom, :prenom, :email, :login, :mdp, :appreciations)");
+    query.prepare("INSERT INTO employe (ide, nom, prenom,email,login,mdp,appreciations,key_card) "
+                "VALUES (DEFAULT, :nom, :prenom, :email, :login, :mdp, :appreciations,NULL)");
 
     query.bindValue(":nom", nom);
     query.bindValue(":prenom", prenom);
@@ -120,7 +122,7 @@ QSqlQueryModel* Employe::chercherID_Employe(QString recherche)
     QSqlQuery query;
     if (recherche.length()!=0) {
         query.prepare("SELECT * FROM employe where ide=?");
-        query.addBindValue(recherche);
+        query.addBindValue(recherche.toInt());
         query.exec();
         model->setQuery(query);
     }

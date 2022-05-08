@@ -72,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->le_server_SMTP->setText("smtp.gmail.com");
     ui->le_port_SMTP->setText("465");
     ui->le_mail_SMTP->setText("mmarrouki52@gmail.com");
-    ui->le_passwd_SMTP->setText("Marrouki21062001!");
+    ui->le_passwd_SMTP->setText("Marmar21062001!");
     ui->le_objet_SMTP->setText("Donation success");
 
     QIntValidator ex;
@@ -260,7 +260,7 @@ void MainWindow::on_Employee_Ajouter_clicked()
     QString Login=ui->Employee_Login->text();
     QString Mdp=ui->Employee_MDP->text();
     int Note=ui->Employee_Note->text().toUInt();
-    Employe E(ID,Nom,Prenom,Email,Login,Mdp,Note);
+    Employe E(ID,Nom,Prenom,Email,Login,Mdp,Note, "");
 
     if(E.Verif_Email_Employe()) {
         ui->Employee_Email->clear();
@@ -274,13 +274,12 @@ void MainWindow::on_Employee_Ajouter_clicked()
 
 void MainWindow::on_Employee_Supprimer_clicked()
 {
-    Employe E1;
     int id;
     QModelIndex index=ui->Employee_tableView->selectionModel()->currentIndex();
     QVariant value=index.sibling(index.row(), 0).data();
     id=value.toUInt();
 
-    bool test=E1.supprimer_Employe(id);
+    bool test=E.supprimer_Employe(id);
     if(test)
     {
         ui->Employee_tableView->setModel(E.afficher_Employe());
@@ -300,7 +299,7 @@ void MainWindow::on_Employee_Modifier_clicked()
     QString Login=ui->Employee_Login->text();
     QString Mdp=ui->Employee_MDP->text();
     int Note=ui->Employee_Note->text().toUInt();
-    Employe E(id,Nom,Prenom,Email,Login,Mdp,Note);
+    Employe E(id,Nom,Prenom,Email,Login,Mdp,Note, "");
 
     bool test=E.modifier_Employe(id);
     if(test)
@@ -321,21 +320,18 @@ void MainWindow::on_Employee_Sort_clicked()
 
 void MainWindow::on_Employee_search_clicked()
 {
-    Employe E1;
-    QString recherche = ui->Employee_search->text();
-    ui->Employee_tableView->setModel(E1.chercherID_Employe(recherche));
+    QString recherche = ui->Employee_Search_label->text();
+    ui->Employee_tableView->setModel(E.chercherID_Employe(recherche));
 }
 
 void MainWindow::on_Employee_Search_label_textChanged()
 {
-    Employe E1;
-    QString recherche = ui->Employee_search->text();
-    ui->Employee_tableView->setModel(E1.chercherNom_Employe(recherche));
+    QString recherche = ui->Employee_Search_label->text();
+    ui->Employee_tableView->setModel(E.chercherNom_Employe(recherche));
 }
 
 void MainWindow::on_Employee_PDF_clicked()
 {
-    Employe E1;
     E.pdf_Employe(ui->Employee_tableView);
 }
 
@@ -1246,7 +1242,7 @@ void MainWindow::on_Livraison_Loca_clicked()
 
 void MainWindow::sendMail()
 {
-     Smtp* smtp = new Smtp("mmarrouki52@gmail.com","Marrouki21062001!","smtp.gmail.com",465);
+    Smtp* smtp = new Smtp("mmarrouki52@gmail.com","Marmar21062001!","smtp.gmail.com",465);
     connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
 
@@ -1296,16 +1292,6 @@ void MainWindow::on_Confirmer_dons_clicked()
    else{
        QString s=ui->le_email_dons->text();
         ui->le_rcpt_SMTP->setText(s);
-
-        /*Smtp* smtp = new Smtp(ui->uname->text(),ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
-           connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-
-
-           smtp->sendMail(ui->uname->text(),  ui->rcpt->text() , ui->subject->text(),"Thank you for your support");
-
-           QMessageBox::information(nullptr, QObject::tr("Succès"),
-                       QObject::tr("Le mail a été envoyé avec succès.\n"
-                                   "Cliquer sur Cancel to exit."), QMessageBox::Cancel);*/
 
 ui->email_verif_dons->clear();
     Dtmp.ajouter_dons();
@@ -1585,7 +1571,7 @@ else if (data=="0")
 }
 }
 
-void MainWindow::check()
+bool MainWindow::check()
 {
     QString tmp="";
     data+=Ar.read_from_arduino();
@@ -1593,8 +1579,8 @@ void MainWindow::check()
     if(tmp.size()==12)
     {
         QSqlQuery query;
-        query.prepare("select * from employe WHERE keycard_token=:TOKEN");
-        query.bindValue(":TOKEN",tmp);
+        query.prepare("select * from employe WHERE keycard_token=:key_card");
+        query.bindValue(":key_card",tmp);
         query.exec();
 
         while(query.next())
@@ -1603,6 +1589,7 @@ void MainWindow::check()
             c1.append(" welcome!");
             ui->label_RFID_STATUS->setText(c1);
             Ar.write_to_arduino("1");
+            return true;
         }
 
         if(c1=="")
@@ -1611,4 +1598,5 @@ void MainWindow::check()
             Ar.write_to_arduino("0");
         }
     }
+    return false;
 }

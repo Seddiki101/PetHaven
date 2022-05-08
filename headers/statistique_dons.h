@@ -21,7 +21,8 @@ public:
 
     int Statistique_dons_partie2() ;
     int Statistique_dons_partie3() ;
-    void paintEvent_dons(QPaintEvent *) ;
+
+    void paintEvent(QPaintEvent *) ;
 
     ~statistique_dons();
 

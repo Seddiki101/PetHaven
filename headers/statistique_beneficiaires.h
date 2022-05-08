@@ -18,11 +18,13 @@ class statistique_beneficiaires : public QDialog
 
 public:
     explicit statistique_beneficiaires(QWidget *parent = nullptr);
+
     int Statistique_beneficiaires_partie2();
     int Statistique_beneficiaires_partie3();
     int Statistique_partie4() ;
     int Statistique_partie5() ;
-    void paintEvent_beneficiaires(QPaintEvent *) ;
+
+    void paintEvent(QPaintEvent *) ;
 
     ~statistique_beneficiaires();
 

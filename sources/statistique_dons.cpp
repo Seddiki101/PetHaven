@@ -23,10 +23,9 @@ int statistique_dons::Statistique_dons_partie2()
     QSqlQuery requete("select * from DONS where MONTANT >1500") ;
     while(requete.next())
     {
-            count++ ;
+        count++ ;
     }
-
-return count ;
+    return count ;
 }
 
 int statistique_dons::Statistique_dons_partie3()
@@ -36,35 +35,32 @@ int statistique_dons::Statistique_dons_partie3()
     QSqlQuery requete("select * from DONS where MONTANT <1500") ;
     while(requete.next())
     {
-            count++ ;
+        count++ ;
     }
-
-return count ;
+    return count ;
 }
 
 
-void statistique_dons::paintEvent_dons(QPaintEvent *)
+void statistique_dons::paintEvent(QPaintEvent *)
 {
 
     int b=Statistique_dons_partie2();
-    cout<<b<<endl ;
     int c=Statistique_dons_partie3();
-    cout<<c<<endl ;
 
-        float s2= b*100 ;
-        float s3=c*100;
-        float nb = b+c ;
-        float q2 ;
-        q2 = s2/nb ;
-        float q3;
-        q3=s3/nb;
-        float y  ;
-        y = (q2*360)/100 ;
-        float m;
-        m= (q3*360)/100;
+    float s2= b*100 ;
+    float s3=c*100;
+    float nb = b+c ;
+    float q2 ;
+    q2 = s2/nb ;
+    float q3;
+    q3=s3/nb;
+    float y  ;
+    y = (q2*360)/100 ;
+    float m;
+    m= (q3*360)/100;
+
     QPainter painter(this);
     QRectF size=QRectF(350,150,this->width()-700,this->width()-700);
-
     painter.setBrush(Qt::blue);
 
     painter.drawPie(size,0,16*y);

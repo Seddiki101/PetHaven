@@ -26,7 +26,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="login_Widget">
        <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -402,7 +402,7 @@
                  </font>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>5</number>
                 </property>
                 <widget class="QWidget" name="Employees">
                  <property name="font">
@@ -2614,464 +2614,317 @@
                  </property>
                  <layout class="QGridLayout" name="g6">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="Dons_Title">
-                    <property name="styleSheet">
-                     <string notr="true">font: 63 italic 30pt &quot;Segoe UI&quot;;</string>
-                    </property>
-                    <property name="text">
-                     <string>Gestion Des Dons </string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QTabWidget" name="tabWidget">
-                    <property name="styleSheet">
-                     <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
-                    </property>
-                    <property name="currentIndex">
+                   <layout class="QVBoxLayout" name="verticalLayout_4">
+                    <property name="leftMargin">
                      <number>0</number>
                     </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>16</width>
-                      <height>16</height>
-                     </size>
+                    <property name="topMargin">
+                     <number>0</number>
                     </property>
-                    <widget class="QWidget" name="tab">
-                     <attribute name="title">
-                      <string>Ajouter</string>
-                     </attribute>
-                     <layout class="QGridLayout" name="g7">
-                      <item row="0" column="0">
-                       <widget class="QGroupBox" name="groupBox">
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="Dons_Title">
                         <property name="styleSheet">
-                         <string notr="true"/>
+                         <string notr="true">font: 63 italic 30pt &quot;Segoe UI&quot;;</string>
                         </property>
-                        <property name="title">
-                         <string>   Ajouter un don   </string>
+                        <property name="text">
+                         <string>Gestion Des Dons </string>
                         </property>
-                        <layout class="QGridLayout" name="g8">
-                         <item row="0" column="0" rowspan="2" colspan="2">
-                          <layout class="QVBoxLayout" name="v39" stretch="3,0,1">
-                           <item>
-                            <layout class="QHBoxLayout" name="h20" stretch="0,0">
-                             <item>
-                              <layout class="QVBoxLayout" name="v38">
-                               <item>
-                                <layout class="QHBoxLayout" name="h21">
-                                 <item>
-                                  <widget class="QLabel" name="label_Montant_dons">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Montant</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QLineEdit" name="le_montant_dons"/>
-                                 </item>
-                                </layout>
-                               </item>
-                               <item>
-                                <layout class="QHBoxLayout" name="h22">
-                                 <item>
-                                  <widget class="QLabel" name="label_Date_dons">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Date</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QDateEdit" name="de_dons">
-                                   <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                                     <horstretch>0</horstretch>
-                                     <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                </layout>
-                               </item>
-                              </layout>
-                             </item>
-                             <item>
-                              <layout class="QVBoxLayout" name="v37">
-                               <item>
-                                <layout class="QHBoxLayout" name="h23">
-                                 <item>
-                                  <widget class="QLabel" name="label_mail_dons">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Email du donateur</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QLineEdit" name="le_email_dons"/>
-                                 </item>
-                                 <item>
-                                  <widget class="QLabel" name="email_verif_dons">
-                                   <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                                     <horstretch>0</horstretch>
-                                     <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                   </property>
-                                   <property name="styleSheet">
-                                    <string notr="true">color: rgb(255, 0, 0);</string>
-                                   </property>
-                                   <property name="text">
-                                    <string/>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                </layout>
-                               </item>
-                               <item>
-                                <layout class="QHBoxLayout" name="h24">
-                                 <item>
-                                  <widget class="QLabel" name="label_adresse_dons">
-                                   <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                     <horstretch>0</horstretch>
-                                     <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                   </property>
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Adresse du donateur</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QLineEdit" name="le_adresse_dons"/>
-                                 </item>
-                                </layout>
-                               </item>
-                               <item>
-                                <layout class="QHBoxLayout" name="h25">
-                                 <item>
-                                  <widget class="QLabel" name="label_nom_dons">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Nom du donateur</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QLineEdit" name="le_nom_don"/>
-                                 </item>
-                                </layout>
-                               </item>
-                              </layout>
-                             </item>
-                            </layout>
-                           </item>
-                           <item>
-                            <spacer name="verticalSpacer">
-                             <property name="orientation">
-                              <enum>Qt::Vertical</enum>
-                             </property>
-                             <property name="sizeType">
-                              <enum>QSizePolicy::Expanding</enum>
-                             </property>
-                             <property name="sizeHint" stdset="0">
-                              <size>
-                               <width>20</width>
-                               <height>20</height>
-                              </size>
-                             </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <layout class="QHBoxLayout" name="h26">
-                             <item>
-                              <spacer name="Spacer19">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="Annuler_dons">
-                               <property name="text">
-                                <string>Annuler</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="Confirmer_dons">
-                               <property name="text">
-                                <string>Confirmer</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <spacer name="Spacer20">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                            </layout>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
                        </widget>
                       </item>
                      </layout>
-                    </widget>
-                    <widget class="QWidget" name="tab_2">
-                     <attribute name="title">
-                      <string>Supprimer</string>
-                     </attribute>
-                     <layout class="QGridLayout" name="g9">
-                      <item row="0" column="0">
-                       <widget class="QGroupBox" name="groupBox_2">
+                    </item>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_2">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QTabWidget" name="tabWidget">
                         <property name="styleSheet">
                          <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
                         </property>
-                        <property name="title">
-                         <string>   Supprimer un don   </string>
+                        <property name="currentIndex">
+                         <number>0</number>
                         </property>
-                        <layout class="QGridLayout" name="g10">
-                         <item row="0" column="0">
-                          <layout class="QVBoxLayout" name="v35">
-                           <item>
-                            <layout class="QHBoxLayout" name="h27">
-                             <item>
-                              <widget class="QLabel" name="label_id_supp_dons">
-                               <property name="minimumSize">
-                                <size>
-                                 <width>150</width>
-                                 <height>0</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string>ID</string>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignCenter</set>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLineEdit" name="le_id_Supp_dons"/>
-                             </item>
-                            </layout>
-                           </item>
-                           <item>
-                            <layout class="QHBoxLayout" name="h28">
-                             <item>
-                              <spacer name="Spacer21">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="supprimer_dons">
-                               <property name="sizePolicy">
-                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                                 <horstretch>0</horstretch>
-                                 <verstretch>0</verstretch>
-                                </sizepolicy>
-                               </property>
-                               <property name="text">
-                                <string>Supprimer</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <spacer name="Spacer22">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                            </layout>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                     </layout>
-                    </widget>
-                    <widget class="QWidget" name="tab_3">
-                     <attribute name="title">
-                      <string>Modifier</string>
-                     </attribute>
-                     <layout class="QGridLayout" name="g11">
-                      <item row="0" column="0">
-                       <widget class="QGroupBox" name="groupBox_3">
-                        <property name="styleSheet">
-                         <string notr="true"/>
+                        <property name="iconSize">
+                         <size>
+                          <width>16</width>
+                          <height>16</height>
+                         </size>
                         </property>
-                        <property name="title">
-                         <string>   Modifier un don  </string>
-                        </property>
-                        <layout class="QGridLayout" name="g12">
-                         <item row="0" column="0" rowspan="2" colspan="2">
-                          <layout class="QVBoxLayout" name="v33" stretch="3,0,1">
-                           <item>
-                            <layout class="QHBoxLayout" name="h35" stretch="0,0">
-                             <item>
-                              <layout class="QVBoxLayout" name="v32">
+                        <widget class="QWidget" name="tab">
+                         <attribute name="title">
+                          <string>Ajouter</string>
+                         </attribute>
+                         <layout class="QVBoxLayout" name="verticalLayout_3">
+                          <item>
+                           <widget class="QGroupBox" name="groupBox">
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
+                            <property name="title">
+                             <string>   Ajouter un don   </string>
+                            </property>
+                            <layout class="QGridLayout" name="g8">
+                             <item row="0" column="0" rowspan="2" colspan="2">
+                              <layout class="QVBoxLayout" name="v39" stretch="3,0,1">
                                <item>
-                                <layout class="QHBoxLayout" name="h29">
+                                <layout class="QHBoxLayout" name="h20" stretch="0,0">
                                  <item>
-                                  <widget class="QLabel" name="label_nom_modiff_dons">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Nom du donateur</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
+                                  <layout class="QVBoxLayout" name="v38">
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h21">
+                                     <item>
+                                      <widget class="QLabel" name="label_Montant_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Montant</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_montant_dons"/>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h22">
+                                     <item>
+                                      <widget class="QLabel" name="label_Date_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Date</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QDateEdit" name="de_dons">
+                                       <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                         <horstretch>0</horstretch>
+                                         <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                  </layout>
                                  </item>
                                  <item>
-                                  <widget class="QLineEdit" name="le_nom_Modif_dons"/>
+                                  <layout class="QVBoxLayout" name="v37">
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h23">
+                                     <item>
+                                      <widget class="QLabel" name="label_mail_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Email du donateur</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_email_dons"/>
+                                     </item>
+                                     <item>
+                                      <widget class="QLabel" name="email_verif_dons">
+                                       <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                         <horstretch>0</horstretch>
+                                         <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                       </property>
+                                       <property name="styleSheet">
+                                        <string notr="true">color: rgb(255, 0, 0);</string>
+                                       </property>
+                                       <property name="text">
+                                        <string/>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h24">
+                                     <item>
+                                      <widget class="QLabel" name="label_adresse_dons">
+                                       <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                         <horstretch>0</horstretch>
+                                         <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                       </property>
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Adresse du donateur</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_adresse_dons"/>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h25">
+                                     <item>
+                                      <widget class="QLabel" name="label_nom_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Nom du donateur</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_nom_don"/>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                  </layout>
                                  </item>
                                 </layout>
                                </item>
                                <item>
-                                <layout class="QHBoxLayout" name="h30">
-                                 <item>
-                                  <widget class="QLabel" name="label_montant_modiff_dons">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Montant</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QLineEdit" name="le_montant_Modif_dons"/>
-                                 </item>
-                                </layout>
+                                <spacer name="verticalSpacer">
+                                 <property name="orientation">
+                                  <enum>Qt::Vertical</enum>
+                                 </property>
+                                 <property name="sizeType">
+                                  <enum>QSizePolicy::Expanding</enum>
+                                 </property>
+                                 <property name="sizeHint" stdset="0">
+                                  <size>
+                                   <width>20</width>
+                                   <height>20</height>
+                                  </size>
+                                 </property>
+                                </spacer>
                                </item>
                                <item>
-                                <layout class="QHBoxLayout" name="h31">
+                                <layout class="QHBoxLayout" name="h26">
                                  <item>
-                                  <widget class="QLabel" name="label_date_modiff_dons">
-                                   <property name="minimumSize">
+                                  <spacer name="Spacer19">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
                                     <size>
-                                     <width>150</width>
-                                     <height>0</height>
+                                     <width>40</width>
+                                     <height>20</height>
                                     </size>
                                    </property>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <widget class="QPushButton" name="Annuler_dons">
                                    <property name="text">
-                                    <string>Date</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
+                                    <string>Annuler</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QDateEdit" name="de_Modif_dons">
-                                   <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                                     <horstretch>0</horstretch>
-                                     <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                   </property>
-                                   <property name="styleSheet">
-                                    <string notr="true"/>
+                                  <widget class="QPushButton" name="Confirmer_dons">
+                                   <property name="text">
+                                    <string>Confirmer</string>
                                    </property>
                                   </widget>
+                                 </item>
+                                 <item>
+                                  <spacer name="Spacer20">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
                                  </item>
                                 </layout>
                                </item>
                               </layout>
                              </item>
-                             <item>
-                              <layout class="QVBoxLayout" name="v31">
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="tab_2">
+                         <attribute name="title">
+                          <string>Supprimer</string>
+                         </attribute>
+                         <layout class="QGridLayout" name="g9">
+                          <item row="0" column="0">
+                           <widget class="QGroupBox" name="groupBox_2">
+                            <property name="styleSheet">
+                             <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
+                            </property>
+                            <property name="title">
+                             <string>   Supprimer un don   </string>
+                            </property>
+                            <layout class="QGridLayout" name="g10">
+                             <item row="0" column="0">
+                              <layout class="QVBoxLayout" name="v35">
                                <item>
-                                <layout class="QHBoxLayout" name="h32">
+                                <layout class="QHBoxLayout" name="h27">
                                  <item>
-                                  <widget class="QLabel" name="label_id_modiff_dons">
+                                  <widget class="QLabel" name="label_id_supp_dons">
                                    <property name="minimumSize">
                                     <size>
                                      <width>150</width>
@@ -3087,514 +2940,694 @@
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QLineEdit" name="le_id_Modif_dons"/>
+                                  <widget class="QLineEdit" name="le_id_Supp_dons"/>
                                  </item>
                                 </layout>
                                </item>
                                <item>
-                                <layout class="QHBoxLayout" name="h33">
+                                <layout class="QHBoxLayout" name="h28">
                                  <item>
-                                  <widget class="QLabel" name="label_mail_modiff_dons">
-                                   <property name="minimumSize">
+                                  <spacer name="Spacer21">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
                                     <size>
-                                     <width>150</width>
-                                     <height>0</height>
+                                     <width>40</width>
+                                     <height>20</height>
                                     </size>
                                    </property>
-                                   <property name="text">
-                                    <string>Email du donateur</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
+                                  </spacer>
                                  </item>
                                  <item>
-                                  <widget class="QLineEdit" name="le_email_Modif_dons"/>
-                                 </item>
-                                 <item>
-                                  <widget class="QLabel" name="email_verif_Modif_dons">
+                                  <widget class="QPushButton" name="supprimer_dons">
                                    <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                                      <horstretch>0</horstretch>
                                      <verstretch>0</verstretch>
                                     </sizepolicy>
                                    </property>
-                                   <property name="styleSheet">
-                                    <string notr="true">color: rgb(255, 0, 0);</string>
-                                   </property>
                                    <property name="text">
-                                    <string/>
+                                    <string>Supprimer</string>
                                    </property>
                                   </widget>
                                  </item>
-                                </layout>
-                               </item>
-                               <item>
-                                <layout class="QHBoxLayout" name="h34">
                                  <item>
-                                  <widget class="QLabel" name="label_adresse_modiff_dons">
-                                   <property name="minimumSize">
+                                  <spacer name="Spacer22">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
                                     <size>
-                                     <width>150</width>
-                                     <height>0</height>
+                                     <width>40</width>
+                                     <height>20</height>
                                     </size>
                                    </property>
-                                   <property name="text">
-                                    <string>Adresse du donateur</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QLineEdit" name="le_adresse_Modif_dons"/>
+                                  </spacer>
                                  </item>
                                 </layout>
                                </item>
                               </layout>
                              </item>
                             </layout>
-                           </item>
-                           <item>
-                            <spacer name="verticalSpacer_2">
-                             <property name="orientation">
-                              <enum>Qt::Vertical</enum>
-                             </property>
-                             <property name="sizeHint" stdset="0">
-                              <size>
-                               <width>20</width>
-                               <height>20</height>
-                              </size>
-                             </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <layout class="QHBoxLayout" name="h36">
-                             <item>
-                              <spacer name="Spacer23">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="Annuler_Modif_dons">
-                               <property name="text">
-                                <string>Annuler</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="Modifier_dons">
-                               <property name="text">
-                                <string>Modifier</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <spacer name="Spacer24">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="tab_3">
+                         <attribute name="title">
+                          <string>Modifier</string>
+                         </attribute>
+                         <layout class="QGridLayout" name="g11">
+                          <item row="0" column="0">
+                           <widget class="QGroupBox" name="groupBox_3">
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
+                            <property name="title">
+                             <string>   Modifier un don  </string>
+                            </property>
+                            <layout class="QGridLayout" name="g12">
+                             <item row="0" column="0" rowspan="2" colspan="2">
+                              <layout class="QVBoxLayout" name="v33" stretch="3,0,1">
+                               <item>
+                                <layout class="QHBoxLayout" name="h35" stretch="0,0">
+                                 <item>
+                                  <layout class="QVBoxLayout" name="v32">
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h29">
+                                     <item>
+                                      <widget class="QLabel" name="label_nom_modiff_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Nom du donateur</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_nom_Modif_dons"/>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h30">
+                                     <item>
+                                      <widget class="QLabel" name="label_montant_modiff_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Montant</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_montant_Modif_dons"/>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h31">
+                                     <item>
+                                      <widget class="QLabel" name="label_date_modiff_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Date</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QDateEdit" name="de_Modif_dons">
+                                       <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                         <horstretch>0</horstretch>
+                                         <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                       </property>
+                                       <property name="styleSheet">
+                                        <string notr="true"/>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                 <item>
+                                  <layout class="QVBoxLayout" name="v31">
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h32">
+                                     <item>
+                                      <widget class="QLabel" name="label_id_modiff_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>ID</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_id_Modif_dons"/>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h33">
+                                     <item>
+                                      <widget class="QLabel" name="label_mail_modiff_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Email du donateur</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_email_Modif_dons"/>
+                                     </item>
+                                     <item>
+                                      <widget class="QLabel" name="email_verif_Modif_dons">
+                                       <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                                         <horstretch>0</horstretch>
+                                         <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                       </property>
+                                       <property name="styleSheet">
+                                        <string notr="true">color: rgb(255, 0, 0);</string>
+                                       </property>
+                                       <property name="text">
+                                        <string/>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                   <item>
+                                    <layout class="QHBoxLayout" name="h34">
+                                     <item>
+                                      <widget class="QLabel" name="label_adresse_modiff_dons">
+                                       <property name="minimumSize">
+                                        <size>
+                                         <width>150</width>
+                                         <height>0</height>
+                                        </size>
+                                       </property>
+                                       <property name="text">
+                                        <string>Adresse du donateur</string>
+                                       </property>
+                                       <property name="alignment">
+                                        <set>Qt::AlignCenter</set>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item>
+                                      <widget class="QLineEdit" name="le_adresse_Modif_dons"/>
+                                     </item>
+                                    </layout>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <spacer name="verticalSpacer_2">
+                                 <property name="orientation">
+                                  <enum>Qt::Vertical</enum>
+                                 </property>
+                                 <property name="sizeHint" stdset="0">
+                                  <size>
+                                   <width>20</width>
+                                   <height>20</height>
+                                  </size>
+                                 </property>
+                                </spacer>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="h36">
+                                 <item>
+                                  <spacer name="Spacer23">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <widget class="QPushButton" name="Annuler_Modif_dons">
+                                   <property name="text">
+                                    <string>Annuler</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QPushButton" name="Modifier_dons">
+                                   <property name="text">
+                                    <string>Modifier</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <spacer name="Spacer24">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
                              </item>
                             </layout>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="tab_4">
+                         <attribute name="title">
+                          <string>Afficher</string>
+                         </attribute>
+                         <layout class="QGridLayout" name="g13">
+                          <item row="0" column="0">
+                           <layout class="QVBoxLayout" name="v30">
+                            <item>
+                             <widget class="QTableView" name="tableView_dons">
+                              <property name="styleSheet">
+                               <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <layout class="QHBoxLayout" name="h38">
+                              <item>
+                               <layout class="QHBoxLayout" name="h39">
+                                <item>
+                                 <widget class="QTableView" name="tableView_T_dons">
+                                  <property name="styleSheet">
+                                   <string notr="true"/>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="Total_dons">
+                                  <property name="sizePolicy">
+                                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                   </sizepolicy>
+                                  </property>
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>50</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>Total des dons</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QVBoxLayout" name="v29">
+                                <item>
+                                 <spacer name="Spacer25">
+                                  <property name="orientation">
+                                   <enum>Qt::Vertical</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>20</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="Refresh_dons">
+                                  <property name="text">
+                                   <string>Refresh</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="stats_dons">
+                                  <property name="text">
+                                   <string>Stats</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="Arduino_dons">
+                                  <property name="text">
+                                   <string>Afficheur</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <spacer name="Spacer26">
+                                  <property name="orientation">
+                                   <enum>Qt::Vertical</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>20</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h40">
+                                <item>
+                                 <widget class="QPushButton" name="PDF_dons">
+                                  <property name="text">
+                                   <string>PDF</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="le_chercher_dons"/>
+                                </item>
+                                <item>
+                                 <widget class="QComboBox" name="comboBox_dons">
+                                  <property name="styleSheet">
+                                   <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(85, 85, 255);</string>
+                                  </property>
+                                  <item>
+                                   <property name="text">
+                                    <string>Tri</string>
+                                   </property>
+                                  </item>
+                                  <item>
+                                   <property name="text">
+                                    <string>Par ID</string>
+                                   </property>
+                                  </item>
+                                  <item>
+                                   <property name="text">
+                                    <string>Par Nom</string>
+                                   </property>
+                                  </item>
+                                  <item>
+                                   <property name="text">
+                                    <string>Par Montant</string>
+                                   </property>
+                                  </item>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="tab_5">
+                         <attribute name="title">
+                          <string>Mailing</string>
+                         </attribute>
+                         <layout class="QGridLayout" name="g14">
+                          <item row="0" column="0">
+                           <layout class="QVBoxLayout" name="v28">
+                            <item>
+                             <layout class="QVBoxLayout" name="v27">
+                              <item>
+                               <layout class="QHBoxLayout" name="h42">
+                                <item>
+                                 <widget class="QLabel" name="label_SMTP_server">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>SMTP server</string>
+                                  </property>
+                                  <property name="alignment">
+                                   <set>Qt::AlignCenter</set>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="le_server_SMTP">
+                                  <property name="echoMode">
+                                   <enum>QLineEdit::NoEcho</enum>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h43">
+                                <item>
+                                 <widget class="QLabel" name="label_SMTP_port">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>PORT</string>
+                                  </property>
+                                  <property name="alignment">
+                                   <set>Qt::AlignCenter</set>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="le_port_SMTP">
+                                  <property name="echoMode">
+                                   <enum>QLineEdit::NoEcho</enum>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h44">
+                                <item>
+                                 <widget class="QLabel" name="label_SMTP_mail">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>Your email</string>
+                                  </property>
+                                  <property name="alignment">
+                                   <set>Qt::AlignCenter</set>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="le_mail_SMTP">
+                                  <property name="echoMode">
+                                   <enum>QLineEdit::NoEcho</enum>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h45">
+                                <item>
+                                 <widget class="QLabel" name="label_SMTP_passwd">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>Your password</string>
+                                  </property>
+                                  <property name="alignment">
+                                   <set>Qt::AlignCenter</set>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="le_passwd_SMTP">
+                                  <property name="echoMode">
+                                   <enum>QLineEdit::Password</enum>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h46">
+                                <item>
+                                 <widget class="QLabel" name="label_SMTP_destination">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>Envoyer à</string>
+                                  </property>
+                                  <property name="alignment">
+                                   <set>Qt::AlignCenter</set>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="le_rcpt_SMTP"/>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h47">
+                                <item>
+                                 <widget class="QLabel" name="label_SMTP_objet">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>Objet</string>
+                                  </property>
+                                  <property name="alignment">
+                                   <set>Qt::AlignCenter</set>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="le_objet_SMTP"/>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                            <item>
+                             <layout class="QVBoxLayout" name="v26">
+                              <item>
+                               <layout class="QHBoxLayout" name="h48">
+                                <item>
+                                 <widget class="QLabel" name="label_SMTP_message">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>150</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="text">
+                                   <string>Message</string>
+                                  </property>
+                                  <property name="alignment">
+                                   <set>Qt::AlignCenter</set>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPlainTextEdit" name="le_msg_SMTP"/>
+                                </item>
+                               </layout>
+                              </item>
+                              <item>
+                               <layout class="QHBoxLayout" name="h49">
+                                <item>
+                                 <widget class="QPushButton" name="envoyer_SMTP">
+                                  <property name="text">
+                                   <string>Envoyer</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="annuler_SMTP">
+                                  <property name="text">
+                                   <string>Annuler</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </item>
+                             </layout>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="tab_6">
+                         <attribute name="title">
+                          <string>Arduino</string>
+                         </attribute>
+                         <layout class="QGridLayout" name="g16">
+                          <item row="0" column="0">
+                           <layout class="QHBoxLayout" name="h50">
+                            <item>
+                             <widget class="QTableView" name="tableView_Ard_dons"/>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </widget>
                        </widget>
                       </item>
                      </layout>
-                    </widget>
-                    <widget class="QWidget" name="tab_4">
-                     <attribute name="title">
-                      <string>Afficher</string>
-                     </attribute>
-                     <layout class="QGridLayout" name="g13">
-                      <item row="0" column="0">
-                       <layout class="QVBoxLayout" name="v30">
-                        <item>
-                         <widget class="QTableView" name="tableView_dons">
-                          <property name="styleSheet">
-                           <string notr="true">font: 63 10pt &quot;Segoe UI&quot;;</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <layout class="QHBoxLayout" name="h38">
-                          <item>
-                           <layout class="QHBoxLayout" name="h39">
-                            <item>
-                             <widget class="QTableView" name="tableView_T_dons">
-                              <property name="styleSheet">
-                               <string notr="true"/>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QPushButton" name="Total_dons">
-                              <property name="sizePolicy">
-                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                               </sizepolicy>
-                              </property>
-                              <property name="minimumSize">
-                               <size>
-                                <width>50</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>Total des dons</string>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QVBoxLayout" name="v29">
-                            <item>
-                             <spacer name="Spacer25">
-                              <property name="orientation">
-                               <enum>Qt::Vertical</enum>
-                              </property>
-                              <property name="sizeHint" stdset="0">
-                               <size>
-                                <width>20</width>
-                                <height>40</height>
-                               </size>
-                              </property>
-                             </spacer>
-                            </item>
-                            <item>
-                             <widget class="QPushButton" name="Refresh_dons">
-                              <property name="text">
-                               <string>Refresh</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QPushButton" name="stats_dons">
-                              <property name="text">
-                               <string>Stats</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QPushButton" name="Arduino_dons">
-                              <property name="text">
-                               <string>Afficheur</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <spacer name="Spacer26">
-                              <property name="orientation">
-                               <enum>Qt::Vertical</enum>
-                              </property>
-                              <property name="sizeHint" stdset="0">
-                               <size>
-                                <width>20</width>
-                                <height>40</height>
-                               </size>
-                              </property>
-                             </spacer>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="h40">
-                            <item>
-                             <widget class="QPushButton" name="PDF_dons">
-                              <property name="text">
-                               <string>PDF</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="le_chercher_dons"/>
-                            </item>
-                            <item>
-                             <widget class="QComboBox" name="comboBox_dons">
-                              <property name="styleSheet">
-                               <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(85, 85, 255);</string>
-                              </property>
-                              <item>
-                               <property name="text">
-                                <string>Tri</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>Par ID</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>Par Nom</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>Par Montant</string>
-                               </property>
-                              </item>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                         </layout>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </widget>
-                    <widget class="QWidget" name="tab_5">
-                     <attribute name="title">
-                      <string>Mailing</string>
-                     </attribute>
-                     <layout class="QGridLayout" name="g14">
-                      <item row="0" column="0">
-                       <layout class="QVBoxLayout" name="v28">
-                        <item>
-                         <layout class="QVBoxLayout" name="v27">
-                          <item>
-                           <layout class="QHBoxLayout" name="h42">
-                            <item>
-                             <widget class="QLabel" name="label_SMTP_server">
-                              <property name="minimumSize">
-                               <size>
-                                <width>150</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>SMTP server</string>
-                              </property>
-                              <property name="alignment">
-                               <set>Qt::AlignCenter</set>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="le_server_SMTP">
-                              <property name="echoMode">
-                               <enum>QLineEdit::NoEcho</enum>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="h43">
-                            <item>
-                             <widget class="QLabel" name="label_SMTP_port">
-                              <property name="minimumSize">
-                               <size>
-                                <width>150</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>PORT</string>
-                              </property>
-                              <property name="alignment">
-                               <set>Qt::AlignCenter</set>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="le_port_SMTP">
-                              <property name="echoMode">
-                               <enum>QLineEdit::NoEcho</enum>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="h44">
-                            <item>
-                             <widget class="QLabel" name="label_SMTP_mail">
-                              <property name="minimumSize">
-                               <size>
-                                <width>150</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>Your email</string>
-                              </property>
-                              <property name="alignment">
-                               <set>Qt::AlignCenter</set>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="le_mail_SMTP">
-                              <property name="echoMode">
-                               <enum>QLineEdit::NoEcho</enum>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="h45">
-                            <item>
-                             <widget class="QLabel" name="label_SMTP_passwd">
-                              <property name="minimumSize">
-                               <size>
-                                <width>150</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>Your password</string>
-                              </property>
-                              <property name="alignment">
-                               <set>Qt::AlignCenter</set>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="le_passwd_SMTP">
-                              <property name="echoMode">
-                               <enum>QLineEdit::Password</enum>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="h46">
-                            <item>
-                             <widget class="QLabel" name="label_SMTP_destination">
-                              <property name="minimumSize">
-                               <size>
-                                <width>150</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>Envoyer à</string>
-                              </property>
-                              <property name="alignment">
-                               <set>Qt::AlignCenter</set>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="le_rcpt_SMTP"/>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="h47">
-                            <item>
-                             <widget class="QLabel" name="label_SMTP_objet">
-                              <property name="minimumSize">
-                               <size>
-                                <width>150</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>Objet</string>
-                              </property>
-                              <property name="alignment">
-                               <set>Qt::AlignCenter</set>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="le_objet_SMTP"/>
-                            </item>
-                           </layout>
-                          </item>
-                         </layout>
-                        </item>
-                        <item>
-                         <layout class="QVBoxLayout" name="v26">
-                          <item>
-                           <layout class="QHBoxLayout" name="h48">
-                            <item>
-                             <widget class="QLabel" name="label_SMTP_message">
-                              <property name="minimumSize">
-                               <size>
-                                <width>150</width>
-                                <height>0</height>
-                               </size>
-                              </property>
-                              <property name="text">
-                               <string>Message</string>
-                              </property>
-                              <property name="alignment">
-                               <set>Qt::AlignCenter</set>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QPlainTextEdit" name="le_msg_SMTP"/>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="h49">
-                            <item>
-                             <widget class="QPushButton" name="envoyer_SMTP">
-                              <property name="text">
-                               <string>Envoyer</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QPushButton" name="annuler_SMTP">
-                              <property name="text">
-                               <string>Annuler</string>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                         </layout>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </widget>
-                    <widget class="QWidget" name="tab_6">
-                     <attribute name="title">
-                      <string>Arduino</string>
-                     </attribute>
-                     <layout class="QGridLayout" name="g16">
-                      <item row="0" column="0">
-                       <layout class="QHBoxLayout" name="h50">
-                        <item>
-                         <widget class="QTableView" name="tableView_Ard_dons"/>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </widget>
-                   </widget>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </widget>

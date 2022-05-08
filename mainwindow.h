@@ -162,7 +162,7 @@ private slots:
     // Arduino functions
     void on_Arduino_dons_clicked();
     void update_dons_label();
-    void check();
+    bool check();
 
 private:
     Ui::MainWindow *ui;
