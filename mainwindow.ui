@@ -26,7 +26,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="login_Widget">
        <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -135,7 +135,14 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="Password_Text"/>
+                     <widget class="QLineEdit" name="Password_Text">
+                      <property name="inputMethodHints">
+                       <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+                     </widget>
                     </item>
                    </layout>
                   </item>
