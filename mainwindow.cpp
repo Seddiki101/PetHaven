@@ -152,9 +152,9 @@ void MainWindow::on_Disconnect_Button_clicked()
     Ar.write_to_arduino("0");
     Ar.write_to_arduino(text);
 
-    QTime dieTime= QTime::currentTime().addSecs(3);
+    QTime dieTime= QTime::currentTime().addSecs(1);
     while (QTime::currentTime() < dieTime)
-     QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     data = Ar.read_from_arduino();
 
     QString E = QString(data);

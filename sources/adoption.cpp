@@ -10,12 +10,9 @@ Adoption::Adoption(int ido,int ida,int idp,QDate dates)
 
 QSqlQueryModel * animal::afficher()
 {
-	QSqlQueryModel * model=new QSqlQueryModel();
-	
-model->setQuery("select * from animals where animals.status = 1")	;
-//model->setHeaderData(0,Qt::Horizontal,QObject::tr("nom"));
-//model->setHeaderData(1,Qt::Horizontal,QObject::tr("race"));
-return model;
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("select * from animals where animals.status = 1")	;
+    return model;
 }
 
 
@@ -23,12 +20,8 @@ return model;
 QSqlQueryModel * beneficiaire::afficher()
 {
 	QSqlQueryModel * model=new QSqlQueryModel();
-	
-model->setQuery("select * from BENEFICIAIRES where BENEFICIAIRES.status = 1")	;
-//model->setHeaderData(0,Qt::Horizontal,QObject::tr("nom"));
-//model->setHeaderData(1,Qt::Horizontal,QObject::tr("prenom"));
-
-return model;
+    model->setQuery("select * from BENEFICIAIRES where BENEFICIAIRES.status = 1")	;
+    return model;
 }
 
 
@@ -37,18 +30,17 @@ return model;
 QSqlQueryModel * Adoption::affichAdo()
 {
 	QSqlQueryModel * model=new QSqlQueryModel();
-	
-model->setQuery("SELECT adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom,beneficiaires.nom FROM adoption,beneficiaires,animals "
-                "WHERE ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) ;")	;
-
-return model;
+    model->setQuery("SELECT adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom,beneficiaires.nom "
+                    "FROM adoption,beneficiaires,animals "
+                    "WHERE ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin )");
+    return model;
 }
 
 QSqlQueryModel * Adoption::affichAnimals()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("SELECT * FROM animals "
-                    "WHERE status=1")	;
+                    "WHERE status=1");
     return model;
 }
 
@@ -56,7 +48,7 @@ QSqlQueryModel * Adoption::affichBeneficiaires()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("SELECT * FROM beneficiaires "
-                    "WHERE status=1")	;
+                    "WHERE status=1");
     return model;
 }
 
@@ -65,10 +57,11 @@ QSqlQueryModel * Adoption::affichBeneficiaires()
 QSqlQueryModel * Adoption::triAlphAdo()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-
-model->setQuery("select adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom from adoption,beneficiaires,animals where ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) order by animals.nom;")	;
-
-return model;
+    model->setQuery("SELECT adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom,beneficiaires.nom "
+                    "FROM adoption,beneficiaires,animals "
+                    "WHERE ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) "
+                    "ORDER BY animals.nom");
+    return model;
 }
 
 
@@ -76,10 +69,11 @@ return model;
 QSqlQueryModel * Adoption::triDatesAdo()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-
-model->setQuery("select adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom from adoption,beneficiaires,animals where ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) order by adoption.dates desc;")	;
-
-return model;
+    model->setQuery("SELECT adoption.ido,adoption.ida,animals.nom,adoption.dates,adoption.cin,beneficiaires.Prenom,beneficiaires.nom "
+                    "FROM adoption,beneficiaires,animals "
+                    "WHERE ( adoption.IDA = animals.IDA AND adoption.cin = beneficiaires.cin ) "
+                    "ORDER BY adoption.dates desc");
+    return model;
 }
 
 
@@ -87,68 +81,47 @@ return model;
 
 bool Adoption::ajoutAdo()
 {
-        QSqlQuery query,qury,qery;
-        QString ida_string=QString::number(ida);
-        QString idp_string=QString::number(idp);
+    QSqlQuery query,qury,qery;
+    QString ida_string=QString::number(ida);
+    QString idp_string=QString::number(idp);
 
-//testing if it already exists
-/*
-  verif.prepare("SELECT IDA FROM BENEFICIAIRES WHERE EXISTS (SELECT * FROM CLIENT c WHERE ? = c.cin)");
-                  verif.addBindValue(cin);
-                  verif.exec();
-                  verif.next();
-                  if (verif.value(0).toBool())
-                  { QMessageBox::information(nullptr,"Information","Client existe :) !"); }
-			  else
-*/
+    query.prepare("insert into ADOPTION (IDO,IDA,CIN,DATES) "
+                  "values(DEFAULT, :IDA, :IDP, :DATES)");
 
+    query.bindValue(":IDA",ida_string);
+    query.bindValue(":IDP",idp_string);
+    query.bindValue(":DATES",dates);
 
+    qury.prepare("UPDATE animals set status=0 WHERE IDA=:IDA");
+    qury.bindValue(":IDA",ida_string);
 
+    qery.prepare("UPDATE BENEFICIAIRES set status=0 WHERE CIN=:IDP");
+    qery.bindValue(":IDP",idp_string);
 
-        //prepare() prend la requete en paramètre pour la préparer à l'éxécution
+    qury.exec();
+    qery.exec();
 
-        query.prepare("insert into ADOPTION (IDO,IDA,CIN,DATES) "
-                      "values(DEFAULT, :IDA, :IDP, :DATES)");
-
-        query.bindValue(":IDA",ida_string);
-        query.bindValue(":IDP",idp_string);
-        query.bindValue(":DATES",dates);
-
-
-//
-qury.prepare("UPDATE animals set status=0 where IDA=:IDA");
-qury.bindValue(":IDA",ida_string);
-
-qery.prepare("UPDATE BENEFICIAIRES set status=0 where CIN=:IDP");
-qery.bindValue(":IDP",idp_string);
-
-qury.exec();
-qery.exec();
-//
-
-      return query.exec(); //exec() envoie la requete pour l'exécuter.
+    return query.exec() && qury.exec();
 }
 
 
 bool Adoption::supprimAdo(int ido, int ida, int idp)
 {
-        QSqlQuery query,qury,qery;
-        QString id_string=QString::number(ido);
-              query.prepare("DELETE FROM ADOPTION WHERE ido=:ido");
-              query.bindValue(":ido", id_string);
+    QSqlQuery query,qury,qery;
+    QString id_string=QString::number(ido);
+    query.prepare("DELETE FROM ADOPTION WHERE ido=:ido");
+    query.bindValue(":ido", id_string);
 
-              qury.prepare("UPDATE animals set status=1 where IDA=:IDA");
-              qury.bindValue(":IDA", ida);
+    qury.prepare("UPDATE animals set status=1 WHERE IDA=:IDA");
+    qury.bindValue(":IDA", ida);
 
-              qery.prepare("UPDATE BENEFICIAIRES set status=1 where CIN=:IDP");
-              qery.bindValue(":IDP", idp);
+    qery.prepare("UPDATE BENEFICIAIRES set status=1 WHERE CIN=:IDP");
+    qery.bindValue(":IDP", idp);
 
+    qury.exec();
+    qery.exec();
 
-              qury.exec();
-              qery.exec();
-
-//update status for animals
-              return query.exec();
+    return query.exec() && qury.exec();
 }
 
 
@@ -156,24 +129,12 @@ bool Adoption::supprimAdo(int ido, int ida, int idp)
 bool Adoption::modifierAdo(int ido,int idp,int ida)
 {
     QSqlQuery query;
-
-    /*
-      verif.prepare("SELECT IDO   FROM Adoption WHERE EXISTS (SELECT * FROM Adoption a WHERE ? = a.IDO)");
-                      verif.addBindValue(IDo);
-                      verif.exec();
-                      verif.next();
-                      if (verif.value(0).toBool())
-                      { QMessageBox::information(nullptr,"Information","Client existe :) !"); }
-                  else
-    */
-
-          query.prepare("UPDATE adoption set cin=:idp,ida=:ida where ido=:ido");
-          query.bindValue(":ido",ido);
-          query.bindValue(":idp",idp);
-          query.bindValue(":ida",ida);
-          //query.bindValue(":dates",dates);
-
-          return query.exec();
+    query.prepare("UPDATE adoption set cin=:idp,ida=:ida "
+                  "WHERE ido=:ido");
+    query.bindValue(":ido",ido);
+    query.bindValue(":idp",idp);
+    query.bindValue(":ida",ida);
+    return query.exec();
 }
 
 
@@ -182,23 +143,21 @@ QSqlQueryModel* Adoption::chercherAdo(QString recherche)
     QSqlQueryModel* model=new QSqlQueryModel();
     QSqlQuery query;
 
-    if (recherche.length()!=0)
+    if (recherche.length() != 0)
     {
-    //query.prepare("SELECT * FROM Adoption where IDO=?");
-    query.prepare("SELECT * FROM adoption o INNER JOIN Beneficiaires b ON o.CIN = b.CIN INNER JOIN Animals a ON o.IDA = a.IDA where IDO=?");
-    query.addBindValue(recherche);
-    query.exec();
-    model->setQuery(query);
+        query.prepare("SELECT o.ido,o.ida,a.nom,o.dates,o.cin,b.Prenom,b.nom "
+                      "FROM Beneficiaires b INNER JOIN adoption o ON b.CIN = o.CIN INNER JOIN Animals a ON o.IDA = a.IDA "
+                      "WHERE IDO=?");
+        query.addBindValue(recherche);
+        query.exec();
+        model->setQuery(query);
     }
     else
     {
-        model->setQuery("SELECT * FROM Adoption");
+        model = affichAdo();
     }
 
-
-
     return model;
-
 }
 
 
@@ -208,24 +167,20 @@ QSqlQueryModel* Adoption::searchAdo(QString recherche)
     QSqlQueryModel* model=new QSqlQueryModel();
     QSqlQuery query;
 
-    if (recherche.length()!=0)
+    if (recherche.length() != 0)
     {
-    //query.prepare("SELECT * FROM Adoption where nom=?");
-    //query.prepare("SELECT * FROM adoption o INNER JOIN Beneficiaires b ON o.CIN = b.CIN INNER JOIN Animals a ON o.IDA = a.IDA where b.nom=?");
-    query.prepare("SELECT * FROM Beneficiaires b INNER JOIN  adoption o ON b.CIN = o.CIN INNER JOIN Animals a ON o.IDA = a.IDA WHERE prenom LIKE '"+recherche+"%' OR b.nom LIKE '"+recherche+"%' ");
-    query.addBindValue(recherche);
-    query.exec();
-    model->setQuery(query);
+        query.prepare("SELECT o.ido,o.ida,a.nom,o.dates,o.cin,b.Prenom,b.nom "
+                      "FROM Beneficiaires b INNER JOIN adoption o ON b.CIN = o.CIN INNER JOIN Animals a ON o.IDA = a.IDA "
+                      "WHERE b.prenom LIKE '"+recherche+"%' OR b.nom LIKE '"+recherche+"%' OR a.nom LIKE '"+recherche+"%' ");
+        query.addBindValue(recherche);
+        query.exec();
+        model->setQuery(query);
     }
     else
     {
-        model->setQuery("SELECT * FROM Adoption");
+        model = affichAdo();
     }
-
-
-
     return model;
-
 }
 
 
@@ -331,9 +286,6 @@ void Adoption::generatePdf(QTableView * tableView)
 QSqlQueryModel * Adoption::Totado()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-
-model->setQuery("SELECT TO_CHAR(TO_DATE((Extract(MONTH from Dates)), 'MM'), 'MONTH') as mois,count (dates) from adoption group by Extract(MONTH from Dates) ;")	;
-//model->setQuery("SELECT count dates from adoption ;")	;
-
-return model;
+    model->setQuery("SELECT TO_CHAR(TO_DATE((Extract(MONTH from Dates)), 'MM'), 'MONTH') as mois,count (dates) from adoption group by Extract(MONTH from Dates) ;")	;
+    return model;
 }

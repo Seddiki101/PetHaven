@@ -41,7 +41,7 @@ bool Employe::ajouter_Employe()
 {
     QSqlQuery query;
     query.prepare("INSERT INTO employe (ide, nom, prenom,email,login,mdp,appreciations,key_card) "
-                "VALUES (DEFAULT, :nom, :prenom, :email, :login, :mdp, :appreciations,NULL)");
+                "VALUES (DEFAULT, :nom, :prenom, :email, :login, :mdp, :appreciations, :key_card)");
 
     query.bindValue(":nom", nom);
     query.bindValue(":prenom", prenom);
@@ -50,6 +50,7 @@ bool Employe::ajouter_Employe()
     mdp=Cryptage_Employe(mdp);
     query.bindValue(":mdp", mdp);
     query.bindValue(":appreciations", appreciations);
+    query.bindValue(":key_card", key_card);
 
     return query.exec();
 }
