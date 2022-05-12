@@ -21,7 +21,9 @@ int main(int argc, char *argv[])
 
     //setup stylesheet
     a.setStyleSheet(styleSheet);
+    a.setWindowIcon(QIcon(":/ressources/petHaven.ico"));
 
+    w.setWindowTitle("Pet Haven");
     w.show();
 
     // Prompt if the connexion to the database has been successfull

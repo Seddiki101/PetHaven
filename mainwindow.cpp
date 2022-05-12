@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->animal_le_Race->setValidator(validator);
     ui->animal_le_Espece->setValidator(validator);
 
+    A.afficher(ui->animal_tableView);
     ui->animal_tableView->hideColumn(0);               // Hide the ID Column
     ui->animal_tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->animal_tableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -378,7 +379,7 @@ static void dosicDemo(const char * text) {
     // Make and print the QR Code symbol
     const QrCode qr = QrCode::encodeText(text, errCorLvl);
     //Directory here
-    QString file = "C:/Users/ilyes/Desktop/Pet_Haven/ressources/qr.svg";
+    QString file = "C:/Users/ilyes/Desktop/qr.svg";
         QFile outputFile(file);
         outputFile.open(QIODevice::WriteOnly);
 

@@ -1,17 +1,17 @@
 QT       += core gui
 QT       += sql
 QT       += printsupport
-
 QT       += serialport
 QT       += network
 QT       += widgets
-
 QT       += positioning
 QT       += location
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TARGET = smtp
 CONFIG += c++11
+CONFIG += static
+TARGET = petHaven
+RC_ICONS = ressources/petHaven.ico
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
